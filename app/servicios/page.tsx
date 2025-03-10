@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Shield, Users, Eye, Bell, Lock, ChevronRight, MessageSquare, Flower } from "lucide-react"
@@ -27,7 +27,8 @@ interface Service {
   pricing?: Pricing;
 }
 
-export default function ServiciosPage() {
+// Componente principal envuelto en Suspense
+function ServiciosContent() {
   const searchParams = useSearchParams()
   const categoryParam = searchParams.get('category')
   
@@ -429,5 +430,14 @@ export default function ServiciosPage() {
         </div>
       )}
     </MainLayout>
+  )
+}
+
+// Componente de exportación que envuelve el contenido en Suspense
+export default function ServiciosPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Cargando...</div>}>
+      <ServiciosContent />
+    </Suspense>
   )
 } 

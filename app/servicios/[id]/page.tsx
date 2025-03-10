@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Shield, Users, Eye, Bell, Lock, ChevronRight, MessageSquare, ArrowLeft, Check, Phone, Mail, X } from "lucide-react"
@@ -27,7 +27,8 @@ interface Service {
   longDescription?: string;
 }
 
-export default function ServiceDetailPage() {
+// Componente principal con la lógica
+function ServiceDetailContent() {
   const params = useParams();
   const router = useRouter();
   const [service, setService] = useState<Service | null>(null);
@@ -472,5 +473,14 @@ export default function ServiceDetailPage() {
         </div>
       )}
     </MainLayout>
+  );
+}
+
+// Componente de exportación que envuelve el contenido en Suspense
+export default function ServiceDetailPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Cargando...</div>}>
+      <ServiceDetailContent />
+    </Suspense>
   );
 } 
