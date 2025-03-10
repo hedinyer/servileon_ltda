@@ -1,135 +1,129 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Shield, Users, Eye, Bell, Lock, ChevronRight, MessageSquare } from "lucide-react"
+import { Shield, Users, Eye, Bell, Lock, ChevronRight, MessageSquare, Flower } from "lucide-react"
 import MainLayout from "../components/MainLayout"
 import FadeInOnScroll from "../components/FadeInOnScroll"
+import { useSearchParams } from "next/navigation"
+import CotizacionCalculator from "../components/CotizacionCalculator"
+
+// Definir interfaces para los tipos
+interface Pricing {
+  valorSinIva: string;
+  iva: string;
+  valorTotal: string;
+}
+
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  category: string;
+  image: string;
+  features: string[];
+  pricing?: Pricing;
+}
 
 export default function ServiciosPage() {
-  const [activeCategory, setActiveCategory] = useState<string>("todos")
+  const searchParams = useSearchParams()
+  const categoryParam = searchParams.get('category')
+  
+  const [activeCategory, setActiveCategory] = useState<string>(categoryParam || "todos")
   const [showContactForm, setShowContactForm] = useState(false)
+  
+  // Actualizar la categoría activa cuando cambia el parámetro de URL
+  useEffect(() => {
+    if (categoryParam) {
+      setActiveCategory(categoryParam)
+    }
+  }, [categoryParam])
 
   const categories = [
     { id: "todos", name: "Todos" },
-    { id: "fisico", name: "Seguridad Física" },
-    { id: "tecnologico", name: "Seguridad Tecnológica" },
-    { id: "consultoria", name: "Consultoría" },
+    { id: "aseo", name: "Aseo y Limpieza" },
+    { id: "porteria", name: "Portería" },
+    { id: "jardineria", name: "Jardinería" },
   ]
 
-  const services = [
+  const services: Service[] = [
     {
       id: 1,
-      title: "Vigilancia Armada",
-      description: "Personal altamente capacitado y certificado para la protección de sus instalaciones y activos.",
+      title: "Aseo y Limpieza Ocho (8) Horas",
+      description: "Servicio de aseo y limpieza profesional para mantener sus instalaciones impecables.",
       icon: <Shield className="h-12 w-12 text-gold" />,
-      category: "fisico",
+      category: "aseo",
       image: "/placeholder.jpg",
       features: [
-        "Personal con licencia de porte de armas",
-        "Entrenamiento continuo en protocolos de seguridad",
-        "Uniformes distintivos y equipamiento completo",
-        "Rotación estratégica de personal"
-      ]
+        "Servicio de lunes a sábado",
+        "Personal con equipo de protección personal",
+        "Productos de limpieza de alta calidad",
+        "Guantes y equipo de protección personal (EPP)"
+      ],
+      pricing: {
+        valorSinIva: "3,550,000.00",
+        iva: "67,450.00",
+        valorTotal: "3,617,450.00"
+      }
     },
     {
       id: 2,
-      title: "Protección Ejecutiva",
-      description: "Escoltas profesionales para la seguridad de ejecutivos y personalidades VIP.",
+      title: "Portería Modalidad 2x2x2",
+      description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad.",
       icon: <Users className="h-12 w-12 text-gold" />,
-      category: "fisico",
+      category: "porteria",
       image: "/placeholder.jpg",
       features: [
-        "Escoltas con experiencia militar o policial",
-        "Vehículos blindados disponibles",
-        "Planificación de rutas seguras",
-        "Protección 24/7"
-      ]
+        "Servicio 24 horas todos los días del mes",
+        "Comunicación con central 24 horas",
+        "Tonfa, con su respectiva porta tonfa",
+        "Demás elementos necesarios para la prestación del servicio"
+      ],
+      pricing: {
+        valorSinIva: "9,669,200.00",
+        iva: "183,714.00",
+        valorTotal: "9,852,914.00"
+      }
     },
     {
       id: 3,
-      title: "Monitoreo 24/7 con IA",
-      description: "Sistemas de vigilancia inteligente con análisis predictivo y respuesta inmediata.",
-      icon: <Eye className="h-12 w-12 text-gold" />,
-      category: "tecnologico",
+      title: "Portería Modalidad 3x3",
+      description: "Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y seguridad.",
+      icon: <Users className="h-12 w-12 text-gold" />,
+      category: "porteria",
       image: "/placeholder.jpg",
       features: [
-        "Cámaras de alta definición con visión nocturna",
-        "Algoritmos de detección de comportamientos sospechosos",
-        "Centro de monitoreo con personal especializado",
-        "Alertas en tiempo real"
-      ]
+        "Servicio 24 horas todos los días del mes",
+        "Comunicación con central 24 horas",
+        "Tonfa, con su respectiva porta tonfa",
+        "Demás elementos necesarios para la prestación del servicio"
+      ],
+      pricing: {
+        valorSinIva: "7,950,000.00",
+        iva: "151,050.00",
+        valorTotal: "8,101,050.00"
+      }
     },
     {
       id: 4,
-      title: "Seguridad para Eventos",
-      description: "Protección integral para eventos corporativos, conciertos y celebraciones privadas.",
-      icon: <Users className="h-12 w-12 text-gold" />,
-      category: "fisico",
+      title: "Jardinería Ocho (8) Horas",
+      description: "Servicio profesional de jardinería para mantener sus espacios verdes en óptimas condiciones.",
+      icon: <Flower className="h-12 w-12 text-gold" />,
+      category: "jardineria",
       image: "/placeholder.jpg",
       features: [
-        "Control de accesos con tecnología avanzada",
-        "Personal uniformado y de civil",
-        "Coordinación con autoridades locales",
-        "Evaluación previa de riesgos"
-      ]
-    },
-    {
-      id: 5,
-      title: "Sistemas de Alarma Inteligentes",
-      description: "Alarmas conectadas a nuestro centro de monitoreo con verificación de incidentes.",
-      icon: <Bell className="h-12 w-12 text-gold" />,
-      category: "tecnologico",
-      image: "/placeholder.jpg",
-      features: [
-        "Sensores de movimiento de última generación",
-        "Integración con sistemas domóticos",
-        "Respuesta inmediata ante activaciones",
-        "Mantenimiento preventivo incluido"
-      ]
-    },
-    {
-      id: 6,
-      title: "Ciberseguridad Empresarial",
-      description: "Protección integral de sus activos digitales y prevención de ataques informáticos.",
-      icon: <Lock className="h-12 w-12 text-gold" />,
-      category: "tecnologico",
-      image: "/placeholder.jpg",
-      features: [
-        "Auditorías de seguridad informática",
-        "Protección contra ransomware y malware",
-        "Capacitación a empleados",
-        "Monitoreo continuo de amenazas"
-      ]
-    },
-    {
-      id: 7,
-      title: "Auditorías de Riesgo",
-      description: "Evaluación exhaustiva de vulnerabilidades en sus instalaciones y procesos.",
-      icon: <Shield className="h-12 w-12 text-gold" />,
-      category: "consultoria",
-      image: "/placeholder.jpg",
-      features: [
-        "Identificación de puntos críticos",
-        "Recomendaciones personalizadas",
-        "Informes detallados con nivel de riesgo",
-        "Seguimiento de implementación"
-      ]
-    },
-    {
-      id: 8,
-      title: "Planes de Emergencia",
-      description: "Desarrollo e implementación de protocolos de actuación ante situaciones de crisis.",
-      icon: <Shield className="h-12 w-12 text-gold" />,
-      category: "consultoria",
-      image: "/placeholder.jpg",
-      features: [
-        "Protocolos personalizados según tipo de negocio",
-        "Simulacros y capacitación al personal",
-        "Coordinación con servicios de emergencia",
-        "Actualización periódica de procedimientos"
-      ]
+        "Servicio de jardinería patio (8) horas",
+        "Lunes a sábado todos los días del mes",
+        "Guantes y equipo de protección personal (EPP)",
+        "Herramientas y equipos especializados"
+      ],
+      pricing: {
+        valorSinIva: "3,550,000.00",
+        iva: "67,450.00",
+        valorTotal: "3,617,450.00"
+      }
     }
   ]
 
@@ -155,7 +149,7 @@ export default function ServiciosPage() {
               Nuestros <span className="text-gold">Servicios</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8">
-              Soluciones integrales de seguridad adaptadas a las necesidades específicas de cada cliente.
+              Soluciones integrales de aseo, limpieza y portería adaptadas a las necesidades específicas de cada cliente.
             </p>
           </div>
         </div>
@@ -185,52 +179,79 @@ export default function ServiciosPage() {
       {/* Services Grid */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredServices.map((service, index) => (
-              <FadeInOnScroll key={service.id} delay={index * 0.1}>
-                <div className="bg-white border border-gray-100 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-sm overflow-hidden group">
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <Image 
-                      src={service.image} 
-                      alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute bottom-4 left-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                      <Link 
-                        href={`/servicios/${service.id}`}
-                        className="bg-gold hover:bg-gold-dark text-white px-4 py-2 rounded-sm text-sm font-medium inline-flex items-center"
-                      >
-                        Ver detalles
-                        <ChevronRight className="ml-1 h-4 w-4" />
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center mb-4">
-                      <div className="mr-4">
-                        {service.icon}
+          <div className="overflow-x-auto pb-4">
+            <div className="flex flex-nowrap gap-6 min-w-max">
+              {filteredServices.map((service, index) => (
+                <FadeInOnScroll key={service.id} delay={index * 0.1}>
+                  <div className="bg-white border border-gray-100 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-sm overflow-hidden group w-80">
+                    <div className="relative h-48 w-full overflow-hidden">
+                      <Image 
+                        src={service.image} 
+                        alt={service.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute bottom-4 left-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <Link 
+                          href={`/servicios/${service.id}`}
+                          className="bg-gold hover:bg-gold-dark text-white px-4 py-2 rounded-sm text-sm font-medium inline-flex items-center"
+                        >
+                          Ver detalles
+                          <ChevronRight className="ml-1 h-4 w-4" />
+                        </Link>
                       </div>
-                      <h3 className="font-playfair text-xl font-bold text-servileon-black">
-                        {service.title}
-                      </h3>
                     </div>
-                    <p className="text-gray-600 mb-4">
-                      {service.description}
-                    </p>
-                    <ul className="space-y-2 mb-4">
-                      {service.features.slice(0, 2).map((feature, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="text-gold mr-2">✓</span>
-                          <span className="text-gray-600 text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="p-6">
+                      <div className="flex items-center mb-4">
+                        <div className="mr-4">
+                          {service.icon}
+                        </div>
+                        <h3 className="font-playfair text-xl font-bold text-servileon-black">
+                          {service.title}
+                        </h3>
+                      </div>
+                      <p className="text-gray-600 mb-4">
+                        {service.description}
+                      </p>
+                      <ul className="space-y-2 mb-4">
+                        {service.features.slice(0, 2).map((feature, i) => (
+                          <li key={i} className="flex items-start">
+                            <span className="text-gold mr-2">✓</span>
+                            <span className="text-gray-600 text-sm">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      {/* Mostrar información de precios si está disponible */}
+                      {service.pricing && (
+                        <div className="mt-4 p-3 bg-gold/5 rounded-md border border-gold/20">
+                          <p className="text-sm font-medium text-servileon-black mb-1">Precio:</p>
+                          <p className="text-lg font-bold text-gold">${service.pricing.valorTotal}</p>
+                          <p className="text-xs text-gray-500">IVA incluido</p>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </FadeInOnScroll>
-            ))}
+                </FadeInOnScroll>
+              ))}
+            </div>
+          </div>
+          
+          {/* Controles de navegación */}
+          <div className="flex justify-center mt-6">
+            <div className="flex space-x-2">
+              <button className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center text-gray-700">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center text-gray-700">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -238,20 +259,54 @@ export default function ServiciosPage() {
       {/* CTA Section */}
       <section className="py-16 bg-servileon-black">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-6">
-              ¿Necesitas algo <span className="text-gold">específico</span>?
-            </h2>
-            <p className="text-gray-300 text-lg mb-8">
-              Contáctanos para diseñar una solución de seguridad personalizada para tu negocio o residencia.
-            </p>
-            <button 
-              onClick={() => setShowContactForm(true)}
-              className="bg-gold hover:bg-gold-dark text-white px-8 py-4 rounded-sm font-medium text-lg uppercase tracking-wider transition-colors duration-300 inline-flex items-center"
-            >
-              Solicitar Información
-              <MessageSquare className="ml-2 h-5 w-5" />
-            </button>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-6">
+                ¿Necesitas algo <span className="text-gold">específico</span>?
+              </h2>
+              <p className="text-gray-300 text-lg mb-8 max-w-3xl mx-auto">
+                Utiliza nuestra calculadora para obtener una cotización estimada o contáctanos para diseñar una solución de aseo, limpieza o portería personalizada para tu negocio o residencia.
+              </p>
+            </div>
+            
+            <div className="flex flex-col lg:flex-row gap-8">
+              <div className="w-full lg:w-3/4">
+                <CotizacionCalculator 
+                  className="transform transition-all duration-500 hover:shadow-2xl" 
+                  onRequestQuote={() => setShowContactForm(true)}
+                />
+              </div>
+              
+              <div className="w-full lg:w-1/4 bg-white/10 p-6 rounded-md">
+                <h3 className="font-playfair text-2xl font-bold text-white mb-6">
+                  ¿Necesitas ayuda?
+                </h3>
+                <p className="text-gray-300 mb-6">
+                  Nuestro equipo está listo para ayudarte a encontrar la solución perfecta para tus necesidades específicas.
+                </p>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start text-gray-300">
+                    <span className="text-gold mr-2">✓</span>
+                    <span>Asesoría personalizada</span>
+                  </li>
+                  <li className="flex items-start text-gray-300">
+                    <span className="text-gold mr-2">✓</span>
+                    <span>Soluciones a medida</span>
+                  </li>
+                  <li className="flex items-start text-gray-300">
+                    <span className="text-gold mr-2">✓</span>
+                    <span>Presupuestos detallados</span>
+                  </li>
+                </ul>
+                <button 
+                  onClick={() => setShowContactForm(true)}
+                  className="bg-gold hover:bg-gold-dark text-white px-8 py-4 rounded-sm font-medium text-lg uppercase tracking-wider transition-colors duration-300 inline-flex items-center w-full justify-center"
+                >
+                  Solicitar Información
+                  <MessageSquare className="ml-2 h-5 w-5" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -270,8 +325,8 @@ export default function ServiciosPage() {
             </button>
             <div className="text-center mb-6">
               <Shield className="h-12 w-12 text-gold mx-auto mb-2" />
-              <h3 className="font-playfair text-2xl font-bold text-servileon-black">Solicitud de Información</h3>
-              <p className="text-gray-600 mt-2">Cuéntanos sobre tus necesidades de seguridad</p>
+              <h3 className="font-playfair text-2xl font-bold text-servileon-black">Solicitud de Cotización</h3>
+              <p className="text-gray-600 mt-2">Cuéntanos sobre tus necesidades específicas</p>
             </div>
             <form className="space-y-4">
               <div>
@@ -280,7 +335,7 @@ export default function ServiciosPage() {
                   type="text" 
                   id="name"
                   placeholder="Tu nombre completo" 
-                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold"
+                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold rounded-sm"
                   required
                 />
               </div>
@@ -290,7 +345,7 @@ export default function ServiciosPage() {
                   type="email" 
                   id="email"
                   placeholder="Tu correo electrónico" 
-                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold"
+                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold rounded-sm"
                   required
                 />
               </div>
@@ -300,37 +355,69 @@ export default function ServiciosPage() {
                   type="tel" 
                   id="phone"
                   placeholder="Tu número de teléfono" 
-                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold"
+                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold rounded-sm"
                   required
                 />
               </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label htmlFor="vigilantes" className="block text-sm font-medium text-gray-700 mb-1">Vigilantes</label>
+                  <input 
+                    type="number" 
+                    id="vigilantes"
+                    min="0"
+                    placeholder="Cantidad" 
+                    className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold rounded-sm"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="aseadoras" className="block text-sm font-medium text-gray-700 mb-1">Aseadoras</label>
+                  <input 
+                    type="number" 
+                    id="aseadoras"
+                    min="0"
+                    placeholder="Cantidad" 
+                    className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold rounded-sm"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="jardineros" className="block text-sm font-medium text-gray-700 mb-1">Jardineros (8h)</label>
+                  <input 
+                    type="number" 
+                    id="jardineros"
+                    min="0"
+                    placeholder="Cantidad" 
+                    className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold rounded-sm"
+                  />
+                </div>
+              </div>
+              
               <div>
-                <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">Servicio de interés</label>
+                <label htmlFor="estrato" className="block text-sm font-medium text-gray-700 mb-1">Estrato</label>
                 <select 
-                  id="service"
-                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold"
-                  required
+                  id="estrato"
+                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold rounded-sm"
                 >
-                  <option value="">Selecciona un servicio</option>
-                  {services.map(service => (
-                    <option key={service.id} value={service.id}>{service.title}</option>
+                  <option value="">Selecciona el estrato</option>
+                  {[1, 2, 3, 4, 5, 6].map(e => (
+                    <option key={e} value={e}>Estrato {e}</option>
                   ))}
-                  <option value="otro">Otro (especificar)</option>
                 </select>
               </div>
+              
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Mensaje o requerimientos adicionales</label>
                 <textarea 
                   id="message"
                   rows={4}
                   placeholder="Describe tus necesidades específicas" 
-                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold"
-                  required
+                  className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-gold rounded-sm"
                 ></textarea>
               </div>
               <button 
                 type="submit" 
-                className="w-full bg-servileon-black hover:bg-gray-800 text-white px-4 py-3 transition-colors duration-300 font-medium"
+                className="w-full bg-gold hover:bg-gold-dark text-white px-4 py-3 transition-colors duration-300 font-medium rounded-sm"
               >
                 Enviar Solicitud
               </button>

@@ -2,35 +2,28 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Shield, ChevronRight, Play, Pause, Star, Users, Award, Clock, Lock, Eye, Bell, Cpu, X, ArrowRight, Check, Menu, Phone } from "lucide-react"
+import { Shield, ChevronRight, Play, Pause, Star, Users, Award, Clock, Lock, Eye, Bell, Cpu, X, ArrowRight, Check, Menu, Phone, MessageSquare, Sparkles } from "lucide-react"
 import { useState, useRef, useEffect } from "react"
 import PageTransition from "./components/PageTransition"
 import MainLayout from "./components/MainLayout"
 import FadeInOnScroll from './components/FadeInOnScroll'
-import dynamic from 'next/dynamic'
-
-// Importar componentes 3D con carga dinámica para evitar errores de SSR
-const AnimatedBackground = dynamic(() => import('./components/3d/AnimatedBackground'), { ssr: false })
-const AnimatedLogo = dynamic(() => import('./components/3d/AnimatedLogo'), { ssr: false })
-const ServiceCard3D = dynamic(() => import('./components/3d/ServiceCard3D'), { ssr: false })
-const ParticlesBackground = dynamic(() => import('./components/3d/ParticlesBackground'), { ssr: false })
+import SecurityBackground from './components/3d/SecurityBackground'
+import SecurityShield from './components/3d/SecurityShield'
+import FloatingParticles from './components/3d/FloatingParticles'
+import InteractiveScroll from './components/InteractiveScroll'
+import InteractiveCard from './components/InteractiveCard'
+import AnimatedButton from './components/AnimatedButton'
+import AnimatedCounter from './components/AnimatedCounter'
+import ParallaxSection from './components/ParallaxSection'
+import { motion } from 'framer-motion'
+import ServiceCard3D from './components/3d/ServiceCard3D'
 
 export default function Home() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(true)
   const [activeTestimonial, setActiveTestimonial] = useState(0)
-  const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   
-  // Show popup after 5 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsPopupOpen(true)
-    }, 5000)
-    
-    return () => clearTimeout(timer)
-  }, [])
-
   const toggleVideo = () => {
     if (videoRef.current) {
       if (isVideoPlaying) {
@@ -44,28 +37,40 @@ export default function Home() {
 
   const services = [
     {
+      id: 1,
       icon: <Shield className="h-12 w-12 text-gold" />,
-      title: "Vigilancia Armada",
-      description: "Personal altamente capacitado y certificado para la protección de sus instalaciones y activos.",
-      link: "/servicios/vigilancia-armada"
+      title: "Aseo y Limpieza",
+      description: "Personal capacitado y productos de alta calidad para mantener sus instalaciones impecables.",
+      link: "/servicios/1",
+      image: "/placeholder.jpg",
+      features: ["Servicio personalizado", "Personal capacitado", "Productos premium"]
     },
     {
+      id: 2,
       icon: <Users className="h-12 w-12 text-gold" />,
-      title: "Protección Ejecutiva",
-      description: "Escoltas profesionales para la seguridad de ejecutivos y personalidades VIP.",
-      link: "/servicios/proteccion-ejecutiva"
+      title: "Portería 2x2x2",
+      description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad.",
+      link: "/servicios/2",
+      image: "/placeholder.jpg",
+      features: ["Cobertura 24/7", "Personal certificado", "Equipamiento completo"]
     },
     {
+      id: 3,
+      icon: <Users className="h-12 w-12 text-gold" />,
+      title: "Portería 3x3",
+      description: "Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y seguridad.",
+      link: "/servicios/3",
+      image: "/placeholder.jpg",
+      features: ["Rotación optimizada", "Mayor eficiencia", "Seguridad reforzada"]
+    },
+    {
+      id: 4,
       icon: <Eye className="h-12 w-12 text-gold" />,
-      title: "Monitoreo 24/7",
-      description: "Sistemas de vigilancia con inteligencia artificial y monitoreo constante.",
-      link: "/servicios/monitoreo"
-    },
-    {
-      icon: <Lock className="h-12 w-12 text-gold" />,
-      title: "Seguridad Electrónica",
-      description: "Instalación y mantenimiento de sistemas de alarmas, CCTV y control de acceso.",
-      link: "/servicios/seguridad-electronica"
+      title: "Servicios Personalizados",
+      description: "Soluciones adaptadas a las necesidades específicas de cada cliente.",
+      link: "/servicios",
+      image: "/placeholder.jpg",
+      features: ["Consultoría gratuita", "Planes a medida", "Atención prioritaria"]
     }
   ]
 
@@ -100,9 +105,12 @@ export default function Home() {
   return (
     <PageTransition>
     <MainLayout>
+        {/* Fondo 3D */}
+        <SecurityBackground className="opacity-30" />
+        
         {/* Hero Section */}
         <section className="relative h-screen flex items-center overflow-hidden">
-          {/* Background Video with 3D overlay */}
+          {/* Background Video */}
           <div className="absolute inset-0 z-0">
           <video 
             ref={videoRef}
@@ -114,11 +122,6 @@ export default function Home() {
             <source src="/security-video.mp4" type="video/mp4" />
           </video>
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
-            
-            {/* 3D Background Animation */}
-            <div className="absolute inset-0 z-5 opacity-40 pointer-events-none">
-              <AnimatedBackground />
-            </div>
           </div>
           
           {/* Video Controls */}
@@ -136,42 +139,77 @@ export default function Home() {
         {/* Hero Content */}
           <div className="container mx-auto px-4 relative z-20">
             <div className="max-w-3xl">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-playfair mb-6">
-                <span className="block">Seguridad de</span>
-                <span className="bg-clip-text text-transparent bg-gold-gradient bg-gradient-size animate-gradient-slow">
-                  Clase Mundial
-                </span>
-            </h1>
-              <p className="text-xl text-white/80 mb-8 max-w-2xl">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-playfair mb-6">
+                  <span className="block">Seguridad de</span>
+                  <span className="bg-clip-text text-transparent bg-gold-gradient bg-gradient-size animate-gradient-slow">
+                    Clase Mundial
+                  </span>
+                </h1>
+              </motion.div>
+              
+              <motion.p 
+                className="text-xl text-white/80 mb-8 max-w-2xl"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
                 Protegemos lo que más valora con soluciones de seguridad personalizadas, tecnología avanzada y personal altamente capacitado.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/contacto" className="px-8 py-4 bg-gold hover:bg-gold-dark text-servileon-black font-semibold rounded-md transition-all duration-300 flex items-center gap-2 group">
+              </motion.p>
+              
+              <motion.div 
+                className="flex flex-wrap gap-4"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <AnimatedButton 
+                  href="/contacto" 
+                  variant="primary"
+                  size="lg"
+                  icon={<ArrowRight className="h-5 w-5" />}
+                >
                   Solicitar Consulta
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link href="/servicios" className="px-8 py-4 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-semibold rounded-md transition-all duration-300">
+                </AnimatedButton>
+                
+                <AnimatedButton 
+                  href="/servicios" 
+                  variant="ghost"
+                  size="lg"
+                >
                   Nuestros Servicios
-                </Link>
-              </div>
+                </AnimatedButton>
+              </motion.div>
             </div>
           </div>
           
           {/* Scroll Indicator */}
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center animate-bounce">
-            <span className="text-white/60 text-sm mb-2">Scroll</span>
-            <ChevronRight className="h-6 w-6 text-white/60 rotate-90" />
-        </div>
+          <InteractiveScroll />
       </section>
 
         {/* Stats Section */}
-        <section className="py-16 bg-servileon-black">
-        <div className="container mx-auto px-4">
+        <section className="py-16 bg-servileon-black relative overflow-hidden">
+          {/* Partículas flotantes */}
+          <div className="absolute inset-0 opacity-30 pointer-events-none">
+            <FloatingParticles particleCount={50} />
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
                 <FadeInOnScroll key={index} delay={index * 0.1}>
                   <div className="text-center">
-                    <h3 className="text-4xl md:text-5xl font-bold text-gold mb-2">{stat.value}</h3>
+                    <AnimatedCounter
+                      end={parseInt(stat.value.replace(/\D/g, ''))}
+                      suffix={stat.value.includes('+') ? '+' : stat.value.includes('/') ? '/7' : ''}
+                      className="text-4xl md:text-5xl font-bold text-gold mb-2"
+                      duration={2.5}
+                      delay={index * 0.2}
+                    />
                     <p className="text-white/70">{stat.label}</p>
                 </div>
               </FadeInOnScroll>
@@ -181,47 +219,107 @@ export default function Home() {
       </section>
 
         {/* Services Section */}
-        <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <FadeInOnScroll>
-            <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold font-playfair mb-4">Nuestros Servicios</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                  Ofrecemos soluciones integrales de seguridad adaptadas a las necesidades específicas de cada cliente.
-              </p>
+        <section className="py-24 bg-gradient-to-b from-white to-gray-50 relative">
+          <ParallaxSection speed={0.2} direction="up" className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 left-0 w-full h-full opacity-5">
+              <Image 
+                src="/leon_logo.png" 
+                alt="Background Logo" 
+                fill
+                className="object-contain"
+              />
             </div>
-          </FadeInOnScroll>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {services.map((service, index) => (
-                <FadeInOnScroll key={index} delay={index * 0.1}>
-                  <ServiceCard3D
-                    icon={service.icon}
-                    title={service.title}
-                    description={service.description}
-                    link={service.link}
-                    delay={index * 0.1}
-                  />
-                </FadeInOnScroll>
-              ))}
+          </ParallaxSection>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <FadeInOnScroll>
+              <div className="text-center mb-16">
+                <div className="inline-block mb-3">
+                  <div className="h-1 w-20 bg-gold mx-auto"></div>
+                  <p className="text-gold font-medium mt-2">SOLUCIONES PROFESIONALES</p>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold font-playfair mb-4 text-black">Nuestros Servicios</h2>
+                <p className="text-gray-600 max-w-3xl mx-auto">
+                  Ofrecemos soluciones integrales de aseo, limpieza y portería para empresas, conjuntos residenciales y oficinas.
+                </p>
+              </div>
+            </FadeInOnScroll>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+              {/* Servicio 1: Aseo y Limpieza */}
+              <FadeInOnScroll delay={0.1}>
+                <ServiceCard3D 
+                  icon={<Sparkles className="h-6 w-6 text-gold" />}
+                  title="Aseo y Limpieza"
+                  description="Servicio profesional de aseo y limpieza para mantener sus instalaciones impecables, con personal capacitado y productos de alta calidad."
+                  link="/servicios/1"
+                  delay={0.1}
+                />
+              </FadeInOnScroll>
+              
+              {/* Servicio 2: Portería 2x2x2 */}
+              <FadeInOnScroll delay={0.2}>
+                <ServiceCard3D 
+                  icon={<Shield className="h-6 w-6 text-gold" />}
+                  title="Portería 2x2x2"
+                  description="Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad de sus instalaciones."
+                  link="/servicios/2"
+                  delay={0.2}
+                />
+              </FadeInOnScroll>
+              
+              {/* Servicio 3: Portería 3x3 */}
+              <FadeInOnScroll delay={0.3}>
+                <ServiceCard3D 
+                  icon={<Users className="h-6 w-6 text-gold" />}
+                  title="Portería 3x3"
+                  description="Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y seguridad, con personal altamente capacitado."
+                  link="/servicios/3"
+                  delay={0.3}
+                />
+              </FadeInOnScroll>
+            </div>
+            
+            <div className="text-center mt-12">
+              <Link href="/servicios" className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-white font-medium py-3 px-6 rounded-md transition-colors duration-300">
+                Ver todos los servicios
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
         {/* About Section */}
-        <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <section className="py-24 bg-gray-50 relative overflow-hidden">
+          <ParallaxSection speed={0.1} direction="down" className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 right-0 w-1/2 h-full opacity-5">
+              <Image 
+                src="/leon_logo.png" 
+                alt="Background Logo" 
+                fill
+                className="object-contain"
+              />
+            </div>
+          </ParallaxSection>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <FadeInOnScroll>
+              <FadeInOnScroll>
                 <div className="relative">
                   <div className="absolute -top-6 -left-6 w-24 h-24 bg-gold/20 rounded-lg z-0"></div>
                   <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gold/20 rounded-lg z-0"></div>
-                  <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px]">
-                    {/* 3D Logo Animation */}
-                    <AnimatedLogo />
-                  </div>
-            </div>
-          </FadeInOnScroll>
+                  <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] p-0">
+                    <div className="h-full w-full">
+                      <Image 
+                        src="/logo.png" 
+                        alt="Servileon Logo" 
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </InteractiveCard>
+                </div>
+              </FadeInOnScroll>
               
               <FadeInOnScroll delay={0.2}>
                 <div>
@@ -249,10 +347,66 @@ export default function Home() {
                     ))}
                   </div>
                   
-                  <Link href="/about" className="px-8 py-4 bg-servileon-black hover:bg-gray-800 text-white font-semibold rounded-md transition-all duration-300 inline-flex items-center gap-2 group">
+                  <AnimatedButton 
+                    href="/about" 
+                    variant="secondary"
+                    size="lg"
+                    icon={<ArrowRight className="h-5 w-5" />}
+                  >
                     Conocer más
-                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  </AnimatedButton>
+                </div>
+              </FadeInOnScroll>
+            </div>
+          </div>
+        </section>
+
+        {/* 3D Shield Section */}
+        <section className="py-24 bg-servileon-black relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30 pointer-events-none">
+            <FloatingParticles particleCount={30} color="#FFDF00" />
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <FadeInOnScroll>
+                <div className="flex justify-center">
+                  <SecurityShield size={400} />
+                </div>
+              </FadeInOnScroll>
+              
+              <FadeInOnScroll delay={0.2}>
+                <div>
+                  <h2 className="text-4xl font-bold font-playfair text-white mb-6">Protección de Clase Mundial</h2>
+                  <p className="text-white/70 mb-6">
+                    En Servileon, entendemos que la seguridad no es solo un servicio, es una promesa. Nuestro compromiso es proteger lo que más valora con soluciones de seguridad de vanguardia.
+                  </p>
+                  <p className="text-white/70 mb-8">
+                    Combinamos tecnología avanzada, personal altamente capacitado y protocolos rigurosos para ofrecer un escudo de protección impenetrable para su hogar, negocio o evento.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                    {[
+                      { icon: <Lock className="h-6 w-6 text-gold" />, text: "Seguridad 24/7" },
+                      { icon: <Eye className="h-6 w-6 text-gold" />, text: "Monitoreo avanzado" },
+                      { icon: <Bell className="h-6 w-6 text-gold" />, text: "Respuesta inmediata" },
+                      { icon: <Cpu className="h-6 w-6 text-gold" />, text: "Tecnología de punta" }
+                    ].map((item, index) => (
+                      <div key={index} className="flex items-center gap-4 bg-white/5 p-4 rounded-lg backdrop-blur-sm">
+                        {item.icon}
+                        <span className="text-white/90 font-medium">{item.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <AnimatedButton 
+                    href="/servicios" 
+                    variant="primary"
+                    size="lg"
+                    icon={<ArrowRight className="h-5 w-5" />}
+                  >
+                    Explorar Soluciones
+                  </AnimatedButton>
                 </div>
               </FadeInOnScroll>
             </div>
@@ -260,8 +414,10 @@ export default function Home() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-24 bg-servileon-black">
-          <div className="container mx-auto px-4">
+        <section className="py-24 bg-servileon-black relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-servileon-black to-gray-900"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <FadeInOnScroll>
               <div className="text-center mb-16">
                 <h2 className="text-4xl font-bold font-playfair text-white mb-4">Lo Que Dicen Nuestros Clientes</h2>
@@ -273,10 +429,13 @@ export default function Home() {
             
             <div className="relative">
               <div className="overflow-hidden">
-                <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${activeTestimonial * 100}%)` }}>
+                <motion.div 
+                  className="flex transition-all duration-500 ease-in-out"
+                  animate={{ x: `-${activeTestimonial * 100}%` }}
+                >
                   {testimonials.map((testimonial, index) => (
                     <div key={index} className="w-full flex-shrink-0 px-4">
-                      <div className="bg-white/5 backdrop-blur-sm p-8 md:p-12 rounded-lg">
+                      <InteractiveCard className="bg-white/5 backdrop-blur-sm p-8 md:p-12 rounded-lg border-0">
                         <div className="flex flex-col md:flex-row gap-8 items-center">
                           <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
                             <Image 
@@ -286,22 +445,22 @@ export default function Home() {
                               height={96}
                               className="w-full h-full object-cover"
                             />
-                </div>
+                          </div>
                           <div>
                             <div className="flex mb-4">
                               {[...Array(5)].map((_, i) => (
                                 <Star key={i} className="h-5 w-5 text-gold fill-gold" />
                               ))}
-              </div>
+                            </div>
                             <p className="text-white/90 text-lg italic mb-6">"{testimonial.content}"</p>
                             <h4 className="text-white font-bold text-xl">{testimonial.name}</h4>
                             <p className="text-white/70">{testimonial.position}</p>
-                </div>
-              </div>
-                </div>
-              </div>
+                          </div>
+                        </div>
+                      </InteractiveCard>
+                    </div>
                   ))}
-                </div>
+                </motion.div>
               </div>
               
               <div className="flex justify-center mt-8 gap-2">
@@ -315,92 +474,60 @@ export default function Home() {
                     aria-label={`Ver testimonio ${index + 1}`}
                   />
                 ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
         {/* CTA Section */}
         <section className="py-24 bg-gold-gradient bg-gradient-size animate-gradient-slow relative overflow-hidden">
-          {/* 3D Particles Background */}
-          <div className="absolute inset-0 opacity-40 pointer-events-none">
-            <ParticlesBackground primaryColor="#FFFFFF" secondaryColor="#B8860B" />
-          </div>
-
+          <ParallaxSection speed={0.2} direction="up" className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 opacity-10">
+              <FloatingParticles particleCount={20} color="#FFFFFF" />
+            </div>
+          </ParallaxSection>
+          
           <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-4xl md:text-5xl font-bold font-playfair text-servileon-black mb-6">
-                Proteja lo que más valora
+                Servicios profesionales de calidad
               </h2>
               <p className="text-servileon-black/80 text-xl mb-8">
-                Contáctenos hoy para una consulta gratuita y descubra cómo podemos ayudarle a mejorar su seguridad.
+                Contáctenos hoy para una consulta gratuita y descubra cómo podemos ayudarle con sus necesidades de aseo, limpieza y portería.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/contacto" className="px-8 py-4 bg-servileon-black hover:bg-gray-800 text-white font-semibold rounded-md transition-all duration-300 flex items-center gap-2 group">
+                <AnimatedButton 
+                  href="/contacto" 
+                  variant="secondary"
+                  size="lg"
+                  icon={<ArrowRight className="h-5 w-5" />}
+                >
                   Solicitar Consulta
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <a href="tel:+123456789" className="px-8 py-4 bg-white/20 hover:bg-white/30 text-servileon-black font-semibold rounded-md transition-all duration-300 flex items-center gap-2">
-                  <Phone className="h-5 w-5" />
+                </AnimatedButton>
+                
+                <AnimatedButton 
+                  href="/servicios" 
+                  variant="ghost"
+                  size="lg"
+                  icon={<ArrowRight className="h-5 w-5" />}
+                  glowColor="rgba(0, 0, 0, 0.2)"
+                >
+                  Ver Servicios
+                </AnimatedButton>
+                
+                <AnimatedButton 
+                  href="tel:+123456789" 
+                  variant="ghost"
+                  size="lg"
+                  icon={<Phone className="h-5 w-5" />}
+                  glowColor="rgba(0, 0, 0, 0.2)"
+                >
                   Llamar Ahora
-                </a>
+                </AnimatedButton>
               </div>
             </div>
-        </div>
-      </section>
-
-        {/* Popup */}
-      {isPopupOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setIsPopupOpen(false)}></div>
-            <div className="relative bg-white rounded-lg shadow-2xl max-w-md w-full p-8 animate-fade-in">
-            <button 
-              onClick={() => setIsPopupOpen(false)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            <div className="text-center mb-6">
-                <div className="bg-gold/20 p-3 rounded-full w-fit mx-auto mb-4">
-                  <Bell className="h-8 w-8 text-gold" />
-            </div>
-                <h3 className="text-2xl font-bold mb-2">¿Necesita mejorar su seguridad?</h3>
-                <p className="text-gray-600">
-                  Regístrese para recibir una evaluación gratuita de seguridad para su hogar o negocio.
-                </p>
-            </div>
-            <form className="space-y-4">
-                <div>
-              <input 
-                type="text" 
-                    placeholder="Nombre completo" 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
-              />
-                </div>
-                <div>
-              <input 
-                type="email" 
-                placeholder="Correo electrónico" 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
-              />
-                </div>
-                <div>
-              <input 
-                type="tel" 
-                placeholder="Teléfono" 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
-              />
-                </div>
-              <button 
-                type="submit" 
-                  className="w-full py-3 bg-gold hover:bg-gold-dark text-servileon-black font-semibold rounded-md transition-all duration-300"
-              >
-                  Solicitar Evaluación Gratuita
-              </button>
-            </form>
-            </div>
-        </div>
-      )}
+          </div>
+        </section>
     </MainLayout>
     </PageTransition>
   )
