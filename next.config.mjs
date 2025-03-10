@@ -28,7 +28,13 @@ const nextConfig = {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
-    optimizeCss: true,
+    optimizeCss: {
+      critters: {
+        pruneSource: true,
+        preload: 'media',
+        fonts: false,
+      },
+    },
     scrollRestoration: true,
     optimisticClientCache: true,
   },
