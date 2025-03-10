@@ -2,27 +2,105 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Shield, ChevronRight, Play, Pause, Star, Users, Award, Clock, Lock, Eye, Bell, Cpu, X, ArrowRight, Check, Menu, Phone, MessageSquare, Sparkles } from "lucide-react"
-import { useState, useRef, useEffect } from "react"
+import dynamic from "next/dynamic"
+// Importar solo los iconos que se usan en la parte inicial de la página
+import { Shield, Play, Pause, ArrowRight, Phone } from "lucide-react"
+// Importar el resto de iconos de forma dinámica
+const Users = dynamic(() => import("lucide-react").then(mod => mod.Users), { ssr: false })
+const Star = dynamic(() => import("lucide-react").then(mod => mod.Star), { ssr: false })
+const Award = dynamic(() => import("lucide-react").then(mod => mod.Award), { ssr: false })
+const Clock = dynamic(() => import("lucide-react").then(mod => mod.Clock), { ssr: false })
+const Lock = dynamic(() => import("lucide-react").then(mod => mod.Lock), { ssr: false })
+const Eye = dynamic(() => import("lucide-react").then(mod => mod.Eye), { ssr: false })
+const Bell = dynamic(() => import("lucide-react").then(mod => mod.Bell), { ssr: false })
+const Cpu = dynamic(() => import("lucide-react").then(mod => mod.Cpu), { ssr: false })
+const X = dynamic(() => import("lucide-react").then(mod => mod.X), { ssr: false })
+const Check = dynamic(() => import("lucide-react").then(mod => mod.Check), { ssr: false })
+const Menu = dynamic(() => import("lucide-react").then(mod => mod.Menu), { ssr: false })
+const MessageSquare = dynamic(() => import("lucide-react").then(mod => mod.MessageSquare), { ssr: false })
+const ChevronRight = dynamic(() => import("lucide-react").then(mod => mod.ChevronRight), { ssr: false })
+const Sparkles = dynamic(() => import("lucide-react").then(mod => mod.Sparkles), { ssr: false })
+
+import { useState, useRef, useEffect, lazy, Suspense } from "react"
 import PageTransition from "./components/PageTransition"
 import MainLayout from "./components/MainLayout"
 import FadeInOnScroll from './components/FadeInOnScroll'
-import SecurityBackground from './components/3d/SecurityBackground'
-import SecurityShield from './components/3d/SecurityShield'
-import FloatingParticles from './components/3d/FloatingParticles'
+// Cargar componentes 3D de forma dinámica
+const SecurityBackground = dynamic(() => import('./components/3d/SecurityBackground'), { ssr: false })
+const FloatingParticles = dynamic(() => import('./components/3d/FloatingParticles'), { ssr: false })
+const ServiceCard3D = dynamic(() => import('./components/3d/ServiceCard3D'), { ssr: false })
+// Importar componentes regulares
 import InteractiveScroll from './components/InteractiveScroll'
 import InteractiveCard from './components/InteractiveCard'
 import AnimatedButton from './components/AnimatedButton'
 import AnimatedCounter from './components/AnimatedCounter'
 import ParallaxSection from './components/ParallaxSection'
 import { motion } from 'framer-motion'
-import ServiceCard3D from './components/3d/ServiceCard3D'
+
+// Configuración para reducir la carga de animaciones
+const motionConfig = {
+  transition: { 
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1]
+  },
+  viewport: { 
+    once: true, 
+    margin: "0px 0px -100px 0px" 
+  }
+}
 
 export default function Home() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(true)
   const [activeTestimonial, setActiveTestimonial] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  
+  // Cargar datos de forma diferida
+  const [isTestimonialsVisible, setIsTestimonialsVisible] = useState(false)
+  const [isStatsVisible, setIsStatsVisible] = useState(false)
+  
+  // Cargar el video de forma diferida
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  
+  useEffect(() => {
+    // Función para verificar si un elemento está en el viewport
+    const checkVisibility = () => {
+      const testimonialsSection = document.getElementById('testimonials-section')
+      const statsSection = document.getElementById('stats-section')
+      
+      if (testimonialsSection) {
+        const rect = testimonialsSection.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+          setIsTestimonialsVisible(true)
+        }
+      }
+      
+      if (statsSection) {
+        const rect = statsSection.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+          setIsStatsVisible(true)
+        }
+      }
+    }
+    
+    // Verificar visibilidad inicial
+    checkVisibility()
+    
+    // Agregar event listener para scroll
+    window.addEventListener('scroll', checkVisibility)
+    
+    // Limpiar event listener
+    return () => window.removeEventListener('scroll', checkVisibility)
+  }, [])
+  
+  useEffect(() => {
+    // Cargar el video después de que la página se haya cargado
+    const timer = setTimeout(() => {
+      setIsVideoLoaded(true)
+    }, 100)
+    
+    return () => clearTimeout(timer)
+  }, [])
   
   const toggleVideo = () => {
     if (videoRef.current) {
@@ -106,21 +184,29 @@ export default function Home() {
     <PageTransition>
     <MainLayout>
         {/* Fondo 3D */}
-        <SecurityBackground className="opacity-30" />
+        <Suspense fallback={<div className="fixed inset-0 -z-10 bg-black"></div>}>
+          <SecurityBackground className="opacity-30" />
+        </Suspense>
         
         {/* Hero Section */}
         <section className="relative h-screen flex items-center overflow-hidden">
           {/* Background Video */}
           <div className="absolute inset-0 z-0">
-          <video 
-            ref={videoRef}
-            autoPlay 
-            muted 
-            loop 
-              className="object-cover w-full h-full brightness-[0.3]"
-          >
-            <source src="/security-video.mp4" type="video/mp4" />
-          </video>
+            {isVideoLoaded ? (
+              <video 
+                ref={videoRef}
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                className="object-cover w-full h-full brightness-[0.3]"
+                preload="none"
+              >
+                <source src="/security-video.mp4" type="video/mp4" />
+              </video>
+            ) : (
+              <div className="w-full h-full bg-black"></div>
+            )}
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
           </div>
           
@@ -143,6 +229,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-playfair mb-6">
                   <span className="block">Seguridad de</span>
@@ -157,6 +244,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
               >
                 Protegemos lo que más valora con soluciones de seguridad personalizadas, tecnología avanzada y personal altamente capacitado.
               </motion.p>
@@ -166,6 +254,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
+                viewport={{ once: true }}
               >
                 <AnimatedButton 
                   href="/contacto" 
@@ -192,10 +281,14 @@ export default function Home() {
       </section>
 
         {/* Stats Section */}
-        <section className="py-16 bg-servileon-black relative overflow-hidden">
+        <section id="stats-section" className="py-16 bg-servileon-black relative overflow-hidden">
           {/* Partículas flotantes */}
           <div className="absolute inset-0 opacity-30 pointer-events-none">
-            <FloatingParticles particleCount={50} />
+            {isStatsVisible && (
+              <Suspense fallback={null}>
+                <FloatingParticles particleCount={50} />
+              </Suspense>
+            )}
           </div>
           
           <div className="container mx-auto px-4 relative z-10">
@@ -314,7 +407,9 @@ export default function Home() {
                         src="/logo.png" 
                         alt="Servileon Logo" 
                         fill
+                        sizes="(max-width: 768px) 100vw, 400px"
                         className="object-cover"
+                        loading="eager"
                       />
                     </div>
                   </InteractiveCard>
@@ -371,7 +466,18 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <FadeInOnScroll>
                 <div className="flex justify-center">
-                  <SecurityShield size={400} />
+                  <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] w-[400px] p-0">
+                    <div className="h-full w-full">
+                      <Image 
+                        src="/security-image.jpg" 
+                        alt="Seguridad Profesional" 
+                        fill
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        className="object-cover"
+                        loading="eager"
+                      />
+                    </div>
+                  </InteractiveCard>
                 </div>
               </FadeInOnScroll>
               
@@ -414,7 +520,7 @@ export default function Home() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-24 bg-servileon-black relative overflow-hidden">
+        <section id="testimonials-section" className="py-24 bg-servileon-black relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-servileon-black to-gray-900"></div>
           
           <div className="container mx-auto px-4 relative z-10">
@@ -495,12 +601,14 @@ export default function Home() {
               <p className="text-servileon-black/80 text-xl mb-8">
                 Contáctenos hoy para una consulta gratuita y descubra cómo podemos ayudarle con sus necesidades de aseo, limpieza y portería.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 max-w-xl mx-auto">
                 <AnimatedButton 
                   href="/contacto" 
                   variant="secondary"
                   size="lg"
                   icon={<ArrowRight className="h-5 w-5" />}
+                  fullWidth={true}
+                  className="w-full sm:w-auto"
                 >
                   Solicitar Consulta
                 </AnimatedButton>
@@ -511,6 +619,8 @@ export default function Home() {
                   size="lg"
                   icon={<ArrowRight className="h-5 w-5" />}
                   glowColor="rgba(0, 0, 0, 0.2)"
+                  fullWidth={true}
+                  className="w-full sm:w-auto"
                 >
                   Ver Servicios
                 </AnimatedButton>
@@ -521,6 +631,8 @@ export default function Home() {
                   size="lg"
                   icon={<Phone className="h-5 w-5" />}
                   glowColor="rgba(0, 0, 0, 0.2)"
+                  fullWidth={true}
+                  className="w-full sm:w-auto"
                 >
                   Llamar Ahora
                 </AnimatedButton>

@@ -27,39 +27,66 @@ export default function FadeInOnScroll({
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsVisible(true)
-          }, delay * 1000)
-          
-          if (once) {
-            observer.unobserve(entry.target)
-          }
-        } else if (!once) {
-          setIsVisible(false)
-        }
-      },
-      {
-        threshold,
-        rootMargin: '0px 0px -100px 0px'
+    // Usar requestIdleCallback para mejorar el rendimiento
+    const scheduleObserver = () => {
+      if ('requestIdleCallback' in window) {
+        return window.requestIdleCallback(() => {
+          setupObserver();
+        }, { timeout: 1000 });
+      } else {
+        return setTimeout(setupObserver, 1);
       }
-    )
+    };
 
-    const currentRef = ref.current
-    if (currentRef) {
-      observer.observe(currentRef)
-    }
+    const setupObserver = () => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            // Usar requestAnimationFrame para las animaciones
+            requestAnimationFrame(() => {
+              setTimeout(() => {
+                setIsVisible(true)
+              }, delay * 1000)
+            });
+            
+            if (once) {
+              observer.unobserve(entry.target)
+            }
+          } else if (!once) {
+            setIsVisible(false)
+          }
+        },
+        {
+          threshold,
+          rootMargin: '0px 0px -100px 0px'
+        }
+      )
+
+      const currentRef = ref.current
+      if (currentRef) {
+        observer.observe(currentRef)
+      }
+
+      return () => {
+        if (currentRef) {
+          observer.unobserve(currentRef)
+        }
+      }
+    };
+
+    const idleCallbackId = scheduleObserver();
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
+      if ('requestIdleCallback' in window && typeof idleCallbackId === 'number') {
+        window.cancelIdleCallback(idleCallbackId);
+      } else if (typeof idleCallbackId === 'number') {
+        clearTimeout(idleCallbackId);
       }
-    }
+    };
   }, [threshold, delay, once])
 
-  const getAnimationClasses = () => {
+  // Memoizar las clases de animación para evitar cálculos innecesarios
+  const animationClasses = (() => {
     if (animation === 'none') return ''
     
     const baseClasses = `transition-all ease-out`
@@ -83,15 +110,16 @@ export default function FadeInOnScroll({
     } else {
       return `${baseClasses} ${durationClass} opacity-100 translate-y-0 translate-x-0 scale-100`
     }
-  }
+  })()
 
   return (
     <div
       ref={ref}
-      className={`${getAnimationClasses()} ${className}`}
+      className={`${animationClasses} ${className}`}
       style={{ 
         transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay * 1000}ms`
+        transitionDelay: `${delay * 1000}ms`,
+        willChange: isVisible ? 'opacity, transform' : 'auto' // Optimización para el navegador
       }}
     >
       {children}
