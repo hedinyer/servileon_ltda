@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, ReactNode } from 'react'
+import { useState, ReactNode, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { usePageTransition, TransitionType } from '../hooks/usePageTransition'
 
 interface AnimatedButtonProps {
   children: ReactNode
@@ -17,6 +18,9 @@ interface AnimatedButtonProps {
   fullWidth?: boolean
   animate?: boolean
   glowColor?: string
+  transitionType?: TransitionType
+  transitionDuration?: number
+  trackingId?: string
 }
 
 export default function AnimatedButton({
@@ -31,10 +35,14 @@ export default function AnimatedButton({
   disabled = false,
   fullWidth = false,
   animate = true,
-  glowColor = 'rgba(212, 175, 55, 0.6)'
+  glowColor = 'rgba(212, 175, 55, 0.6)',
+  transitionType,
+  transitionDuration,
+  trackingId
 }: AnimatedButtonProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isPressed, setIsPressed] = useState(false)
+  const pageTransition = usePageTransition()
   
   // Configuración de variantes
   const variantStyles = {
@@ -73,6 +81,27 @@ export default function AnimatedButton({
     sm: 'px-4 py-2 text-sm',
     md: 'px-6 py-3 text-base',
     lg: 'px-8 py-4 text-lg'
+  }
+
+  // Track button click for analytics
+  const trackButtonClick = () => {
+    if (trackingId && typeof window !== 'undefined') {
+      // Simple analytics tracking
+      const event = {
+        type: 'button_click',
+        id: trackingId,
+        path: window.location.pathname,
+        timestamp: new Date().toISOString()
+      }
+      
+      // Store in localStorage for demo purposes
+      // In a real app, you would send this to your analytics service
+      const events = JSON.parse(localStorage.getItem('servileon_events') || '[]')
+      events.push(event)
+      localStorage.setItem('servileon_events', JSON.stringify(events))
+      
+      console.log(`Button clicked: ${trackingId}`)
+    }
   }
   
   // Componente interno del botón
@@ -127,6 +156,30 @@ export default function AnimatedButton({
     ${className}
   `
   
+  // Handle click with page transition
+  const handleClick = (e: React.MouseEvent) => {
+    if (disabled) return
+    
+    // Track the click
+    trackButtonClick()
+    
+    // If we have an onClick handler, call it
+    if (onClick) {
+      onClick()
+      return
+    }
+    
+    // If we have an href and should use page transition
+    if (href && (transitionType || transitionDuration)) {
+      e.preventDefault()
+      pageTransition.navigateTo(
+        href, 
+        transitionType || pageTransition.transitionType,
+        transitionDuration || pageTransition.transitionDuration
+      )
+    }
+  }
+  
   // Eventos comunes
   const commonEvents = {
     onMouseEnter: () => !disabled && setIsHovered(true),
@@ -136,7 +189,7 @@ export default function AnimatedButton({
     },
     onMouseDown: () => !disabled && setIsPressed(true),
     onMouseUp: () => !disabled && setIsPressed(false),
-    onClick: !disabled && onClick ? onClick : undefined
+    onClick: handleClick
   }
   
   // Renderizar como Link o botón

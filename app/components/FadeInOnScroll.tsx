@@ -25,8 +25,16 @@ export default function FadeInOnScroll({
 }: FadeInOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  // Solución para el error de hidratación: solo activar efectos después del montaje en el cliente
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
+    if (!isMounted) return // No ejecutar el observer hasta que el componente esté montado en el cliente
+
     // Usar requestIdleCallback para mejorar el rendimiento
     const scheduleObserver = () => {
       if ('requestIdleCallback' in window) {
@@ -83,11 +91,14 @@ export default function FadeInOnScroll({
         clearTimeout(idleCallbackId);
       }
     };
-  }, [threshold, delay, once])
+  }, [threshold, delay, once, isMounted]) // Añadir isMounted como dependencia
 
   // Memoizar las clases de animación para evitar cálculos innecesarios
   const animationClasses = (() => {
-    if (animation === 'none') return ''
+    // Si no está montado, no aplicar clases de animación para evitar discrepancias de hidratación
+    if (!isMounted) return className
+    
+    if (animation === 'none') return className
     
     const baseClasses = `transition-all ease-out`
     const durationClass = `duration-${duration}`
@@ -95,32 +106,35 @@ export default function FadeInOnScroll({
     if (!isVisible) {
       switch (animation) {
         case 'fade-up':
-          return `${baseClasses} ${durationClass} opacity-0 translate-y-8`
+          return `${baseClasses} ${durationClass} opacity-0 translate-y-8 ${className}`
         case 'fade-down':
-          return `${baseClasses} ${durationClass} opacity-0 -translate-y-8`
+          return `${baseClasses} ${durationClass} opacity-0 -translate-y-8 ${className}`
         case 'fade-left':
-          return `${baseClasses} ${durationClass} opacity-0 translate-x-8`
+          return `${baseClasses} ${durationClass} opacity-0 translate-x-8 ${className}`
         case 'fade-right':
-          return `${baseClasses} ${durationClass} opacity-0 -translate-x-8`
+          return `${baseClasses} ${durationClass} opacity-0 -translate-x-8 ${className}`
         case 'zoom-in':
-          return `${baseClasses} ${durationClass} opacity-0 scale-95`
+          return `${baseClasses} ${durationClass} opacity-0 scale-95 ${className}`
         default:
-          return `${baseClasses} ${durationClass} opacity-0`
+          return `${baseClasses} ${durationClass} opacity-0 ${className}`
       }
     } else {
-      return `${baseClasses} ${durationClass} opacity-100 translate-y-0 translate-x-0 scale-100`
+      return `${baseClasses} ${durationClass} opacity-100 translate-y-0 translate-x-0 scale-100 ${className}`
     }
   })()
+
+  // Estilo condicional basado en si está montado
+  const transitionStyle = isMounted ? { 
+    transitionDuration: `${duration}ms`,
+    transitionDelay: `${delay * 1000}ms`,
+    willChange: isVisible ? 'opacity, transform' : 'auto' // Optimización para el navegador
+  } : {}
 
   return (
     <div
       ref={ref}
-      className={`${animationClasses} ${className}`}
-      style={{ 
-        transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay * 1000}ms`,
-        willChange: isVisible ? 'opacity, transform' : 'auto' // Optimización para el navegador
-      }}
+      className={animationClasses}
+      style={transitionStyle}
     >
       {children}
     </div>

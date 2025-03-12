@@ -95,7 +95,7 @@ export default function InteractiveCard({
       }}
     >
       {/* Contenido */}
-      <div className="relative z-10">
+      <div className="relative z-10 h-full w-full">
         {children}
       </div>
       

@@ -53,6 +53,7 @@ function ServiciosContent() {
     { id: "porteria", name: "Portería" },
     { id: "aseo", name: "Aseo y Limpieza" },
     { id: "jardineria", name: "Jardinería" },
+    { id: "camaras", name: "Cámaras de Seguridad" }
   ]
 
   const services: Service[] = [
@@ -193,6 +194,28 @@ function ServiciosContent() {
         "Herramientas y equipos especializados"
       ],
       color: "bg-emerald-50 border-emerald-200"
+    },
+    // SECCIÓN DE CÁMARAS DE SEGURIDAD
+    {
+      id: 8,
+      title: "Instalación y Monitoreo de Cámaras de Seguridad",
+      description: "Servicio profesional de instalación, configuración y monitoreo de sistemas de videovigilancia para su hogar o negocio.",
+      icon: <LucideIcons.Camera className="h-12 w-12 text-gold" />,
+      category: "camaras",
+      image: "/portada.jpeg",
+      features: [
+        "Cámaras de alta definición",
+        "Monitoreo 24/7",
+        "Almacenamiento en la nube",
+        "Acceso remoto desde dispositivos móviles"
+      ],
+      pricing: {
+        precioBase: "5,200,000.00",
+        aiu: "98,800.00",
+        iva: "520,000.00",
+        valorTotal: "5,818,800.00"
+      },
+      color: "bg-purple-50 border-purple-200"
     }
   ]
 
@@ -218,7 +241,7 @@ function ServiciosContent() {
               Nuestros <span className="text-gold">Servicios</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8">
-              Soluciones integrales de portería, aseo y jardinería adaptadas a las necesidades específicas de cada cliente.
+              Soluciones integrales de portería, aseo, jardinería y sistemas de videovigilancia adaptadas a las necesidades específicas de cada cliente.
             </p>
           </div>
         </div>
@@ -243,6 +266,7 @@ function ServiciosContent() {
                 {category.id === "porteria" && <LucideIcons.Shield className="h-4 w-4 mr-2" />}
                 {category.id === "aseo" && <LucideIcons.Users className="h-4 w-4 mr-2" />}
                 {category.id === "jardineria" && <LucideIcons.Flower className="h-4 w-4 mr-2" />}
+                {category.id === "camaras" && <LucideIcons.Camera className="h-4 w-4 mr-2" />}
                 <span className="font-medium">{category.name}</span>
               </button>
             ))}
@@ -256,7 +280,9 @@ function ServiciosContent() {
           <h2 className="text-center font-playfair text-3xl font-bold text-servileon-black mb-10">
             {activeCategory === "todos" ? "Todos Nuestros Servicios" : 
              activeCategory === "porteria" ? "Servicios de Portería" :
-             activeCategory === "aseo" ? "Servicios de Aseo y Limpieza" : "Servicios de Jardinería"}
+             activeCategory === "aseo" ? "Servicios de Aseo y Limpieza" : 
+             activeCategory === "jardineria" ? "Servicios de Jardinería" :
+             "Servicios de Cámaras de Seguridad"}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredServices.map((service, index) => (

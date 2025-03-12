@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Poppins, Playfair_Display } from 'next/font/google'
+import ClientLayout from './components/ClientLayout'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -26,11 +27,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${poppins.variable} ${playfair.variable}`}>
+    <html lang="es" className={`${poppins.variable} ${playfair.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/leon_logo.png" sizes="any" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="bg-white">{children}</body>
+      <body className="bg-white min-h-screen">
+        <ClientLayout>
+          {children}
+        </ClientLayout>
+      </body>
     </html>
   )
 }

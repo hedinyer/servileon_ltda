@@ -2,17 +2,20 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { usePathname } from "next/navigation"
+import { TransitionType } from "../hooks/usePageTransition"
 
 interface PageTransitionProps {
   children: React.ReactNode
-  type?: 'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'scale'
+  type?: TransitionType
   duration?: number
+  isTransitioning?: boolean
 }
 
 export default function PageTransition({
   children,
   type = 'fade',
-  duration = 0.5
+  duration = 0.5,
+  isTransitioning = false
 }: PageTransitionProps) {
   const pathname = usePathname()
 
@@ -71,6 +74,7 @@ export default function PageTransition({
           duration: duration, 
           ease: [0.22, 1, 0.36, 1] // Custom cubic-bezier for smooth transitions
         }}
+        className={isTransitioning ? "pointer-events-none" : ""}
       >
         {children}
       </motion.div>

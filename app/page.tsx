@@ -30,6 +30,7 @@ import FadeInOnScroll from './components/FadeInOnScroll'
 const SecurityBackground = dynamic(() => import('./components/3d/SecurityBackground'), { ssr: false })
 const FloatingParticles = dynamic(() => import('./components/3d/FloatingParticles'), { ssr: false })
 const ServiceCard3D = dynamic(() => import('./components/3d/ServiceCard3D'), { ssr: false })
+const FloatingLogos = dynamic(() => import('./components/3d/FloatingLogos'), { ssr: false })
 // Importar componentes regulares
 import InteractiveScroll from './components/InteractiveScroll'
 import InteractiveCard from './components/InteractiveCard'
@@ -128,6 +129,15 @@ export default function Home() {
     },
     {
       id: 5,
+      icon: <LucideIcons.Camera className="h-12 w-12 text-gold" />,
+      title: "Cámaras de Seguridad",
+      description: "Instalación y monitoreo de sistemas de videovigilancia con tecnología de punta para su hogar o negocio.",
+      link: "/servicios?category=camaras",
+      image: "/portada.jpeg",
+      features: ["Monitoreo 24/7", "Alta definición", "Acceso remoto"]
+    },
+    {
+      id: 6,
       icon: <LucideIcons.Eye className="h-12 w-12 text-gold" />,
       title: "Servicios Personalizados",
       description: "Soluciones adaptadas a las necesidades específicas de cada cliente.",
@@ -289,6 +299,19 @@ export default function Home() {
             </div>
           </ParallaxSection>
           
+          {/* Agregar logos flotantes */}
+          <div className="absolute inset-0 pointer-events-none">
+            <Suspense fallback={null}>
+              <FloatingLogos 
+                count={15} 
+                minSize={1.5} 
+                maxSize={3.5} 
+                minOpacity={0.03} 
+                maxOpacity={0.08} 
+              />
+            </Suspense>
+          </div>
+          
           <div className="container mx-auto px-4 relative z-10">
             <FadeInOnScroll>
               <div className="text-center mb-16">
@@ -347,6 +370,17 @@ export default function Home() {
                   delay={0.4}
                 />
               </FadeInOnScroll>
+              
+              {/* Servicio 5: Cámaras de Seguridad */}
+              <FadeInOnScroll delay={0.5}>
+                <ServiceCard3D 
+                  icon={<LucideIcons.Camera className="h-6 w-6 text-gold" />}
+                  title="Cámaras de Seguridad"
+                  description="Instalación y monitoreo de sistemas de videovigilancia con tecnología de punta para su hogar o negocio."
+                  link="/servicios?category=camaras"
+                  delay={0.5}
+                />
+              </FadeInOnScroll>
             </div>
             
             <div className="text-center mt-12">
@@ -371,6 +405,19 @@ export default function Home() {
             </div>
           </ParallaxSection>
           
+          {/* Agregar logos flotantes */}
+          <div className="absolute inset-0 pointer-events-none">
+            <Suspense fallback={null}>
+              <FloatingLogos 
+                count={12} 
+                minSize={1} 
+                maxSize={3} 
+                minOpacity={0.02} 
+                maxOpacity={0.07} 
+              />
+            </Suspense>
+          </div>
+          
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <FadeInOnScroll>
@@ -378,14 +425,14 @@ export default function Home() {
                   <div className="absolute -top-6 -left-6 w-24 h-24 bg-gold/20 rounded-lg z-0"></div>
                   <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gold/20 rounded-lg z-0"></div>
                   <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] p-0">
-                    <div className="h-full w-full">
+                    <div className="relative h-full w-full">
                       <Image 
                         src="/portada.jpeg" 
                         alt="Servileon Logo" 
-                        fill
-                        sizes="(max-width: 768px) 100vw, 400px"
-                        className="object-cover"
-                        loading="eager"
+                        width={600}
+                        height={400}
+                        priority
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   </InteractiveCard>
@@ -443,14 +490,14 @@ export default function Home() {
               <FadeInOnScroll>
                 <div className="flex justify-center">
                   <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] w-[400px] p-0">
-                    <div className="h-full w-full">
+                    <div className="relative h-full w-full">
                       <Image 
                         src="/portada.jpeg" 
                         alt="Portería y Vigilancia Profesional" 
-                        fill
-                        sizes="(max-width: 768px) 100vw, 400px"
-                        className="object-cover"
-                        loading="eager"
+                        width={600}
+                        height={400}
+                        priority
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   </InteractiveCard>

@@ -128,7 +128,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
         { name: "Aseo y Limpieza", href: "/servicios?category=aseo" },
         { name: "Portería 2x2x2", href: "/servicios?category=porteria" },
         { name: "Portería 3x3", href: "/servicios?category=porteria" },
-        { name: "Jardinería", href: "/servicios?category=jardineria" }
+        { name: "Jardinería", href: "/servicios?category=jardineria" },
+        { name: "Instalación y Monitoreo de Cámaras", href: "/servicios?category=camaras" }
       ]
     },
     { name: "Nosotros", href: "/nosotros" },
