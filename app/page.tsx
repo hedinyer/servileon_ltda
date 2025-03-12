@@ -321,41 +321,41 @@ export default function Home() {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold font-playfair mb-4 text-black">Nuestros Servicios</h2>
                 <p className="text-gray-600 max-w-3xl mx-auto">
-                  Ofrecemos soluciones integrales de aseo, limpieza, portería y jardinería para empresas, conjuntos residenciales y oficinas.
+                  Ofrecemos soluciones integrales de porteria, vigilancia, aseo, limpieza y jardinería para empresas, conjuntos residenciales y oficinas.
                 </p>
               </div>
             </FadeInOnScroll>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-              {/* Servicio 1: Aseo y Limpieza */}
+              {/* Servicio 1: Portería 2x2x2 */}
               <FadeInOnScroll delay={0.1}>
-                <ServiceCard3D 
-                  icon={<LucideIcons.Sparkles className="h-6 w-6 text-gold" />}
-                  title="Aseo y Limpieza"
-                  description="Servicio profesional de aseo y limpieza para mantener sus instalaciones impecables, con personal capacitado y productos de alta calidad."
-                  link="/servicios/1"
-                  delay={0.1}
-                />
-              </FadeInOnScroll>
-              
-              {/* Servicio 2: Portería 2x2x2 */}
-              <FadeInOnScroll delay={0.2}>
                 <ServiceCard3D 
                   icon={<LucideIcons.Shield className="h-6 w-6 text-gold" />}
                   title="Portería 2x2x2"
                   description="Servicio de portería 24 horas con personal capacitado y equipado para garantizar la vigilancia y control de sus instalaciones."
                   link="/servicios/2"
-                  delay={0.2}
+                  delay={0.1}
                 />
               </FadeInOnScroll>
               
-              {/* Servicio 3: Portería 3x3 */}
-              <FadeInOnScroll delay={0.3}>
+              {/* Servicio 2: Portería 3x3 */}
+              <FadeInOnScroll delay={0.2}>
                 <ServiceCard3D 
                   icon={<LucideIcons.Users className="h-6 w-6 text-gold" />}
                   title="Portería 3x3"
                   description="Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y control, con personal altamente capacitado."
                   link="/servicios/3"
+                  delay={0.2}
+                />
+              </FadeInOnScroll>
+              
+              {/* Servicio 3: Aseo y Limpieza */}
+              <FadeInOnScroll delay={0.3}>
+                <ServiceCard3D 
+                  icon={<LucideIcons.Sparkles className="h-6 w-6 text-gold" />}
+                  title="Aseo y Limpieza"
+                  description="Servicio profesional de aseo y limpieza para mantener sus instalaciones impecables, con personal capacitado y productos de alta calidad."
+                  link="/servicios/1"
                   delay={0.3}
                 />
               </FadeInOnScroll>
@@ -443,7 +443,7 @@ export default function Home() {
                 <div>
                   <h2 className="text-4xl font-bold font-playfair mb-6 text-black">Quiénes Somos</h2>
                   <p className="text-gray-600 mb-6">
-                    Con más de 15 años de experiencia, Servileon se ha consolidado como líder en el sector de portería, vigilancia y control, ofreciendo soluciones integrales que combinan personal altamente capacitado, tecnología de vanguardia y protocolos de vigilancia rigurosos.
+                    Con más de 8 años de experiencia, Servileon se ha consolidado como líder en el sector de portería, vigilancia y control, ofreciendo soluciones integrales que combinan personal altamente capacitado, tecnología de vanguardia y protocolos de vigilancia rigurosos.
                   </p>
                   <p className="text-gray-600 mb-8">
                     Nuestra misión es proporcionar tranquilidad a nuestros clientes a través de servicios de portería, vigilancia y control confiables, eficientes y personalizados que se adaptan a sus necesidades específicas.
