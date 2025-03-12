@@ -7,6 +7,7 @@ import AnalyticsTracker from './AnalyticsTracker'
 import ScrollToTopButton from './ScrollToTopButton'
 import ReadingProgressBar from './ReadingProgressBar'
 import ClientOnly from './ClientOnly'
+import ErrorBoundary from './ErrorBoundary'
 
 interface ClientLayoutProps {
   children: React.ReactNode
@@ -14,20 +15,22 @@ interface ClientLayoutProps {
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <NotificationProvider>
-        <Suspense fallback={<div>{children}</div>}>
-          <AnalyticsTracker>
-            <ClientOnly>
-              <ReadingProgressBar />
-            </ClientOnly>
-            {children}
-            <ClientOnly>
-              <ScrollToTopButton />
-            </ClientOnly>
-          </AnalyticsTracker>
-        </Suspense>
-      </NotificationProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <NotificationProvider>
+          <Suspense fallback={<div>{children}</div>}>
+            <AnalyticsTracker>
+              <ClientOnly fallback={null}>
+                <ReadingProgressBar />
+              </ClientOnly>
+              {children}
+              <ClientOnly fallback={null}>
+                <ScrollToTopButton />
+              </ClientOnly>
+            </AnalyticsTracker>
+          </Suspense>
+        </NotificationProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   )
 } 

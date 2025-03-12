@@ -26,8 +26,6 @@ const nextConfig = {
   },
   experimental: {
     webpackBuildWorker: true,
-    parallelServerBuildTraces: true,
-    parallelServerCompiles: true,
     optimizeCss: {
       critters: {
         pruneSource: true,
@@ -36,7 +34,6 @@ const nextConfig = {
       },
     },
     scrollRestoration: true,
-    optimisticClientCache: true,
   },
   swcMinify: true,
   compress: true,
@@ -45,8 +42,9 @@ const nextConfig = {
     maxInactiveAge: 60 * 60 * 1000,
     pagesBufferLength: 5,
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   poweredByHeader: false,
+  productionBrowserSourceMaps: true,
   headers: async () => [
     {
       source: '/static/:path*',
