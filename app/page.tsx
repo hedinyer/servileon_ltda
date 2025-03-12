@@ -149,9 +149,9 @@ export default function Home() {
   ]
 
   const stats = [
-    { value: "15+", label: "Años de experiencia" },
-    { value: "500+", label: "Clientes satisfechos" },
-    { value: "1000+", label: "Guardias certificados" },
+    { value: "8+", label: "Años de experiencia" },
+    { value: "50+", label: "Clientes satisfechos" },
+    { value: "100+", label: "Guardias certificados" },
     { value: "24/7", label: "Monitoreo continuo" }
   ]
 
