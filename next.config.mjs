@@ -41,6 +41,12 @@ const nextConfig = {
   swcMinify: true,
   compress: true,
   optimizeFonts: true,
+  onDemandEntries: {
+    maxInactiveAge: 60 * 60 * 1000,
+    pagesBufferLength: 5,
+  },
+  reactStrictMode: true,
+  poweredByHeader: false,
   headers: async () => [
     {
       source: '/static/:path*',

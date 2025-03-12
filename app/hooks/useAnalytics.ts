@@ -13,14 +13,18 @@ interface AnalyticsEvent {
 
 export const useAnalytics = () => {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
 
   // Track page views
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      trackEvent('page_view')
+      const searchParams = useSearchParams()
+      trackEvent('page_view', undefined, {
+        url: window.location.href,
+        referrer: document.referrer || 'direct',
+        query: Object.fromEntries(searchParams?.entries() || [])
+      })
     }
-  }, [pathname, searchParams])
+  }, [pathname])
 
   // Track events
   const trackEvent = useCallback((type: string, id?: string, data?: Record<string, any>) => {

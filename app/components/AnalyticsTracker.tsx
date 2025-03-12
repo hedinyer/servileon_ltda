@@ -1,14 +1,16 @@
 "use client"
 
-import { useEffect } from 'react'
+import { Suspense } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
 import { useAnalytics } from '../hooks/useAnalytics'
 
 interface AnalyticsTrackerProps {
   children: React.ReactNode
 }
 
-export default function AnalyticsTracker({ children }: AnalyticsTrackerProps) {
+// Componente cliente que usa useSearchParams
+function ClientAnalyticsTracker({ children }: AnalyticsTrackerProps) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const { trackEvent } = useAnalytics()
@@ -60,4 +62,13 @@ export default function AnalyticsTracker({ children }: AnalyticsTrackerProps) {
   }, [pathname, searchParams, trackEvent])
   
   return <>{children}</>
+}
+
+// Componente principal que envuelve ClientAnalyticsTracker en un Suspense
+export default function AnalyticsTracker({ children }: AnalyticsTrackerProps) {
+  return (
+    <Suspense fallback={<>{children}</>}>
+      <ClientAnalyticsTracker>{children}</ClientAnalyticsTracker>
+    </Suspense>
+  )
 } 
