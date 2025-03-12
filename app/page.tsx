@@ -207,7 +207,7 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-playfair mb-6">
-                  <span className="block">portería, vigilancia y servicios integrales de la más</span>
+                  <span className="block">Portería, vigilancia y servicios integrales de la más</span>
                   <span className="bg-clip-text text-transparent bg-gold-gradient bg-gradient-size animate-gradient-slow">
                   Alta Calidad
                   </span>
@@ -215,7 +215,7 @@ export default function Home() {
               </motion.div>
               
               <motion.p 
-                className="text-xl text-white/80 mb-8 max-w-2xl"
+                className="text-xl text-white/80 mb-8 max-w-2xl text-justify"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -324,7 +324,7 @@ export default function Home() {
                   <p className="text-gold font-medium mt-2">SOLUCIONES PROFESIONALES</p>
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold font-playfair mb-4 text-black">Nuestros Servicios</h2>
-                <p className="text-gray-600 max-w-3xl mx-auto">
+                <p className="text-gray-600 max-w-3xl mx-auto text-justify">
                   Ofrecemos soluciones integrales de porteria, vigilancia, aseo, limpieza y jardinería para empresas, conjuntos residenciales y oficinas.
                 </p>
               </div>
@@ -446,10 +446,10 @@ export default function Home() {
               <FadeInOnScroll delay={0.2}>
                 <div>
                   <h2 className="text-4xl font-bold font-playfair mb-6 text-black">Quiénes Somos</h2>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-600 mb-6 text-justify">
                     Con más de 8 años de experiencia, Servileon se ha consolidado como una empresa líder en el sector de portería, vigilancia y control, ofreciendo soluciones integrales que combinan personal altamente capacitado, tecnología de vanguardia y protocolos de vigilancia rigurosos.
                   </p>
-                  <p className="text-gray-600 mb-8">
+                  <p className="text-gray-600 mb-8 text-justify">
                     Nuestra misión es proporcionar tranquilidad a nuestros clientes a través de nuestro amplio portafolio de servicio de portería, vigilancia, aseo y limpieza, jardinería, instalaciones y monitoreo dén cámaras de seguridad, controles confiables eficientes y personalizados que se adaptan a sus necesidades específicas.
                   </p>
                   
@@ -511,10 +511,10 @@ export default function Home() {
               <FadeInOnScroll delay={0.2}>
                 <div>
                   <h2 className="text-4xl font-bold font-playfair text-white mb-6">protección y servicios integrales de la más alta calidad</h2>
-                  <p className="text-white/70 mb-6">
+                  <p className="text-white/70 mb-6 text-justify">
                     En Servileon, entendemos que la portería y vigilancia no es solo un servicio, es una promesa. Nuestro compromiso es proteger lo que más valora con soluciones especializadas en portería, vigilancia y control de vanguardia.
                   </p>
-                  <p className="text-white/70 mb-8">
+                  <p className="text-white/70 mb-8 text-justify">
                     Combinamos tecnología avanzada, personal altamente calificado y protocolos rigurosos para ofrecer un escudo de protección impenetrable para su hogar, negocio o evento.
                   </p>
                   
@@ -546,7 +546,7 @@ export default function Home() {
             <FadeInOnScroll>
               <div className="text-center mb-16">
                 <h2 className="text-4xl font-bold font-playfair text-white mb-4">Lo Que Dicen Nuestros Clientes</h2>
-                <p className="text-white/70 max-w-2xl mx-auto">
+                <p className="text-white/70 max-w-2xl mx-auto text-justify">
                   La confianza de nuestros clientes es nuestro mayor activo. Conozca sus experiencias con nuestros servicios.
                 </p>
               </div>
@@ -577,7 +577,7 @@ export default function Home() {
                                 <LucideIcons.Star key={i} className="h-5 w-5 text-gold fill-gold" />
                               ))}
                             </div>
-                            <p className="text-white/90 text-lg italic mb-6">"{testimonial.content}"</p>
+                            <p className="text-white/90 text-lg italic mb-6 text-justify">"{testimonial.content}"</p>
                             <h4 className="text-white font-bold text-xl">{testimonial.name}</h4>
                             <p className="text-white/70">{testimonial.position}</p>
                           </div>

@@ -134,7 +134,7 @@ export default function ContactoPage() {
             <h1 className="font-playfair text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               <span className="text-gold">Contacto</span>
             </h1>
-            <p className="text-white text-xl mb-8 leading-relaxed">
+            <p className="text-white text-xl mb-8 leading-relaxed text-justify">
               Estamos aquí para responder a todas sus consultas sobre portería, vigilancia y control.
             </p>
             <a 
@@ -155,7 +155,7 @@ export default function ContactoPage() {
               Información de <span className="text-gold">Contacto</span>
             </h2>
             <div className="w-24 h-1 bg-gold mx-auto mb-8"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg text-justify">
               Múltiples formas de comunicarse con nosotros para su comodidad.
             </p>
           </div>
@@ -360,7 +360,7 @@ export default function ContactoPage() {
                   <h3 className="font-playfair text-xl font-bold text-servileon-black mb-4">
                     Nuestra Ubicación
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-600 mb-4 text-justify">
                     Encuentre nuestras oficinas principales en Bucaramanga y Bogotá.
                   </p>
                 </div>
@@ -389,7 +389,7 @@ export default function ContactoPage() {
               Nuestras <span className="text-gold">Oficinas</span>
             </h2>
             <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto text-justify">
               Visite nuestras oficinas en las principales ciudades de Colombia para conocer más sobre nuestros servicios.
             </p>
           </div>
@@ -448,7 +448,7 @@ export default function ContactoPage() {
               Preguntas <span className="text-gold">Frecuentes</span>
             </h2>
             <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto text-justify">
               Respuestas a las consultas más comunes sobre nuestros servicios.
             </p>
           </div>
@@ -475,7 +475,7 @@ export default function ContactoPage() {
                       openFaqIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <p className="p-6 text-gray-600">
+                    <p className="p-6 text-gray-600 text-justify">
                       {faq.answer}
                     </p>
                   </div>
@@ -488,7 +488,7 @@ export default function ContactoPage() {
             <h3 className="font-playfair text-xl font-bold text-servileon-black mb-4">
               ¿No encuentra respuesta a su pregunta?
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 text-justify">
               Estamos aquí para ayudarle con cualquier consulta adicional que pueda tener.
             </p>
             <a 

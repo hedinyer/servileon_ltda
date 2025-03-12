@@ -32,6 +32,12 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-playfair), serif;
 }
 
+/* Text Justification */
+p, .text-content {
+  text-align: justify;
+  hyphens: auto;
+}
+
 /* Custom Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -120,6 +126,16 @@ h1, h2, h3, h4, h5, h6 {
   @apply text-gold;
 }
 
+/* Text Justification Classes */
+.text-justify {
+  text-align: justify;
+}
+
+.text-justify-hyphen {
+  text-align: justify;
+  hyphens: auto;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -141,6 +157,13 @@ h1, h2, h3, h4, h5, h6 {
   }
   .hide-scrollbar::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
+  }
+  /* Add text justification utilities to Tailwind */
+  .text-justify {
+    text-align: justify;
+  }
+  .hyphens-auto {
+    hyphens: auto;
   }
 }
 

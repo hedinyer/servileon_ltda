@@ -240,7 +240,7 @@ function ServiciosContent() {
             <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               Nuestros <span className="text-gold">Servicios</span>
             </h1>
-            <p className="text-gray-300 text-lg mb-8">
+            <p className="text-gray-300 text-lg mb-8 text-justify">
               Soluciones integrales de portería, aseo, jardinería y sistemas de videovigilancia adaptadas a las necesidades específicas de cada cliente.
             </p>
           </div>
@@ -327,7 +327,7 @@ function ServiciosContent() {
                         {service.title}
                       </h3>
                     </div>
-                    <p className="text-gray-700 mb-4">
+                    <p className="text-gray-700 mb-4 text-justify">
                       {service.description}
                     </p>
                     <ul className="space-y-2 mb-4">
@@ -389,7 +389,7 @@ function ServiciosContent() {
               <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-6">
                 ¿Necesitas algo <span className="text-gold">específico</span>?
               </h2>
-              <p className="text-gray-300 text-lg mb-8 max-w-3xl mx-auto">
+              <p className="text-gray-300 text-lg mb-8 max-w-3xl mx-auto text-justify">
                 Utiliza nuestra calculadora para obtener una cotización estimada o contáctanos para diseñar una solución de portería personalizada para tu negocio o residencia.
               </p>
             </div>

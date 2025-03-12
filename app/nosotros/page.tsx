@@ -43,7 +43,7 @@ export default function Nosotros() {
               </motion.div>
               
               <motion.p 
-                className="text-xl text-white/80 mb-8"
+                className="text-xl text-white/80 mb-8 text-justify"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -80,13 +80,13 @@ export default function Nosotros() {
               <FadeInOnScroll delay={0.2}>
                 <div>
                   <h2 className="text-4xl font-bold font-playfair mb-6 text-black">Nuestra Historia</h2>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-600 mb-6 text-justify">
                     Fundada en 2018, Servileon nació con la visión de transformar el sector de portería, vigilancia y control en Colombia, ofreciendo un servicio de calidad superior con personal altamente capacitado y tecnología de vanguardia.
                   </p>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-600 mb-6 text-justify">
                     A lo largo de los años, hemos crecido de manera constante, expandiendo nuestras operaciones a las principales ciudades del país y diversificando nuestros servicios para satisfacer las necesidades cambiantes de nuestros clientes.
                   </p>
-                  <p className="text-gray-600 mb-8">
+                  <p className="text-gray-600 mb-8 text-justify">
                     Hoy, con más de 8 años de experiencia, Servileon se ha consolidado como líder en el sector, reconocido por su excelencia, profesionalismo y compromiso con la seguridad y tranquilidad de sus clientes.
                   </p>
                 </div>
@@ -109,7 +109,7 @@ export default function Nosotros() {
               <FadeInOnScroll>
                 <InteractiveCard className="p-8 h-full">
                   <h3 className="text-2xl font-bold mb-4 text-black">Nuestra Misión</h3>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-600 mb-6 text-justify">
                     Proporcionar tranquilidad a nuestros clientes a través de servicios de portería, vigilancia y control confiables, eficientes y personalizados que se adaptan a sus necesidades específicas, garantizando la seguridad de sus instalaciones y personal.
                   </p>
                   <div className="flex items-center gap-3">
@@ -124,7 +124,7 @@ export default function Nosotros() {
               <FadeInOnScroll delay={0.2}>
                 <InteractiveCard className="p-8 h-full">
                   <h3 className="text-2xl font-bold mb-4 text-black">Nuestra Visión</h3>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-600 mb-6 text-justify">
                     Ser reconocidos como la empresa líder en servicios de portería, vigilancia y control en Colombia, destacándonos por nuestra innovación, calidad y compromiso con la satisfacción del cliente, y expandir nuestras operaciones a nivel internacional.
                   </p>
                   <div className="flex items-center gap-3">

@@ -448,10 +448,11 @@ export default function MainLayout({ children }: MainLayoutProps) {
               <h3 className="text-lg font-bold mb-6 text-white">Nuestros Servicios</h3>
                 <ul className="space-y-3 grid grid-cols-1">
                 {[
-                  { name: "Vigilancia Armada", href: "/servicios/vigilancia-armada" },
-                  { name: "Protección Ejecutiva", href: "/servicios/proteccion-ejecutiva" },
-                  { name: "Monitoreo 24/7", href: "/servicios/monitoreo" },
-                  { name: "Vigilancia Electrónica", href: "/servicios/seguridad-electronica" }
+                  { name: "Aseo y Limpieza", href: "/servicios?category=aseo" },
+                  { name: "Portería 2x2x2", href: "/servicios?category=porteria" },
+                  { name: "Portería 3x3", href: "/servicios?category=porteria" },
+                  { name: "Jardinería", href: "/servicios?category=jardineria" },
+                  { name: "Instalación y Monitoreo de Cámaras", href: "/servicios?category=camaras" }
                 ].map((service) => (
                   <motion.li 
                     key={service.name}

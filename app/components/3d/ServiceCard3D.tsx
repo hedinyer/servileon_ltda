@@ -81,7 +81,7 @@ export default function ServiceCard3D({
       </h3>
       
       <p 
-        className="text-black mb-6 flex-grow"
+        className="text-black mb-6 flex-grow text-justify"
         style={{ 
           transform: isHovered ? 'translateZ(15px)' : 'translateZ(0)',
           transition: 'transform 0.3s ease'
