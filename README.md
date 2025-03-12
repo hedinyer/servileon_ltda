@@ -65,8 +65,11 @@ servileon_ltda/
 
 Para más información sobre este proyecto, contactar a:
 
-- **Email**: info@servileon.com
-- **Teléfono**: +57 300 123 4567
+- **Email**: neider.leon@servileon.com
+- **Teléfono**: +57 311 326 0689
+- **Direcciones**: 
+  - Bucaramanga: Carrera 2 #20-50, Paseo del puente 2- Piedecuesta, Santander
+  - Bogotá: Calle 151 bis #115-81
 
 ---
 

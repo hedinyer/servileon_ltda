@@ -573,7 +573,7 @@ export default function Home() {
                 </AnimatedButton>
                 
                 <AnimatedButton 
-                  href="tel:+123456789" 
+                  href="tel:+573113260689" 
                   variant="ghost"
                   size="lg"
                   icon={<Phone className="h-5 w-5" />}

@@ -51,18 +51,18 @@ const TopBar = memo(({ isVisible, socialIcons }: TopBarProps) => (
           whileHover={{ scale: 1.05, color: "#D4AF37" }}
         >
           <Phone className="h-4 w-4 mr-2 text-gold" />
-          <a href="tel:+123456789" className="hover:text-gold transition-colors">+57 (1) 234-5678</a>
+          <a href="tel:+573113260689" className="hover:text-gold transition-colors">+57 311 326 0689</a>
         </motion.div>
         <motion.div 
           className="flex items-center"
           whileHover={{ scale: 1.05, color: "#D4AF37" }}
         >
           <Mail className="h-4 w-4 mr-2 text-gold" />
-          <a href="mailto:info@servileon.com" className="hover:text-gold transition-colors">info@servileon.com</a>
+          <a href="mailto:neider.leon@servileon.com" className="hover:text-gold transition-colors">neider.leon@servileon.com</a>
         </motion.div>
         <div className="flex items-center">
           <MapPin className="h-4 w-4 mr-2 text-gold" />
-          <span>Bogotá, Colombia</span>
+          <span>Bucaramanga / Bogotá</span>
         </div>
       </div>
       <div className="flex items-center space-x-4">
@@ -343,14 +343,14 @@ export default function MainLayout({ children }: MainLayoutProps) {
                         whileHover={{ x: 5, color: "#D4AF37" }}
                       >
                         <Phone className="h-5 w-5 mr-3 text-gold" />
-                        <a href="tel:+123456789" className="text-gray-700 hover:text-gold transition-colors">+57 (1) 234-5678</a>
+                        <a href="tel:+573113260689" className="text-gray-700 hover:text-gold transition-colors">+57 311 326 0689</a>
                       </motion.div>
                       <motion.div 
                         className="flex items-center bg-gray-50 p-3 rounded-lg"
                         whileHover={{ x: 5, color: "#D4AF37" }}
                       >
                         <Mail className="h-5 w-5 mr-3 text-gold" />
-                        <a href="mailto:info@servileon.com" className="text-gray-700 hover:text-gold transition-colors">info@servileon.com</a>
+                        <a href="mailto:neider.leon@servileon.com" className="text-gray-700 hover:text-gold transition-colors">neider.leon@servileon.com</a>
                       </motion.div>
                     </div>
                     
@@ -477,8 +477,9 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 >
                   <MapPin className="h-5 w-5 mr-3 text-gold flex-shrink-0 mt-0.5" />
                   <span className="text-gray-400">
-                    Calle 123 #45-67, Edificio Vigilancia<br />
-                    Bogotá, Colombia
+                    Bucaramanga: Carrera 2 #20-50<br />
+                    Paseo del puente 2- Piedecuesta, Santander<br />
+                    Bogotá: Calle 151 bis #115-81
                   </span>
                 </motion.li>
                 <motion.li 
@@ -486,8 +487,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   whileHover={{ x: 5, color: "#D4AF37" }}
                 >
                   <Phone className="h-5 w-5 mr-3 text-gold" />
-                  <a href="tel:+123456789" className="text-gray-400 hover:text-gold transition-colors">
-                    +57 (1) 234-5678
+                  <a href="tel:+573113260689" className="text-gray-400 hover:text-gold transition-colors">
+                    +57 311 326 0689
                   </a>
                 </motion.li>
                 <motion.li 
@@ -495,8 +496,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   whileHover={{ x: 5, color: "#D4AF37" }}
                 >
                   <Mail className="h-5 w-5 mr-3 text-gold" />
-                  <a href="mailto:info@servileon.com" className="text-gray-400 hover:text-gold transition-colors">
-                    info@servileon.com
+                  <a href="mailto:neider.leon@servileon.com" className="text-gray-400 hover:text-gold transition-colors">
+                    neider.leon@servileon.com
                   </a>
                 </motion.li>
                 <motion.li 

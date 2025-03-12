@@ -337,7 +337,7 @@ function ServiceDetailContent() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Llámanos</p>
-                      <p className="font-medium">+57 (123) 456-7890</p>
+                      <p className="font-medium">+57 311 326 0689</p>
                     </div>
                   </div>
                   
@@ -347,7 +347,7 @@ function ServiceDetailContent() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Escríbenos</p>
-                      <p className="font-medium">info@servileon.com</p>
+                      <p className="font-medium">neider.leon@servileon.com</p>
                     </div>
                   </div>
                 </div>

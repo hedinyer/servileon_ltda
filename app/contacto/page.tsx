@@ -47,24 +47,23 @@ export default function ContactoPage() {
       icon: <MapPin className="h-6 w-6 text-gold" />,
       title: "Dirección",
       details: [
-        "Calle 123 #45-67",
-        "Bogotá, Colombia"
+        "Bucaramanga: Carrera 2 #20-50",
+        "Paseo del puente 2- Piedecuesta, Santander",
+        "Bogotá: Calle 151 bis #115-81"
       ]
     },
     {
       icon: <Phone className="h-6 w-6 text-gold" />,
       title: "Teléfonos",
       details: [
-        "+57 300 123 4567 (Ventas)",
-        "+57 300 987 6543 (Emergencias 24/7)"
+        "+57 311 326 0689"
       ]
     },
     {
       icon: <Mail className="h-6 w-6 text-gold" />,
       title: "Correo Electrónico",
       details: [
-        "info@servileon.com",
-        "ventas@servileon.com"
+        "neider.leon@servileon.com"
       ]
     },
     {
@@ -290,24 +289,18 @@ export default function ContactoPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
+                city: "Bucaramanga",
+                address: "Carrera 2 #20-50, Paseo del puente 2- Piedecuesta, Santander",
+                phone: "+57 311 326 0689",
+                image: "/placeholder.jpg"
+              },
+              {
                 city: "Bogotá",
-                address: "Calle 123 #45-67, Zona Norte",
-                phone: "+57 300 123 4567",
-                image: "/placeholder.jpg"
-              },
-              {
-                city: "Medellín",
-                address: "Carrera 52 #14-30, El Poblado",
-                phone: "+57 300 234 5678",
-                image: "/placeholder.jpg"
-              },
-              {
-                city: "Cali",
-                address: "Avenida 5 Norte #23-45, Granada",
-                phone: "+57 300 345 6789",
+                address: "Calle 151 bis #115-81",
+                phone: "+57 311 326 0689",
                 image: "/placeholder.jpg"
               }
             ].map((office, index) => (
@@ -393,7 +386,7 @@ export default function ContactoPage() {
               ¿No encuentra respuesta a su pregunta?
             </p>
             <a 
-              href="mailto:info@servileon.com" 
+              href="mailto:neider.leon@servileon.com" 
               className="text-gold hover:text-gold-dark font-medium transition-colors duration-300"
             >
               Contáctenos directamente
