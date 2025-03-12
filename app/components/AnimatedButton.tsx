@@ -40,7 +40,7 @@ export default function AnimatedButton({
   const variantStyles = {
     primary: {
       bg: 'bg-gold',
-      text: 'text-servileon-black',
+      text: 'text-white',
       border: 'border-transparent',
       hover: 'hover:bg-gold-dark',
       shadow: 'shadow-lg shadow-gold/20'

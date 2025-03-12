@@ -3,23 +3,24 @@
 import Image from "next/image"
 import Link from "next/link"
 import dynamic from "next/dynamic"
-// Importar solo los iconos que se usan en la parte inicial de la página
-import { Shield, ArrowRight, Phone } from "lucide-react"
-// Importar el resto de iconos de forma dinámica
-const Users = dynamic(() => import("lucide-react").then(mod => mod.Users), { ssr: false })
-const Star = dynamic(() => import("lucide-react").then(mod => mod.Star), { ssr: false })
-const Award = dynamic(() => import("lucide-react").then(mod => mod.Award), { ssr: false })
-const Clock = dynamic(() => import("lucide-react").then(mod => mod.Clock), { ssr: false })
-const Lock = dynamic(() => import("lucide-react").then(mod => mod.Lock), { ssr: false })
-const Eye = dynamic(() => import("lucide-react").then(mod => mod.Eye), { ssr: false })
-const Bell = dynamic(() => import("lucide-react").then(mod => mod.Bell), { ssr: false })
-const Cpu = dynamic(() => import("lucide-react").then(mod => mod.Cpu), { ssr: false })
-const X = dynamic(() => import("lucide-react").then(mod => mod.X), { ssr: false })
-const Check = dynamic(() => import("lucide-react").then(mod => mod.Check), { ssr: false })
-const Menu = dynamic(() => import("lucide-react").then(mod => mod.Menu), { ssr: false })
-const MessageSquare = dynamic(() => import("lucide-react").then(mod => mod.MessageSquare), { ssr: false })
-const ChevronRight = dynamic(() => import("lucide-react").then(mod => mod.ChevronRight), { ssr: false })
-const Sparkles = dynamic(() => import("lucide-react").then(mod => mod.Sparkles), { ssr: false })
+import * as LucideIcons from "lucide-react"
+// Eliminar importaciones individuales y usar LucideIcons
+// import { Shield, ArrowRight, Phone } from "lucide-react"
+// Eliminar importaciones dinámicas individuales
+// const Users = dynamic(() => import("lucide-react").then(mod => mod.Users), { ssr: false })
+// const Star = dynamic(() => import("lucide-react").then(mod => mod.Star), { ssr: false })
+// const Award = dynamic(() => import("lucide-react").then(mod => mod.Award), { ssr: false })
+// const Clock = dynamic(() => import("lucide-react").then(mod => mod.Clock), { ssr: false })
+// const Lock = dynamic(() => import("lucide-react").then(mod => mod.Lock), { ssr: false })
+// const Eye = dynamic(() => import("lucide-react").then(mod => mod.Eye), { ssr: false })
+// const Bell = dynamic(() => import("lucide-react").then(mod => mod.Bell), { ssr: false })
+// const Cpu = dynamic(() => import("lucide-react").then(mod => mod.Cpu), { ssr: false })
+// const X = dynamic(() => import("lucide-react").then(mod => mod.X), { ssr: false })
+// const Check = dynamic(() => import("lucide-react").then(mod => mod.Check), { ssr: false })
+// const Menu = dynamic(() => import("lucide-react").then(mod => mod.Menu), { ssr: false })
+// const MessageSquare = dynamic(() => import("lucide-react").then(mod => mod.MessageSquare), { ssr: false })
+// const ChevronRight = dynamic(() => import("lucide-react").then(mod => mod.ChevronRight), { ssr: false })
+// const Sparkles = dynamic(() => import("lucide-react").then(mod => mod.Sparkles), { ssr: false })
 
 import { useState, useRef, useEffect, lazy, Suspense } from "react"
 import PageTransition from "./components/PageTransition"
@@ -91,7 +92,7 @@ export default function Home() {
   const services = [
     {
       id: 1,
-      icon: <Shield className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Shield className="h-12 w-12 text-gold" />,
       title: "Aseo y Limpieza",
       description: "Personal capacitado y productos de alta calidad para mantener sus instalaciones impecables.",
       link: "/servicios/1",
@@ -100,7 +101,7 @@ export default function Home() {
     },
     {
       id: 2,
-      icon: <Users className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Users className="h-12 w-12 text-gold" />,
       title: "Portería 2x2x2",
       description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la vigilancia y control.",
       link: "/servicios/2",
@@ -109,7 +110,7 @@ export default function Home() {
     },
     {
       id: 3,
-      icon: <Users className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Users className="h-12 w-12 text-gold" />,
       title: "Portería 3x3",
       description: "Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y control.",
       link: "/servicios/3",
@@ -118,7 +119,16 @@ export default function Home() {
     },
     {
       id: 4,
-      icon: <Eye className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Flower className="h-12 w-12 text-gold" />,
+      title: "Jardinería",
+      description: "Mantenimiento profesional de jardines y áreas verdes con personal especializado y equipos de última generación.",
+      link: "/servicios/4",
+      image: "/portada.jpeg",
+      features: ["Diseño paisajístico", "Mantenimiento integral", "Soluciones ecológicas"]
+    },
+    {
+      id: 5,
+      icon: <LucideIcons.Eye className="h-12 w-12 text-gold" />,
       title: "Servicios Personalizados",
       description: "Soluciones adaptadas a las necesidades específicas de cada cliente.",
       link: "/servicios",
@@ -215,7 +225,7 @@ export default function Home() {
                   href="/contacto" 
                   variant="primary"
                   size="lg"
-                  icon={<ArrowRight className="h-5 w-5" />}
+                  icon={<LucideIcons.ArrowRight className="h-5 w-5" />}
                 >
                   Solicitar Consulta
                 </AnimatedButton>
@@ -288,7 +298,7 @@ export default function Home() {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold font-playfair mb-4 text-black">Nuestros Servicios</h2>
                 <p className="text-gray-600 max-w-3xl mx-auto">
-                  Ofrecemos soluciones integrales de aseo, limpieza y portería para empresas, conjuntos residenciales y oficinas.
+                  Ofrecemos soluciones integrales de aseo, limpieza, portería y jardinería para empresas, conjuntos residenciales y oficinas.
                 </p>
               </div>
             </FadeInOnScroll>
@@ -297,7 +307,7 @@ export default function Home() {
               {/* Servicio 1: Aseo y Limpieza */}
               <FadeInOnScroll delay={0.1}>
                 <ServiceCard3D 
-                  icon={<Sparkles className="h-6 w-6 text-gold" />}
+                  icon={<LucideIcons.Sparkles className="h-6 w-6 text-gold" />}
                   title="Aseo y Limpieza"
                   description="Servicio profesional de aseo y limpieza para mantener sus instalaciones impecables, con personal capacitado y productos de alta calidad."
                   link="/servicios/1"
@@ -308,7 +318,7 @@ export default function Home() {
               {/* Servicio 2: Portería 2x2x2 */}
               <FadeInOnScroll delay={0.2}>
                 <ServiceCard3D 
-                  icon={<Shield className="h-6 w-6 text-gold" />}
+                  icon={<LucideIcons.Shield className="h-6 w-6 text-gold" />}
                   title="Portería 2x2x2"
                   description="Servicio de portería 24 horas con personal capacitado y equipado para garantizar la vigilancia y control de sus instalaciones."
                   link="/servicios/2"
@@ -319,11 +329,22 @@ export default function Home() {
               {/* Servicio 3: Portería 3x3 */}
               <FadeInOnScroll delay={0.3}>
                 <ServiceCard3D 
-                  icon={<Users className="h-6 w-6 text-gold" />}
+                  icon={<LucideIcons.Users className="h-6 w-6 text-gold" />}
                   title="Portería 3x3"
                   description="Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y control, con personal altamente capacitado."
                   link="/servicios/3"
                   delay={0.3}
+                />
+              </FadeInOnScroll>
+              
+              {/* Servicio 4: Jardinería */}
+              <FadeInOnScroll delay={0.4}>
+                <ServiceCard3D 
+                  icon={<LucideIcons.Flower className="h-6 w-6 text-gold" />}
+                  title="Jardinería"
+                  description="Mantenimiento profesional de jardines y áreas verdes con personal especializado y equipos de última generación."
+                  link="/servicios/4"
+                  delay={0.4}
                 />
               </FadeInOnScroll>
             </div>
@@ -331,7 +352,7 @@ export default function Home() {
             <div className="text-center mt-12">
               <Link href="/servicios" className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-white font-medium py-3 px-6 rounded-md transition-colors duration-300">
                 Ver todos los servicios
-                <ArrowRight className="h-4 w-4" />
+                <LucideIcons.ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -390,7 +411,7 @@ export default function Home() {
                     ].map((item, index) => (
                       <div key={index} className="flex items-center gap-3">
                         <div className="bg-gold/20 p-1 rounded-full">
-                          <Check className="h-5 w-5 text-gold" />
+                          <LucideIcons.Check className="h-5 w-5 text-gold" />
                         </div>
                         <span className="text-gray-700">{item}</span>
                       </div>
@@ -401,7 +422,7 @@ export default function Home() {
                     href="/nosotros" 
                     variant="outline"
                     size="md"
-                    icon={<ArrowRight className="h-5 w-5" />}
+                    icon={<LucideIcons.ArrowRight className="h-5 w-5" />}
                   >
                     Ver más información
                   </AnimatedButton>
@@ -448,10 +469,10 @@ export default function Home() {
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                     {[
-                      { icon: <Lock className="h-6 w-6 text-gold" />, text: "Vigilancia 24/7" },
-                      { icon: <Eye className="h-6 w-6 text-gold" />, text: "Monitoreo avanzado" },
-                      { icon: <Bell className="h-6 w-6 text-gold" />, text: "Respuesta inmediata" },
-                      { icon: <Cpu className="h-6 w-6 text-gold" />, text: "Tecnología de punta" }
+                      { icon: <LucideIcons.Lock className="h-6 w-6 text-gold" />, text: "Vigilancia 24/7" },
+                      { icon: <LucideIcons.Eye className="h-6 w-6 text-gold" />, text: "Monitoreo avanzado" },
+                      { icon: <LucideIcons.Bell className="h-6 w-6 text-gold" />, text: "Respuesta inmediata" },
+                      { icon: <LucideIcons.Cpu className="h-6 w-6 text-gold" />, text: "Tecnología de punta" }
                     ].map((item, index) => (
                       <div key={index} className="flex items-center gap-4 bg-white/5 p-4 rounded-lg backdrop-blur-sm">
                         {item.icon}
@@ -502,7 +523,7 @@ export default function Home() {
                           <div>
                             <div className="flex mb-4">
                               {[...Array(5)].map((_, i) => (
-                                <Star key={i} className="h-5 w-5 text-gold fill-gold" />
+                                <LucideIcons.Star key={i} className="h-5 w-5 text-gold fill-gold" />
                               ))}
                             </div>
                             <p className="text-white/90 text-lg italic mb-6">"{testimonial.content}"</p>
@@ -553,7 +574,7 @@ export default function Home() {
                   href="/contacto" 
                   variant="secondary"
                   size="lg"
-                  icon={<ArrowRight className="h-5 w-5" />}
+                  icon={<LucideIcons.ArrowRight className="h-5 w-5" />}
                   fullWidth={true}
                   className="w-full sm:w-auto"
                 >
@@ -564,7 +585,7 @@ export default function Home() {
                   href="/servicios" 
                   variant="ghost"
                   size="lg"
-                  icon={<ArrowRight className="h-5 w-5" />}
+                  icon={<LucideIcons.ArrowRight className="h-5 w-5" />}
                   glowColor="rgba(0, 0, 0, 0.2)"
                   fullWidth={true}
                   className="w-full sm:w-auto"
@@ -576,7 +597,7 @@ export default function Home() {
                   href="tel:+573113260689" 
                   variant="ghost"
                   size="lg"
-                  icon={<Phone className="h-5 w-5" />}
+                  icon={<LucideIcons.Phone className="h-5 w-5" />}
                   glowColor="rgba(0, 0, 0, 0.2)"
                   fullWidth={true}
                   className="w-full sm:w-auto"

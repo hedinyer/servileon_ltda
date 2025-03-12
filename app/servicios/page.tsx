@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Shield, Users, Eye, Bell, Lock, ChevronRight, MessageSquare, Flower, Clock, Calculator } from "lucide-react"
+import * as LucideIcons from "lucide-react"
 import MainLayout from "../components/MainLayout"
 import FadeInOnScroll from "../components/FadeInOnScroll"
 import { useSearchParams } from "next/navigation"
@@ -61,7 +61,7 @@ function ServiciosContent() {
       id: 1,
       title: "Servicio de Portería 24 Horas",
       description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad.",
-      icon: <Shield className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Shield className="h-12 w-12 text-gold" />,
       category: "porteria",
       image: "/portada.jpeg",
       features: [
@@ -82,7 +82,7 @@ function ServiciosContent() {
       id: 2,
       title: "Servicio de Portería 24 Horas Premium",
       description: "Servicio de portería 24 horas premium con personal altamente capacitado y equipamiento avanzado.",
-      icon: <Shield className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Shield className="h-12 w-12 text-gold" />,
       category: "porteria",
       image: "/portada.jpeg",
       features: [
@@ -103,7 +103,7 @@ function ServiciosContent() {
       id: 3,
       title: "Servicio de Portería 12 Horas",
       description: "Servicio de portería 12 horas con personal capacitado para garantizar la seguridad durante el día o la noche.",
-      icon: <Clock className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Clock className="h-12 w-12 text-gold" />,
       category: "porteria",
       image: "/portada.jpeg",
       features: [
@@ -124,7 +124,7 @@ function ServiciosContent() {
       id: 4,
       title: "Servicio de Portería 8 Horas",
       description: "Servicio de portería 8 horas ideal para horarios específicos de mayor afluencia o actividad.",
-      icon: <Clock className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Clock className="h-12 w-12 text-gold" />,
       category: "porteria",
       image: "/portada.jpeg",
       features: [
@@ -145,7 +145,7 @@ function ServiciosContent() {
       id: 5,
       title: "Portería Modalidad 2x2x2",
       description: "Servicio de portería 24 horas con modalidad 2x2x2 para mayor eficiencia y seguridad.",
-      icon: <Users className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Users className="h-12 w-12 text-gold" />,
       category: "porteria",
       image: "/portada.jpeg",
       features: [
@@ -167,7 +167,7 @@ function ServiciosContent() {
       id: 6,
       title: "Aseo y Limpieza - Próximamente",
       description: "Servicios profesionales de aseo y limpieza para mantener sus instalaciones impecables.",
-      icon: <Shield className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Shield className="h-12 w-12 text-gold" />,
       category: "aseo",
       image: "/portada.jpeg",
       features: [
@@ -183,7 +183,7 @@ function ServiciosContent() {
       id: 7,
       title: "Jardinería - Próximamente",
       description: "Servicio profesional de jardinería para mantener sus espacios verdes en óptimas condiciones.",
-      icon: <Flower className="h-12 w-12 text-gold" />,
+      icon: <LucideIcons.Flower className="h-12 w-12 text-gold" />,
       category: "jardineria",
       image: "/portada.jpeg",
       features: [
@@ -239,10 +239,10 @@ function ServiciosContent() {
                     : 'bg-white text-gray-700 hover:shadow-md hover:transform hover:-translate-y-1'
                 } flex items-center justify-center min-w-[140px]`}
               >
-                {category.id === "todos" && <Eye className="h-4 w-4 mr-2" />}
-                {category.id === "porteria" && <Shield className="h-4 w-4 mr-2" />}
-                {category.id === "aseo" && <Users className="h-4 w-4 mr-2" />}
-                {category.id === "jardineria" && <Flower className="h-4 w-4 mr-2" />}
+                {category.id === "todos" && <LucideIcons.Eye className="h-4 w-4 mr-2" />}
+                {category.id === "porteria" && <LucideIcons.Shield className="h-4 w-4 mr-2" />}
+                {category.id === "aseo" && <LucideIcons.Users className="h-4 w-4 mr-2" />}
+                {category.id === "jardineria" && <LucideIcons.Flower className="h-4 w-4 mr-2" />}
                 <span className="font-medium">{category.name}</span>
               </button>
             ))}
@@ -277,7 +277,7 @@ function ServiciosContent() {
                           className="bg-gold hover:bg-gold-dark text-white px-4 py-2 rounded-md text-sm font-medium inline-flex items-center"
                         >
                           Ver detalles
-                          <ChevronRight className="ml-1 h-4 w-4" />
+                          <LucideIcons.ChevronRight className="ml-1 h-4 w-4" />
                         </Link>
                       </div>
                     )}
@@ -358,7 +358,7 @@ function ServiciosContent() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <div className="inline-flex items-center justify-center p-3 rounded-full bg-white/10 mb-4">
-                <Calculator className="h-10 w-10 text-gold" />
+                <LucideIcons.Calculator className="h-10 w-10 text-gold" />
               </div>
               <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-6">
                 ¿Necesitas algo <span className="text-gold">específico</span>?
@@ -402,7 +402,7 @@ function ServiciosContent() {
                   className="bg-gold hover:bg-gold-dark text-white px-8 py-4 rounded-md font-medium text-lg uppercase tracking-wider transition-all duration-300 inline-flex items-center w-full justify-center shadow-md hover:shadow-lg transform hover:-translate-y-1"
                 >
                   Solicitar Información
-                  <MessageSquare className="ml-2 h-5 w-5" />
+                  <LucideIcons.MessageSquare className="ml-2 h-5 w-5" />
                 </button>
               </div>
             </div>
@@ -424,7 +424,7 @@ function ServiciosContent() {
             </button>
             <div className="text-center mb-6">
               <div className="bg-servileon-black inline-flex items-center justify-center p-3 rounded-full mb-3">
-                <Shield className="h-10 w-10 text-gold" />
+                <LucideIcons.Shield className="h-10 w-10 text-gold" />
               </div>
               <h3 className="font-playfair text-2xl font-bold text-servileon-black">Solicitud de Cotización</h3>
               <p className="text-gray-700 mt-2">Cuéntanos sobre tus necesidades específicas</p>

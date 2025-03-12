@@ -4,18 +4,13 @@ import { useState, useRef, useEffect, memo } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import dynamic from "next/dynamic"
-// Importar solo los iconos que se usan inmediatamente
-import { Menu, X, ChevronUp, Phone, Mail } from "lucide-react"
-// Importar el resto de iconos de forma dinámica
-const Shield = dynamic(() => import("lucide-react").then(mod => mod.Shield), { ssr: false })
-const MapPin = dynamic(() => import("lucide-react").then(mod => mod.MapPin), { ssr: false })
-const Clock = dynamic(() => import("lucide-react").then(mod => mod.Clock), { ssr: false })
-const Facebook = dynamic(() => import("lucide-react").then(mod => mod.Facebook), { ssr: false })
-const Instagram = dynamic(() => import("lucide-react").then(mod => mod.Instagram), { ssr: false })
-const Twitter = dynamic(() => import("lucide-react").then(mod => mod.Twitter), { ssr: false })
-const Linkedin = dynamic(() => import("lucide-react").then(mod => mod.Linkedin), { ssr: false })
-const ArrowRight = dynamic(() => import("lucide-react").then(mod => mod.ArrowRight), { ssr: false })
-const ChevronDown = dynamic(() => import("lucide-react").then(mod => mod.ChevronDown), { ssr: false })
+// Importar todos los iconos con un solo import
+import * as LucideIcons from "lucide-react"
+// Eliminar importaciones individuales
+// import { Menu, X, ChevronUp, Phone, Mail } from "lucide-react"
+// Eliminar importaciones dinámicas
+// const Shield = dynamic(() => import("lucide-react").then(mod => mod.Shield), { ssr: false })
+// ... existing code ...
 
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
 import { motion, AnimatePresence } from "framer-motion"
@@ -50,18 +45,18 @@ const TopBar = memo(({ isVisible, socialIcons }: TopBarProps) => (
           className="flex items-center"
           whileHover={{ scale: 1.05, color: "#D4AF37" }}
         >
-          <Phone className="h-4 w-4 mr-2 text-gold" />
+          <LucideIcons.Phone className="h-4 w-4 mr-2 text-gold" />
           <a href="tel:+573113260689" className="hover:text-gold transition-colors">+57 311 326 0689</a>
         </motion.div>
         <motion.div 
           className="flex items-center"
           whileHover={{ scale: 1.05, color: "#D4AF37" }}
         >
-          <Mail className="h-4 w-4 mr-2 text-gold" />
+          <LucideIcons.Mail className="h-4 w-4 mr-2 text-gold" />
           <a href="mailto:neider.leon@servileon.com" className="hover:text-gold transition-colors">neider.leon@servileon.com</a>
         </motion.div>
         <div className="flex items-center">
-          <MapPin className="h-4 w-4 mr-2 text-gold" />
+          <LucideIcons.MapPin className="h-4 w-4 mr-2 text-gold" />
           <span>Bucaramanga / Bogotá</span>
         </div>
       </div>
@@ -132,7 +127,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
       dropdown: [
         { name: "Aseo y Limpieza", href: "/servicios?category=aseo" },
         { name: "Portería 2x2x2", href: "/servicios?category=porteria" },
-        { name: "Portería 3x3", href: "/servicios?category=porteria" }
+        { name: "Portería 3x3", href: "/servicios?category=porteria" },
+        { name: "Jardinería", href: "/servicios?category=jardineria" }
       ]
     },
     { name: "Nosotros", href: "/nosotros" },
@@ -142,10 +138,10 @@ export default function MainLayout({ children }: MainLayoutProps) {
   
   // Datos para los iconos sociales
   const socialIcons = [
-    { icon: <Facebook className="h-4 w-4" />, href: "#" },
-    { icon: <Instagram className="h-4 w-4" />, href: "#" },
-    { icon: <Twitter className="h-4 w-4" />, href: "#" },
-    { icon: <Linkedin className="h-4 w-4" />, href: "#" }
+    { icon: <LucideIcons.Facebook className="h-4 w-4" />, href: "#" },
+    { icon: <LucideIcons.Instagram className="h-4 w-4" />, href: "#" },
+    { icon: <LucideIcons.Twitter className="h-4 w-4" />, href: "#" },
+    { icon: <LucideIcons.Linkedin className="h-4 w-4" />, href: "#" }
   ];
 
   return (
@@ -186,7 +182,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                     >
                       {link.name}
                       {link.dropdown && (
-                        <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />
+                        <LucideIcons.ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />
                       )}
                     </Link>
                   </motion.div>
@@ -231,10 +227,10 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 >
                   <Link 
                     href="/contacto" 
-                    className="bg-gold hover:bg-gold-dark text-servileon-black px-6 py-2 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group"
+                    className="bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group"
                   >
                     Solicitar Consulta
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <LucideIcons.ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </motion.div>
               </div>
@@ -248,9 +244,9 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? (
-                <X className="h-6 w-6 text-gold" />
+                <LucideIcons.X className="h-6 w-6 text-gold" />
                 ) : (
-                <Menu className="h-6 w-6 text-gold" />
+                <LucideIcons.Menu className="h-6 w-6 text-gold" />
                 )}
               </motion.button>
             </div>
@@ -277,7 +273,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                             onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
                           >
                             <span>{link.name}</span>
-                            <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180 text-gold' : ''}`} />
+                            <LucideIcons.ChevronDown className={`h-5 w-5 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180 text-gold' : ''}`} />
                           </div>
                           
                           <AnimatePresence>
@@ -297,7 +293,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                   >
                                     <motion.div whileHover={{ x: 5 }} className="flex items-center">
-                                      <ArrowRight className="h-4 w-4 mr-2 text-gold" />
+                                      <LucideIcons.ArrowRight className="h-4 w-4 mr-2 text-gold" />
                                       {item.name}
                                     </motion.div>
                                   </Link>
@@ -342,14 +338,14 @@ export default function MainLayout({ children }: MainLayoutProps) {
                         className="flex items-center bg-gray-50 p-3 rounded-lg"
                         whileHover={{ x: 5, color: "#D4AF37" }}
                       >
-                        <Phone className="h-5 w-5 mr-3 text-gold" />
+                        <LucideIcons.Phone className="h-5 w-5 mr-3 text-gold" />
                         <a href="tel:+573113260689" className="text-gray-700 hover:text-gold transition-colors">+57 311 326 0689</a>
                       </motion.div>
                       <motion.div 
                         className="flex items-center bg-gray-50 p-3 rounded-lg"
                         whileHover={{ x: 5, color: "#D4AF37" }}
                       >
-                        <Mail className="h-5 w-5 mr-3 text-gold" />
+                        <LucideIcons.Mail className="h-5 w-5 mr-3 text-gold" />
                         <a href="mailto:neider.leon@servileon.com" className="text-gray-700 hover:text-gold transition-colors">neider.leon@servileon.com</a>
                       </motion.div>
                     </div>
@@ -362,11 +358,11 @@ export default function MainLayout({ children }: MainLayoutProps) {
                       >
                         <Link 
                           href="/contacto" 
-                          className="bg-gold hover:bg-gold-dark text-servileon-black px-6 py-3 rounded-md font-medium transition-all duration-300 flex items-center justify-center gap-2 w-full"
+                          className="bg-gold hover:bg-gold-dark text-white px-6 py-3 rounded-md font-medium transition-all duration-300 flex items-center justify-center gap-2 w-full"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Solicitar Consulta
-                          <ArrowRight className="h-4 w-4" />
+                          <LucideIcons.ArrowRight className="h-4 w-4" />
                         </Link>
                       </motion.div>
                     </div>
@@ -408,10 +404,10 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 </p>
                 <div className="flex space-x-4">
                   {[
-                    { icon: <Facebook className="h-5 w-5" />, href: "#" },
-                    { icon: <Instagram className="h-5 w-5" />, href: "#" },
-                    { icon: <Twitter className="h-5 w-5" />, href: "#" },
-                    { icon: <Linkedin className="h-5 w-5" />, href: "#" }
+                    { icon: <LucideIcons.Facebook className="h-5 w-5" />, href: "#" },
+                    { icon: <LucideIcons.Instagram className="h-5 w-5" />, href: "#" },
+                    { icon: <LucideIcons.Twitter className="h-5 w-5" />, href: "#" },
+                    { icon: <LucideIcons.Linkedin className="h-5 w-5" />, href: "#" }
                   ].map((social, index) => (
                     <motion.a 
                       key={index}
@@ -436,7 +432,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                     whileHover={{ x: 5 }}
                   >
                     <Link href={link.href} className="text-gray-400 hover:text-gold transition-colors flex items-center">
-                      <ArrowRight className="h-4 w-4 mr-2" />
+                      <LucideIcons.ArrowRight className="h-4 w-4 mr-2" />
                         {link.name}
                       </Link>
                     </motion.li>
@@ -459,7 +455,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                     whileHover={{ x: 5 }}
                   >
                     <Link href={service.href} className="text-gray-400 hover:text-gold transition-colors flex items-center">
-                      <ArrowRight className="h-4 w-4 mr-2" />
+                      <LucideIcons.ArrowRight className="h-4 w-4 mr-2" />
                       {service.name}
                     </Link>
                   </motion.li>
@@ -475,7 +471,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   className="flex items-start"
                   whileHover={{ x: 5 }}
                 >
-                  <MapPin className="h-5 w-5 mr-3 text-gold flex-shrink-0 mt-0.5" />
+                  <LucideIcons.MapPin className="h-5 w-5 mr-3 text-gold flex-shrink-0 mt-0.5" />
                   <span className="text-gray-400">
                     Bucaramanga: Carrera 2 #20-50<br />
                     Paseo del puente 2- Piedecuesta, Santander<br />
@@ -486,7 +482,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   className="flex items-center"
                   whileHover={{ x: 5, color: "#D4AF37" }}
                 >
-                  <Phone className="h-5 w-5 mr-3 text-gold" />
+                  <LucideIcons.Phone className="h-5 w-5 mr-3 text-gold" />
                   <a href="tel:+573113260689" className="text-gray-400 hover:text-gold transition-colors">
                     +57 311 326 0689
                   </a>
@@ -495,7 +491,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   className="flex items-center"
                   whileHover={{ x: 5, color: "#D4AF37" }}
                 >
-                  <Mail className="h-5 w-5 mr-3 text-gold" />
+                  <LucideIcons.Mail className="h-5 w-5 mr-3 text-gold" />
                   <a href="mailto:neider.leon@servileon.com" className="text-gray-400 hover:text-gold transition-colors">
                     neider.leon@servileon.com
                   </a>
@@ -504,7 +500,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   className="flex items-center"
                   whileHover={{ x: 5 }}
                 >
-                  <Clock className="h-5 w-5 mr-3 text-gold" />
+                  <LucideIcons.Clock className="h-5 w-5 mr-3 text-gold" />
                   <span className="text-gray-400">
                     Lun - Vie: 8:00 AM - 6:00 PM
                   </span>
@@ -551,7 +547,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <ChevronUp className="h-6 w-6" />
+            <LucideIcons.ChevronUp className="h-6 w-6" />
           </motion.button>
         )}
       </AnimatePresence>

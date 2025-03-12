@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import dynamic from "next/dynamic"
-import { Shield, ArrowRight, Check } from "lucide-react"
+import * as LucideIcons from "lucide-react"
 import { motion } from 'framer-motion'
 
 import PageTransition from "../components/PageTransition"
@@ -114,7 +114,7 @@ export default function Nosotros() {
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="bg-gold/20 p-1 rounded-full">
-                      <Check className="h-5 w-5 text-gold" />
+                      <LucideIcons.Check className="h-5 w-5 text-gold" />
                     </div>
                     <span className="text-gray-700">Excelencia en el servicio</span>
                   </div>
@@ -129,7 +129,7 @@ export default function Nosotros() {
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="bg-gold/20 p-1 rounded-full">
-                      <Check className="h-5 w-5 text-gold" />
+                      <LucideIcons.Check className="h-5 w-5 text-gold" />
                     </div>
                     <span className="text-gray-700">Innovación constante</span>
                   </div>
@@ -151,9 +151,10 @@ export default function Nosotros() {
               </p>
               <AnimatedButton 
                 href="/contacto" 
-                variant="secondary"
+                variant="outline"
                 size="lg"
-                icon={<ArrowRight className="h-5 w-5" />}
+                className="px-10 py-4 text-lg whitespace-nowrap bg-transparent text-servileon-black border-servileon-black"
+                icon={<LucideIcons.ArrowRight className="h-5 w-5" />}
               >
                 Solicitar Consulta
               </AnimatedButton>
