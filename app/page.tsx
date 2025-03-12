@@ -207,9 +207,9 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-playfair mb-6">
-                  <span className="block">Portería y Vigilancia de</span>
+                  <span className="block">portería, vigilancia y servicios integrales de la más</span>
                   <span className="bg-clip-text text-transparent bg-gold-gradient bg-gradient-size animate-gradient-slow">
-                    Clase Mundial
+                  Alta Calidad
                   </span>
                 </h1>
               </motion.div>
@@ -221,7 +221,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                Protegemos lo que más valora con soluciones de portería, vigilancia y control personalizadas, tecnología avanzada y personal altamente capacitado.
+                Salvaguardamos sus activos más preciados mediante soluciones especializadas de portería, vigilancia y control, diseñadas a la medida de sus necesidades. Combinamos tecnología de vanguardia con un equipo altamente capacitado para garantizar la máxima seguridad y tranquilidad.
               </motion.p>
               
               <motion.div 
@@ -271,13 +271,17 @@ export default function Home() {
               {stats.map((stat, index) => (
                 <FadeInOnScroll key={index} delay={index * 0.1}>
                   <div className="text-center">
-                    <AnimatedCounter
-                      end={parseInt(stat.value.replace(/\D/g, ''))}
-                      suffix={stat.value.includes('+') ? '+' : stat.value.includes('/') ? '/7' : ''}
-                      className="text-4xl md:text-5xl font-bold text-gold mb-2"
-                      duration={2.5}
-                      delay={index * 0.2}
-                    />
+                    {stat.value === "24/7" ? (
+                      <div className="text-4xl md:text-5xl font-bold text-gold mb-2">24/7</div>
+                    ) : (
+                      <AnimatedCounter
+                        end={parseInt(stat.value.replace(/\D/g, ''))}
+                        suffix={stat.value.includes('+') ? '+' : ''}
+                        className="text-4xl md:text-5xl font-bold text-gold mb-2"
+                        duration={2.5}
+                        delay={index * 0.2}
+                      />
+                    )}
                     <p className="text-white/70">{stat.label}</p>
                 </div>
               </FadeInOnScroll>
@@ -443,10 +447,10 @@ export default function Home() {
                 <div>
                   <h2 className="text-4xl font-bold font-playfair mb-6 text-black">Quiénes Somos</h2>
                   <p className="text-gray-600 mb-6">
-                    Con más de 8 años de experiencia, Servileon se ha consolidado como líder en el sector de portería, vigilancia y control, ofreciendo soluciones integrales que combinan personal altamente capacitado, tecnología de vanguardia y protocolos de vigilancia rigurosos.
+                    Con más de 8 años de experiencia, Servileon se ha consolidado como una empresa líder en el sector de portería, vigilancia y control, ofreciendo soluciones integrales que combinan personal altamente capacitado, tecnología de vanguardia y protocolos de vigilancia rigurosos.
                   </p>
                   <p className="text-gray-600 mb-8">
-                    Nuestra misión es proporcionar tranquilidad a nuestros clientes a través de servicios de portería, vigilancia y control confiables, eficientes y personalizados que se adaptan a sus necesidades específicas.
+                    Nuestra misión es proporcionar tranquilidad a nuestros clientes a través de nuestro amplio portafolio de servicio de portería, vigilancia, aseo y limpieza, jardinería, instalaciones y monitoreo dén cámaras de seguridad, controles confiables eficientes y personalizados que se adaptan a sus necesidades específicas.
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -506,12 +510,12 @@ export default function Home() {
               
               <FadeInOnScroll delay={0.2}>
                 <div>
-                  <h2 className="text-4xl font-bold font-playfair text-white mb-6">Protección de Clase Mundial</h2>
+                  <h2 className="text-4xl font-bold font-playfair text-white mb-6">protección y servicios integrales de la más alta calidad</h2>
                   <p className="text-white/70 mb-6">
-                    En Servileon, entendemos que la portería y vigilancia no es solo un servicio, es una promesa. Nuestro compromiso es proteger lo que más valora con soluciones de portería, vigilancia y control de vanguardia.
+                    En Servileon, entendemos que la portería y vigilancia no es solo un servicio, es una promesa. Nuestro compromiso es proteger lo que más valora con soluciones especializadas en portería, vigilancia y control de vanguardia.
                   </p>
                   <p className="text-white/70 mb-8">
-                    Combinamos tecnología avanzada, personal altamente capacitado y protocolos rigurosos para ofrecer un escudo de protección impenetrable para su hogar, negocio o evento.
+                    Combinamos tecnología avanzada, personal altamente calificado y protocolos rigurosos para ofrecer un escudo de protección impenetrable para su hogar, negocio o evento.
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
@@ -614,7 +618,7 @@ export default function Home() {
                 Servicios profesionales de calidad
               </h2>
               <p className="text-servileon-black/80 text-xl mb-8">
-                Contáctenos hoy para una consulta gratuita y descubra cómo podemos ayudarle con sus necesidades de aseo, limpieza y portería.
+                Contáctenos hoy para una consulta gratuita y descubra cómo podemos ayudarle con sus necesidades.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 max-w-xl mx-auto">
                 <AnimatedButton 

@@ -58,7 +58,7 @@ export default function ContactoPage() {
       ]
     },
     {
-      icon: <Phone className="h-6 w-6 text-gold" />,
+      icon: <Image src="/whatsapp.png" alt="WhatsApp" width={24} height={24} />,
       title: "Teléfonos",
       details: [
         "+57 311 326 0689"
@@ -75,7 +75,7 @@ export default function ContactoPage() {
       icon: <Clock className="h-6 w-6 text-gold" />,
       title: "Horario de Atención",
       details: [
-        "Lunes a Viernes: 8:00 AM - 6:00 PM",
+        "Lunes a Viernes: 8:00 AM - 5:00 PM",
         "Sábados: 9:00 AM - 1:00 PM"
       ]
     }
@@ -187,11 +187,11 @@ export default function ContactoPage() {
                     {/* Añadir botón de acción para algunas tarjetas */}
                     {info.title === "Teléfonos" && (
                       <a 
-                        href={`tel:${info.details[0].replace(/\s+/g, '')}`}
+                        href={`https://wa.me/573113260689`}
                         className="mt-4 inline-flex items-center justify-center text-gold hover:text-gold-dark font-medium transition-colors duration-300"
                       >
-                        <Phone className="h-4 w-4 mr-2" />
-                        Llamar ahora
+                        <Image src="/whatsapp.png" alt="WhatsApp" width={16} height={16} className="mr-2" />
+                        Contactar por WhatsApp
                       </a>
                     )}
                     {info.title === "Correo Electrónico" && (

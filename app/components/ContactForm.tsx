@@ -405,7 +405,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
         <div className="mt-8">
           <p className="font-medium mb-2">Horario de atención:</p>
           <p className="text-gray-300 text-sm">
-            Lunes a Viernes: 8:00 AM - 6:00 PM<br />
+            Lunes a Viernes: 8:00 AM - 5:00 PM<br />
             Sábados: 9:00 AM - 1:00 PM
           </p>
         </div>

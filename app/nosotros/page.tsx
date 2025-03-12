@@ -87,7 +87,7 @@ export default function Nosotros() {
                     A lo largo de los años, hemos crecido de manera constante, expandiendo nuestras operaciones a las principales ciudades del país y diversificando nuestros servicios para satisfacer las necesidades cambiantes de nuestros clientes.
                   </p>
                   <p className="text-gray-600 mb-8">
-                    Hoy, con más de 15 años de experiencia, Servileon se ha consolidado como líder en el sector, reconocido por su excelencia, profesionalismo y compromiso con la seguridad y tranquilidad de sus clientes.
+                    Hoy, con más de 8 años de experiencia, Servileon se ha consolidado como líder en el sector, reconocido por su excelencia, profesionalismo y compromiso con la seguridad y tranquilidad de sus clientes.
                   </p>
                 </div>
               </FadeInOnScroll>

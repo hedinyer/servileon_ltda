@@ -346,8 +346,10 @@ export default function MainLayout({ children }: MainLayoutProps) {
                         className="flex items-center bg-gray-50 p-3 rounded-lg"
                         whileHover={{ x: 5, color: "#D4AF37" }}
                       >
-                        <LucideIcons.Mail className="h-5 w-5 mr-3 text-gold" />
-                        <a href="mailto:neider.leon@servileon.com" className="text-gray-700 hover:text-gold transition-colors">neider.leon@servileon.com</a>
+                        <Image src="/whatsapp.png" alt="WhatsApp" width={20} height={20} className="mr-3" />
+                        <a href="https://wa.me/573113260689" className="text-gray-700 hover:text-gold transition-colors">
+                          +57 311 326 0689
+                        </a>
                       </motion.div>
                     </div>
                     
@@ -401,7 +403,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   />
                 </motion.div>
                 <p className="text-gray-400 mb-6">
-                  Empresa líder en portería, vigilancia y control con más de 15 años de experiencia protegiendo lo que más valora.
+                  Empresa líder en portería, vigilancia y control con más de 8 años de experiencia protegiendo lo que más valora.
                 </p>
                 <div className="flex space-x-4">
                   {[
@@ -492,6 +494,15 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   className="flex items-center"
                   whileHover={{ x: 5, color: "#D4AF37" }}
                 >
+                  <Image src="/whatsapp.png" alt="WhatsApp" width={20} height={20} className="mr-3" />
+                  <a href="https://wa.me/573113260689" className="text-gray-400 hover:text-gold transition-colors">
+                    +57 311 326 0689
+                  </a>
+                </motion.li>
+                <motion.li 
+                  className="flex items-center"
+                  whileHover={{ x: 5, color: "#D4AF37" }}
+                >
                   <LucideIcons.Mail className="h-5 w-5 mr-3 text-gold" />
                   <a href="mailto:neider.leon@servileon.com" className="text-gray-400 hover:text-gold transition-colors">
                     neider.leon@servileon.com
@@ -503,7 +514,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 >
                   <LucideIcons.Clock className="h-5 w-5 mr-3 text-gold" />
                   <span className="text-gray-400">
-                    Lun - Vie: 8:00 AM - 6:00 PM
+                    Lun - Vie: 8:00 AM - 5:00 PM
                   </span>
                 </motion.li>
               </ul>
