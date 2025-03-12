@@ -13,6 +13,7 @@ interface AnalyticsEvent {
 
 export const useAnalytics = () => {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
   // Usar useRef para evitar problemas de dependencias circulares
   const trackEventRef = useRef<(type: string, id?: string, data?: Record<string, any>) => void>()
 
@@ -52,7 +53,6 @@ export const useAnalytics = () => {
       try {
         // Usar un setTimeout para asegurar que el componente esté montado
         const timer = setTimeout(() => {
-          const searchParams = useSearchParams()
           if (trackEventRef.current) {
             trackEventRef.current('page_view', undefined, {
               url: window.location.href,
@@ -67,7 +67,7 @@ export const useAnalytics = () => {
         console.error('Error in page view tracking:', error)
       }
     }
-  }, [pathname])
+  }, [pathname, searchParams])
 
   // Track button clicks
   const trackButtonClick = useCallback((id: string, data?: Record<string, any>) => {

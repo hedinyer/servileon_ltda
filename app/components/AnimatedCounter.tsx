@@ -27,6 +27,7 @@ export default function AnimatedCounter({
   const [count, setCount] = useState(0)
   const controls = useAnimation()
   const hasAnimated = useRef(false)
+  const isMounted = useRef(false)
   
   // Función para formatear el número
   const formatNumber = (num: number) => {
@@ -36,16 +37,26 @@ export default function AnimatedCounter({
     return num.toFixed(decimalPlaces).toLocaleString()
   }
   
+  // Marcar el componente como montado
+  useEffect(() => {
+    isMounted.current = true
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
+  
   // Iniciar la animación cuando el componente se monta
   useEffect(() => {
-    if (!hasAnimated.current) {
+    if (!hasAnimated.current && isMounted.current) {
       hasAnimated.current = true
       
       // Función de easing
       const easeOutQuad = (t: number) => 1 - Math.pow(1 - t, 2)
       
       // Iniciar la animación después del delay
-      setTimeout(() => {
+      const timer = setTimeout(() => {
+        if (!isMounted.current) return
+        
         let startTime: number | null = null
         
         const animateCount = (timestamp: number) => {
@@ -55,14 +66,20 @@ export default function AnimatedCounter({
           
           setCount(easedProgress * end)
           
-          if (progress < 1) {
+          if (progress < 1 && isMounted.current) {
             requestAnimationFrame(animateCount)
           }
         }
         
         requestAnimationFrame(animateCount)
-        controls.start({ opacity: 1, y: 0 })
+        
+        // Solo iniciar la animación si el componente sigue montado
+        if (isMounted.current) {
+          controls.start({ opacity: 1, y: 0 })
+        }
       }, delay * 1000)
+      
+      return () => clearTimeout(timer)
     }
   }, [end, duration, delay, controls])
   
