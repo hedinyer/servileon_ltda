@@ -98,7 +98,7 @@ export default function ServiceCard3D({
           transition: 'transform 0.3s ease'
         }}
       >
-        Más información
+        Ver detalles
         <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
       </Link>
     </div>

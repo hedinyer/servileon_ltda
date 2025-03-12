@@ -1,6 +1,6 @@
 # SERVILEON LTDA - Sitio Web Oficial
 
-Sitio web moderno y de alta gama para SERVILEON LTDA, empresa líder en seguridad privada en Colombia.
+Sitio web moderno y de alta gama para SERVILEON LTDA, empresa líder en portería, vigilancia y control en Colombia.
 
 ## Características
 
@@ -15,9 +15,9 @@ Sitio web moderno y de alta gama para SERVILEON LTDA, empresa líder en segurida
 - **Portada (Homepage)**: Hero section con video de fondo y llamado a la acción
 - **Servicios**: Vigilancia armada, protección ejecutiva, monitoreo con IA
 - **Experiencia**: Línea de tiempo con hitos importantes de la empresa
-- **Tecnología y Cumplimiento**: Equipos de seguridad avanzados y certificaciones
+- **Tecnología y Cumplimiento**: Equipos de vigilancia avanzados y certificaciones
 - **Equipo**: Perfiles del personal clave de la empresa
-- **Blog**: Artículos sobre seguridad y tendencias del sector
+- **Blog**: Artículos sobre vigilancia y tendencias del sector
 
 ## Tecnologías Utilizadas
 

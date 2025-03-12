@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import dynamic from "next/dynamic"
 // Importar solo los iconos que se usan en la parte inicial de la página
-import { Shield, Play, Pause, ArrowRight, Phone } from "lucide-react"
+import { Shield, ArrowRight, Phone } from "lucide-react"
 // Importar el resto de iconos de forma dinámica
 const Users = dynamic(() => import("lucide-react").then(mod => mod.Users), { ssr: false })
 const Star = dynamic(() => import("lucide-react").then(mod => mod.Star), { ssr: false })
@@ -50,17 +50,12 @@ const motionConfig = {
 }
 
 export default function Home() {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true)
   const [activeTestimonial, setActiveTestimonial] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
   
   // Cargar datos de forma diferida
   const [isTestimonialsVisible, setIsTestimonialsVisible] = useState(false)
   const [isStatsVisible, setIsStatsVisible] = useState(false)
-  
-  // Cargar el video de forma diferida
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   
   useEffect(() => {
     // Función para verificar si un elemento está en el viewport
@@ -93,26 +88,6 @@ export default function Home() {
     return () => window.removeEventListener('scroll', checkVisibility)
   }, [])
   
-  useEffect(() => {
-    // Cargar el video después de que la página se haya cargado
-    const timer = setTimeout(() => {
-      setIsVideoLoaded(true)
-    }, 100)
-    
-    return () => clearTimeout(timer)
-  }, [])
-  
-  const toggleVideo = () => {
-    if (videoRef.current) {
-      if (isVideoPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
-      }
-      setIsVideoPlaying(!isVideoPlaying)
-    }
-  }
-
   const services = [
     {
       id: 1,
@@ -120,26 +95,26 @@ export default function Home() {
       title: "Aseo y Limpieza",
       description: "Personal capacitado y productos de alta calidad para mantener sus instalaciones impecables.",
       link: "/servicios/1",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: ["Servicio personalizado", "Personal capacitado", "Productos premium"]
     },
     {
       id: 2,
       icon: <Users className="h-12 w-12 text-gold" />,
       title: "Portería 2x2x2",
-      description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad.",
+      description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la vigilancia y control.",
       link: "/servicios/2",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: ["Cobertura 24/7", "Personal certificado", "Equipamiento completo"]
     },
     {
       id: 3,
       icon: <Users className="h-12 w-12 text-gold" />,
       title: "Portería 3x3",
-      description: "Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y seguridad.",
+      description: "Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y control.",
       link: "/servicios/3",
-      image: "/placeholder.jpg",
-      features: ["Rotación optimizada", "Mayor eficiencia", "Seguridad reforzada"]
+      image: "/portada.jpeg",
+      features: ["Rotación optimizada", "Mayor eficiencia", "Vigilancia reforzada"]
     },
     {
       id: 4,
@@ -147,7 +122,7 @@ export default function Home() {
       title: "Servicios Personalizados",
       description: "Soluciones adaptadas a las necesidades específicas de cada cliente.",
       link: "/servicios",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: ["Consultoría gratuita", "Planes a medida", "Atención prioritaria"]
     }
   ]
@@ -155,21 +130,21 @@ export default function Home() {
   const testimonials = [
     {
       name: "Carlos Rodríguez",
-      position: "Director de Seguridad, Grupo Empresarial XYZ",
-      image: "/testimonial1.jpg",
-      content: "Servileon ha transformado nuestra seguridad corporativa. Su personal es altamente profesional y su tecnología de vanguardia nos brinda tranquilidad total."
+      position: "Director de Portería, Grupo Empresarial XYZ",
+      image: "/portada.jpeg",
+      content: "Servileon ha transformado nuestra portería y vigilancia corporativa. Su personal es altamente profesional y su tecnología de vanguardia nos brinda tranquilidad total."
     },
     {
       name: "María González",
       position: "Gerente General, Hotel Platinum",
-      image: "/testimonial2.jpg",
-      content: "Desde que contratamos a Servileon, nuestros huéspedes se sienten más seguros y hemos reducido los incidentes de seguridad en un 95%. Servicio excepcional."
+      image: "/portada.jpeg",
+      content: "Desde que contratamos a Servileon, nuestros huéspedes se sienten más seguros y hemos reducido los incidentes de control en un 95%. Servicio excepcional."
     },
     {
       name: "Javier Méndez",
       position: "CEO, Corporación Industrial del Norte",
-      image: "/testimonial3.jpg",
-      content: "La capacidad de respuesta y profesionalismo de Servileon es incomparable. Han diseñado un sistema de seguridad integral que protege perfectamente nuestras instalaciones."
+      image: "/portada.jpeg",
+      content: "La capacidad de respuesta y profesionalismo de Servileon es incomparable. Han diseñado un sistema de portería y vigilancia integral que protege perfectamente nuestras instalaciones."
     }
   ]
 
@@ -190,39 +165,19 @@ export default function Home() {
         
         {/* Hero Section */}
         <section className="relative h-screen flex items-center overflow-hidden">
-          {/* Background Video */}
+          {/* Background Image */}
           <div className="absolute inset-0 z-0">
-            {isVideoLoaded ? (
-              <video 
-                ref={videoRef}
-                autoPlay 
-                muted 
-                loop 
-                playsInline
-                className="object-cover w-full h-full brightness-[0.3]"
-                preload="none"
-              >
-                <source src="/security-video.mp4" type="video/mp4" />
-              </video>
-            ) : (
-              <div className="w-full h-full bg-black"></div>
-            )}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
+            <Image 
+              src="/portada.jpeg" 
+              alt="Portada Servileon" 
+              fill
+              priority
+              className="object-cover w-full h-full brightness-[0.7]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/30 z-10"></div>
           </div>
           
-          {/* Video Controls */}
-          <button 
-            onClick={toggleVideo}
-            className="absolute bottom-8 right-8 z-20 bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-white/20 transition-all duration-300"
-          >
-            {isVideoPlaying ? (
-              <Pause className="h-6 w-6 text-white" />
-            ) : (
-              <Play className="h-6 w-6 text-white" />
-            )}
-          </button>
-        
-        {/* Hero Content */}
+          {/* Hero Content */}
           <div className="container mx-auto px-4 relative z-20">
             <div className="max-w-3xl">
               <motion.div
@@ -232,7 +187,7 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-playfair mb-6">
-                  <span className="block">Seguridad de</span>
+                  <span className="block">Portería y Vigilancia de</span>
                   <span className="bg-clip-text text-transparent bg-gold-gradient bg-gradient-size animate-gradient-slow">
                     Clase Mundial
                   </span>
@@ -246,7 +201,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                Protegemos lo que más valora con soluciones de seguridad personalizadas, tecnología avanzada y personal altamente capacitado.
+                Protegemos lo que más valora con soluciones de portería, vigilancia y control personalizadas, tecnología avanzada y personal altamente capacitado.
               </motion.p>
               
               <motion.div 
@@ -355,7 +310,7 @@ export default function Home() {
                 <ServiceCard3D 
                   icon={<Shield className="h-6 w-6 text-gold" />}
                   title="Portería 2x2x2"
-                  description="Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad de sus instalaciones."
+                  description="Servicio de portería 24 horas con personal capacitado y equipado para garantizar la vigilancia y control de sus instalaciones."
                   link="/servicios/2"
                   delay={0.2}
                 />
@@ -366,7 +321,7 @@ export default function Home() {
                 <ServiceCard3D 
                   icon={<Users className="h-6 w-6 text-gold" />}
                   title="Portería 3x3"
-                  description="Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y seguridad, con personal altamente capacitado."
+                  description="Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y control, con personal altamente capacitado."
                   link="/servicios/3"
                   delay={0.3}
                 />
@@ -404,7 +359,7 @@ export default function Home() {
                   <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] p-0">
                     <div className="h-full w-full">
                       <Image 
-                        src="/logo.png" 
+                        src="/portada.jpeg" 
                         alt="Servileon Logo" 
                         fill
                         sizes="(max-width: 768px) 100vw, 400px"
@@ -418,12 +373,12 @@ export default function Home() {
               
               <FadeInOnScroll delay={0.2}>
                 <div>
-                  <h2 className="text-4xl font-bold font-playfair mb-6">Quiénes Somos</h2>
+                  <h2 className="text-4xl font-bold font-playfair mb-6 text-black">Quiénes Somos</h2>
                   <p className="text-gray-600 mb-6">
-                    Con más de 15 años de experiencia, Servileon se ha consolidado como líder en el sector de seguridad privada, ofreciendo soluciones integrales que combinan personal altamente capacitado, tecnología de vanguardia y protocolos de seguridad rigurosos.
+                    Con más de 15 años de experiencia, Servileon se ha consolidado como líder en el sector de portería, vigilancia y control, ofreciendo soluciones integrales que combinan personal altamente capacitado, tecnología de vanguardia y protocolos de vigilancia rigurosos.
                   </p>
                   <p className="text-gray-600 mb-8">
-                    Nuestra misión es proporcionar tranquilidad a nuestros clientes a través de servicios de seguridad confiables, eficientes y personalizados que se adaptan a sus necesidades específicas.
+                    Nuestra misión es proporcionar tranquilidad a nuestros clientes a través de servicios de portería, vigilancia y control confiables, eficientes y personalizados que se adaptan a sus necesidades específicas.
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -443,12 +398,12 @@ export default function Home() {
                   </div>
                   
                   <AnimatedButton 
-                    href="/about" 
-                    variant="secondary"
-                    size="lg"
+                    href="/nosotros" 
+                    variant="outline"
+                    size="md"
                     icon={<ArrowRight className="h-5 w-5" />}
                   >
-                    Conocer más
+                    Ver más información
                   </AnimatedButton>
                 </div>
               </FadeInOnScroll>
@@ -469,8 +424,8 @@ export default function Home() {
                   <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] w-[400px] p-0">
                     <div className="h-full w-full">
                       <Image 
-                        src="/security-image.jpg" 
-                        alt="Seguridad Profesional" 
+                        src="/portada.jpeg" 
+                        alt="Portería y Vigilancia Profesional" 
                         fill
                         sizes="(max-width: 768px) 100vw, 400px"
                         className="object-cover"
@@ -485,7 +440,7 @@ export default function Home() {
                 <div>
                   <h2 className="text-4xl font-bold font-playfair text-white mb-6">Protección de Clase Mundial</h2>
                   <p className="text-white/70 mb-6">
-                    En Servileon, entendemos que la seguridad no es solo un servicio, es una promesa. Nuestro compromiso es proteger lo que más valora con soluciones de seguridad de vanguardia.
+                    En Servileon, entendemos que la portería y vigilancia no es solo un servicio, es una promesa. Nuestro compromiso es proteger lo que más valora con soluciones de portería, vigilancia y control de vanguardia.
                   </p>
                   <p className="text-white/70 mb-8">
                     Combinamos tecnología avanzada, personal altamente capacitado y protocolos rigurosos para ofrecer un escudo de protección impenetrable para su hogar, negocio o evento.
@@ -493,7 +448,7 @@ export default function Home() {
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                     {[
-                      { icon: <Lock className="h-6 w-6 text-gold" />, text: "Seguridad 24/7" },
+                      { icon: <Lock className="h-6 w-6 text-gold" />, text: "Vigilancia 24/7" },
                       { icon: <Eye className="h-6 w-6 text-gold" />, text: "Monitoreo avanzado" },
                       { icon: <Bell className="h-6 w-6 text-gold" />, text: "Respuesta inmediata" },
                       { icon: <Cpu className="h-6 w-6 text-gold" />, text: "Tecnología de punta" }
@@ -505,14 +460,6 @@ export default function Home() {
                     ))}
                   </div>
                   
-                  <AnimatedButton 
-                    href="/servicios" 
-                    variant="primary"
-                    size="lg"
-                    icon={<ArrowRight className="h-5 w-5" />}
-                  >
-                    Explorar Soluciones
-                  </AnimatedButton>
                 </div>
               </FadeInOnScroll>
             </div>

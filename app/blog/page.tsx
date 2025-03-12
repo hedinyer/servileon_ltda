@@ -23,11 +23,11 @@ export default function BlogPage() {
     {
       id: 1,
       title: "5 Tendencias de Seguridad en Colombia 2024",
-      excerpt: "Descubre las principales innovaciones y cambios en el sector de seguridad privada para este año.",
-      image: "/placeholder.jpg",
+      excerpt: "Descubre las principales innovaciones y cambios en el sector de portería, seguridad y control para este año.",
+      image: "/portada.jpeg",
       date: "15 de marzo, 2024",
       author: "Alejandro León",
-      authorImage: "/placeholder-user.jpg",
+      authorImage: "/portada.jpeg",
       category: "tendencias",
       tags: ["Tendencias", "Innovación", "Colombia"]
     },
@@ -35,10 +35,10 @@ export default function BlogPage() {
       id: 2,
       title: "Cómo Proteger tu Hogar Durante las Vacaciones",
       excerpt: "Consejos prácticos para mantener tu casa segura mientras disfrutas de tus vacaciones sin preocupaciones.",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       date: "28 de febrero, 2024",
       author: "Carolina Martínez",
-      authorImage: "/placeholder-user.jpg",
+      authorImage: "/portada.jpeg",
       category: "consejos",
       tags: ["Hogar", "Vacaciones", "Prevención"]
     },
@@ -46,10 +46,10 @@ export default function BlogPage() {
       id: 3,
       title: "Inteligencia Artificial en Sistemas de Vigilancia",
       excerpt: "El impacto revolucionario de la IA en los sistemas de monitoreo y cómo está transformando el sector.",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       date: "10 de febrero, 2024",
       author: "Javier Torres",
-      authorImage: "/placeholder-user.jpg",
+      authorImage: "/portada.jpeg",
       category: "tecnologia",
       tags: ["IA", "Vigilancia", "Tecnología"]
     },
@@ -57,10 +57,10 @@ export default function BlogPage() {
       id: 4,
       title: "Seguridad Corporativa: Protegiendo Activos Críticos",
       excerpt: "Estrategias efectivas para salvaguardar la información sensible y los activos físicos de tu empresa.",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       date: "25 de enero, 2024",
       author: "Alejandro León",
-      authorImage: "/placeholder-user.jpg",
+      authorImage: "/portada.jpeg",
       category: "empresarial",
       tags: ["Corporativo", "Activos", "Estrategia"]
     },
@@ -68,10 +68,10 @@ export default function BlogPage() {
       id: 5,
       title: "El Futuro de la Biometría en Control de Accesos",
       excerpt: "Nuevas tecnologías biométricas que están revolucionando la forma de gestionar la seguridad de accesos.",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       date: "15 de enero, 2024",
       author: "Javier Torres",
-      authorImage: "/placeholder-user.jpg",
+      authorImage: "/portada.jpeg",
       category: "tecnologia",
       tags: ["Biometría", "Accesos", "Innovación"]
     },
@@ -79,10 +79,10 @@ export default function BlogPage() {
       id: 6,
       title: "Cómo Crear un Plan de Emergencia Efectivo",
       excerpt: "Guía paso a paso para desarrollar protocolos de emergencia que realmente funcionen en situaciones críticas.",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       date: "5 de enero, 2024",
       author: "Carolina Martínez",
-      authorImage: "/placeholder-user.jpg",
+      authorImage: "/portada.jpeg",
       category: "consejos",
       tags: ["Emergencias", "Planificación", "Protocolos"]
     }
@@ -110,7 +110,7 @@ export default function BlogPage() {
       <section className="relative py-20 bg-servileon-black">
         <div className="absolute inset-0 opacity-20">
           <Image 
-            src="/placeholder.jpg" 
+            src="/portada.jpeg" 
             alt="Blog de Seguridad" 
             fill 
             className="object-cover"
@@ -122,7 +122,7 @@ export default function BlogPage() {
               Blog de <span className="text-gold">Seguridad</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8">
-              Artículos, consejos y tendencias sobre seguridad privada y protección.
+              Artículos, consejos y tendencias sobre portería, seguridad y control y protección.
             </p>
           </div>
         </div>

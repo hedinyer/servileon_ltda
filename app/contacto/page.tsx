@@ -83,7 +83,7 @@ export default function ContactoPage() {
       <section className="relative py-20 bg-servileon-black">
         <div className="absolute inset-0 opacity-20">
           <Image 
-            src="/placeholder.jpg" 
+            src="/portada.jpeg" 
             alt="Contacto" 
             fill 
             className="object-cover"
@@ -95,7 +95,7 @@ export default function ContactoPage() {
               <span className="text-gold">Contacto</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8">
-              Estamos aquí para responder a todas sus consultas sobre seguridad.
+              Estamos aquí para responder a todas sus consultas sobre portería, vigilancia y control.
             </p>
           </div>
         </div>
@@ -364,15 +364,15 @@ export default function ContactoPage() {
               },
               {
                 question: "¿Ofrecen servicios personalizados para necesidades específicas?",
-                answer: "Sí, realizamos una evaluación detallada de sus necesidades de seguridad y diseñamos un plan a medida. Nuestros consultores de seguridad trabajarán con usted para desarrollar la solución más adecuada para su situación particular."
+                answer: "Sí, realizamos una evaluación detallada de sus necesidades de portería, vigilancia y control y diseñamos un plan a medida. Nuestros consultores trabajarán con usted para desarrollar la solución más adecuada para su situación particular."
               },
               {
                 question: "¿Cuáles son los requisitos para contratar servicios de vigilancia?",
                 answer: "Para contratar nuestros servicios, necesitamos realizar una evaluación inicial de riesgos de su propiedad o negocio. Luego, formalizamos el contrato especificando el alcance del servicio, personal asignado, horarios y condiciones específicas."
               },
               {
-                question: "¿Cómo se selecciona y capacita al personal de seguridad?",
-                answer: "Nuestro personal pasa por un riguroso proceso de selección que incluye verificación de antecedentes, pruebas psicotécnicas y entrevistas. Posteriormente, reciben capacitación continua en protocolos de seguridad, manejo de crisis, primeros auxilios y servicio al cliente."
+                question: "¿Cómo se selecciona y capacita al personal de vigilancia?",
+                answer: "Nuestro personal pasa por un riguroso proceso de selección que incluye verificación de antecedentes, pruebas psicotécnicas y entrevistas. Posteriormente, reciben capacitación continua en protocolos de portería, vigilancia y control, manejo de crisis, primeros auxilios y servicio al cliente."
               }
             ].map((faq, index) => (
               <FadeInOnScroll key={index} delay={index * 0.1}>

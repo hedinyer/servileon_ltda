@@ -44,7 +44,7 @@ function ServiceDetailContent() {
       longDescription: "Nuestro servicio de aseo y limpieza profesional está diseñado para mantener sus instalaciones en condiciones óptimas. Contamos con personal altamente capacitado y utilizamos productos de limpieza de alta calidad para garantizar resultados excepcionales. El servicio se presta de lunes a sábado durante 8 horas diarias, adaptándose a las necesidades específicas de cada cliente.",
       icon: <Shield className="h-12 w-12 text-gold" />,
       category: "aseo",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio de lunes a sábado",
         "Personal con equipo de protección personal",
@@ -68,7 +68,7 @@ function ServiceDetailContent() {
       longDescription: "Nuestro servicio de portería en modalidad 2x2x2 ofrece cobertura las 24 horas del día, todos los días del mes. El personal está altamente capacitado y equipado con todos los elementos necesarios para garantizar la seguridad de sus instalaciones. Mantenemos comunicación constante con nuestra central para responder rápidamente ante cualquier eventualidad.",
       icon: <Users className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
         "Comunicación con central 24 horas",
@@ -92,7 +92,7 @@ function ServiceDetailContent() {
       longDescription: "El servicio de portería en modalidad 3x3 proporciona cobertura las 24 horas del día con un esquema de rotación optimizado que mejora la eficiencia y reduce la fatiga del personal. Esto se traduce en un servicio más alerta y efectivo. Nuestro personal está equipado con todos los elementos necesarios y mantiene comunicación constante con la central para garantizar una respuesta rápida ante cualquier situación.",
       icon: <Users className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
         "Comunicación con central 24 horas",

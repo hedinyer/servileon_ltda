@@ -63,7 +63,7 @@ function ServiciosContent() {
       description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad.",
       icon: <Shield className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
         "Comunicación con central 24 horas",
@@ -84,7 +84,7 @@ function ServiciosContent() {
       description: "Servicio de portería 24 horas premium con personal altamente capacitado y equipamiento avanzado.",
       icon: <Shield className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
         "Personal con capacitación avanzada",
@@ -105,7 +105,7 @@ function ServiciosContent() {
       description: "Servicio de portería 12 horas con personal capacitado para garantizar la seguridad durante el día o la noche.",
       icon: <Clock className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio 12 horas todos los días del mes",
         "Comunicación con central 24 horas",
@@ -126,7 +126,7 @@ function ServiciosContent() {
       description: "Servicio de portería 8 horas ideal para horarios específicos de mayor afluencia o actividad.",
       icon: <Clock className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio 8 horas todos los días del mes",
         "Comunicación con central 24 horas",
@@ -147,7 +147,7 @@ function ServiciosContent() {
       description: "Servicio de portería 24 horas con modalidad 2x2x2 para mayor eficiencia y seguridad.",
       icon: <Users className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
         "Comunicación con central 24 horas",
@@ -169,7 +169,7 @@ function ServiciosContent() {
       description: "Servicios profesionales de aseo y limpieza para mantener sus instalaciones impecables.",
       icon: <Shield className="h-12 w-12 text-gold" />,
       category: "aseo",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio de lunes a sábado",
         "Personal con equipo de protección personal",
@@ -185,7 +185,7 @@ function ServiciosContent() {
       description: "Servicio profesional de jardinería para mantener sus espacios verdes en óptimas condiciones.",
       icon: <Flower className="h-12 w-12 text-gold" />,
       category: "jardineria",
-      image: "/placeholder.jpg",
+      image: "/portada.jpeg",
       features: [
         "Servicio de jardinería profesional",
         "Personal capacitado y con experiencia",
@@ -206,7 +206,7 @@ function ServiciosContent() {
       <section className="relative py-20 bg-servileon-black">
         <div className="absolute inset-0 opacity-20">
           <Image 
-            src="/placeholder.jpg" 
+            src="/portada.jpeg" 
             alt="Servicios de Seguridad" 
             fill 
             className="object-cover"

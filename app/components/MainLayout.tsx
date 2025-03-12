@@ -21,6 +21,8 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation"
 import { motion, AnimatePresence } from "framer-motion"
 // Cargar FloatingParticles de forma dinámica
 const FloatingParticles = dynamic(() => import('./3d/FloatingParticles'), { ssr: false })
+// Importar el componente LogoWithText
+import LogoWithText from "./LogoWithText"
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -161,25 +163,13 @@ export default function MainLayout({ children }: MainLayoutProps) {
             <div className="flex justify-between items-center">
               {/* Logo */}
               <Link href="/" className="relative z-10">
-                <motion.div 
-                  className="flex items-center"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                    <Image 
-                      src="/leon_logo.png" 
-                      alt="Servileon Logo" 
-                      width={isScrolled ? 50 : 60} 
-                      height={isScrolled ? 50 : 60}
-                      className="transition-all duration-300"
-                    />
-                <div className={`ml-3 transition-all duration-300 ${isScrolled ? 'scale-90' : ''}`}>
-                  <h1 className="font-playfair font-bold text-xl md:text-2xl text-servileon-black">
-                    SERVILEON <span className="text-gold">LTDA</span>
-                  </h1>
-                  <p className="text-xs text-gray-500 tracking-wider">SEGURIDAD PRIVADA</p>
-                  </div>
-                </motion.div>
+                <div className={`transition-all duration-300 ${isScrolled ? 'scale-90' : ''}`}>
+                  <LogoWithText 
+                    size={isScrolled ? 50 : 60}
+                    textColor="text-servileon-black"
+                    taglineColor="text-gray-500"
+                  />
+                </div>
               </Link>
 
               {/* Desktop Navigation */}
@@ -408,41 +398,33 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   className="flex items-center mb-6"
                   whileHover={{ scale: 1.05 }}
                 >
-                    <Image 
-                      src="/leon_logo.png" 
-                      alt="Servileon Logo" 
-                      width={60} 
-                      height={60}
-                    />
-                <div className="ml-3">
-                  <h3 className="font-playfair font-bold text-xl text-white">
-                    SERVILEON <span className="text-gold">LTDA</span>
-                  </h3>
-                  <p className="text-xs text-gray-400 tracking-wider">SEGURIDAD PRIVADA</p>
+                  <LogoWithText 
+                    textColor="text-white"
+                    taglineColor="text-gray-400"
+                  />
+                </motion.div>
+                <p className="text-gray-400 mb-6">
+                  Empresa líder en portería, vigilancia y control con más de 15 años de experiencia protegiendo lo que más valora.
+                </p>
+                <div className="flex space-x-4">
+                  {[
+                    { icon: <Facebook className="h-5 w-5" />, href: "#" },
+                    { icon: <Instagram className="h-5 w-5" />, href: "#" },
+                    { icon: <Twitter className="h-5 w-5" />, href: "#" },
+                    { icon: <Linkedin className="h-5 w-5" />, href: "#" }
+                  ].map((social, index) => (
+                    <motion.a 
+                      key={index}
+                      href={social.href} 
+                      className="text-gray-400 hover:text-gold transition-colors"
+                      whileHover={{ scale: 1.2, rotate: 5, color: "#D4AF37" }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      {social.icon}
+                    </motion.a>
+                  ))}
+                  </div>
                 </div>
-              </motion.div>
-              <p className="text-gray-400 mb-6">
-                Empresa líder en seguridad privada con más de 15 años de experiencia protegiendo lo que más valora.
-              </p>
-              <div className="flex space-x-4">
-                {[
-                  { icon: <Facebook className="h-5 w-5" />, href: "#" },
-                  { icon: <Instagram className="h-5 w-5" />, href: "#" },
-                  { icon: <Twitter className="h-5 w-5" />, href: "#" },
-                  { icon: <Linkedin className="h-5 w-5" />, href: "#" }
-                ].map((social, index) => (
-                  <motion.a 
-                    key={index}
-                    href={social.href} 
-                    className="text-gray-400 hover:text-gold transition-colors"
-                    whileHover={{ scale: 1.2, rotate: 5, color: "#D4AF37" }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    {social.icon}
-                  </motion.a>
-                ))}
-                </div>
-              </div>
 
               {/* Quick Links */}
               <div className="mt-6 sm:mt-0">
@@ -470,7 +452,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   { name: "Vigilancia Armada", href: "/servicios/vigilancia-armada" },
                   { name: "Protección Ejecutiva", href: "/servicios/proteccion-ejecutiva" },
                   { name: "Monitoreo 24/7", href: "/servicios/monitoreo" },
-                  { name: "Seguridad Electrónica", href: "/servicios/seguridad-electronica" }
+                  { name: "Vigilancia Electrónica", href: "/servicios/seguridad-electronica" }
                 ].map((service) => (
                   <motion.li 
                     key={service.name}
@@ -495,7 +477,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 >
                   <MapPin className="h-5 w-5 mr-3 text-gold flex-shrink-0 mt-0.5" />
                   <span className="text-gray-400">
-                    Calle 123 #45-67, Edificio Seguridad<br />
+                    Calle 123 #45-67, Edificio Vigilancia<br />
                     Bogotá, Colombia
                   </span>
                 </motion.li>
