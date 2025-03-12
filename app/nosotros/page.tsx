@@ -81,7 +81,7 @@ export default function Nosotros() {
                 <div>
                   <h2 className="text-4xl font-bold font-playfair mb-6 text-black">Nuestra Historia</h2>
                   <p className="text-gray-600 mb-6">
-                    Fundada en 2008, Servileon nació con la visión de transformar el sector de portería, vigilancia y control en Colombia, ofreciendo un servicio de calidad superior con personal altamente capacitado y tecnología de vanguardia.
+                    Fundada en 2018, Servileon nació con la visión de transformar el sector de portería, vigilancia y control en Colombia, ofreciendo un servicio de calidad superior con personal altamente capacitado y tecnología de vanguardia.
                   </p>
                   <p className="text-gray-600 mb-6">
                     A lo largo de los años, hemos crecido de manera constante, expandiendo nuestras operaciones a las principales ciudades del país y diversificando nuestros servicios para satisfacer las necesidades cambiantes de nuestros clientes.
