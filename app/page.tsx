@@ -566,7 +566,7 @@ export default function Home() {
                   <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] w-[400px] p-0">
                     <div className="relative h-full w-full">
                       <Image 
-                        src="/portero2.jpeg" 
+                        src="/portero5.jpeg" 
                         alt="Portería y Vigilancia Profesional" 
                         width={600}
                         height={400}
