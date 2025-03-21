@@ -60,11 +60,11 @@ function ServiciosContent() {
     // SERVICIOS DE PORTERÍA
     {
       id: 1,
-      title: "Servicio de Portería 24 Horas",
+      title: "Servicio de Portería 24 Horas 3x3",
       description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad.",
       icon: <LucideIcons.Shield className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/portada.jpeg",
+      image: "/portero6.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
         "Comunicación con central 24 horas",
@@ -72,20 +72,20 @@ function ServiciosContent() {
         "Demás elementos necesarios para la prestación del servicio"
       ],
       pricing: {
-        precioBase: "7,800,000.00",
-        aiu: "151,050.00",
-        iva: "780,000.00",
-        valorTotal: "8,731,050.00"
+        precioBase: "7,000,000.00",
+        aiu : "700,000.00",
+        iva: "133,000.00",
+        valorTotal: "7,833,000.00"
       },
       color: "bg-blue-50 border-blue-200"
     },
     {
       id: 2,
-      title: "Servicio de Portería 24 Horas Premium",
-      description: "Servicio de portería 24 horas premium con personal altamente capacitado y equipamiento avanzado.",
+      title: "Servicio de Portería 24 Horas 2x2x2",
+      description: "Servicio de portería 24 horas 2x2x2 con personal altamente capacitado y equipamiento avanzado.",
       icon: <LucideIcons.Shield className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/portada.jpeg",
+      image: "/portero5.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
         "Personal con capacitación avanzada",
@@ -93,20 +93,20 @@ function ServiciosContent() {
         "Comunicación con central 24 horas"
       ],
       pricing: {
-        precioBase: "8,500,000.00",
-        aiu: "161,500.00",
-        iva: "850,000.00",
-        valorTotal: "9,511,500.00"
+        precioBase: "8,800,000.00",
+        aiu: "880,000.00",
+        iva: "167,200.00",
+        valorTotal: "9,847,200.00"
       },
       color: "bg-indigo-50 border-indigo-200"
     },
     {
       id: 3,
-      title: "Servicio de Portería 12 Horas",
-      description: "Servicio de portería 12 horas con personal capacitado para garantizar la seguridad durante el día o la noche.",
+      title: "Servicio de Portería y control 12 Horas",
+      description: "Servicio de portería y control 12 horas con personal capacitado para garantizar la seguridad durante el día.",
       icon: <LucideIcons.Clock className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/portada.jpeg",
+      image: "/portero7.jpeg",
       features: [
         "Servicio 12 horas todos los días del mes",
         "Comunicación con central 24 horas",
@@ -115,8 +115,8 @@ function ServiciosContent() {
       ],
       pricing: {
         precioBase: "4,500,000.00",
-        aiu: "85,500.00",
-        iva: "450,000.00",
+        aiu: "450,000.00",
+        iva: "85,500.00",
         valorTotal: "5,035,500.00"
       },
       color: "bg-green-50 border-green-200"
@@ -127,7 +127,7 @@ function ServiciosContent() {
       description: "Servicio de portería 8 horas ideal para horarios específicos de mayor afluencia o actividad.",
       icon: <LucideIcons.Clock className="h-12 w-12 text-gold" />,
       category: "porteria",
-      image: "/portada.jpeg",
+      image: "/portero8.jpeg",
       features: [
         "Servicio 8 horas todos los días del mes",
         "Comunicación con central 24 horas",
@@ -136,85 +136,72 @@ function ServiciosContent() {
       ],
       pricing: {
         precioBase: "3,350,000.00",
-        aiu: "63,650.00",
-        iva: "335,000.00",
+        aiu: "335,000.00",
+        iva: "63,650.00",
         valorTotal: "3,748,650.00"
       },
       color: "bg-orange-50 border-orange-200"
     },
-    {
-      id: 5,
-      title: "Portería Modalidad 2x2x2",
-      description: "Servicio de portería 24 horas con modalidad 2x2x2 para mayor eficiencia y seguridad.",
-      icon: <LucideIcons.Users className="h-12 w-12 text-gold" />,
-      category: "porteria",
-      image: "/portada.jpeg",
-      features: [
-        "Servicio 24 horas todos los días del mes",
-        "Comunicación con central 24 horas",
-        "Tonfa, con su respectiva porta tonfa",
-        "Demás elementos necesarios para la prestación del servicio"
-      ],
-      pricing: {
-        precioBase: "9,669,200.00",
-        aiu: "183,714.00",
-        iva: "966,920.00",
-        valorTotal: "10,819,834.00"
-      },
-      color: "bg-gray-50 border-gray-200"
-    },
+    
     // SECCIÓN DE ASEO (PRÓXIMAMENTE)
     {
-      id: 6,
-      title: "Aseo y Limpieza - Próximamente",
-      description: "Servicios profesionales de aseo y limpieza para mantener sus instalaciones impecables.",
+      id: 5,
+      title: "Aseo y Limpieza",
+      description: "Servicio profesionales de aseo y limpieza ocho (8) horas permanentes de lunes a sábado, con sus implementos de protección reglamentarios.",
       icon: <LucideIcons.Shield className="h-12 w-12 text-gold" />,
       category: "aseo",
-      image: "/portada.jpeg",
+      image: "/aseadora2.jpg",
       features: [
         "Servicio de lunes a sábado",
         "Personal con equipo de protección personal",
         "Productos de limpieza de alta calidad",
         "Guantes y equipo de protección personal (EPP)"
       ],
+      pricing: {
+        precioBase: "3,350,000.00",
+        aiu: "335,000.00",
+        iva: "63,650.00",
+        valorTotal: "3,748,650.00"
+      },
       color: "bg-yellow-50 border-yellow-200"
     },
     // SECCIÓN DE JARDINERÍA (PRÓXIMAMENTE)
     {
-      id: 7,
-      title: "Jardinería - Próximamente",
-      description: "Servicio profesional de jardinería para mantener sus espacios verdes en óptimas condiciones.",
+      id: 6,
+      title: "Jardinería",
+      description: "Servicio profesional de jardinería (8) horas para mantener sus espacios verdes en óptimas condiciones.",
       icon: <LucideIcons.Flower className="h-12 w-12 text-gold" />,
       category: "jardineria",
-      image: "/portada.jpeg",
+      image: "/jardinero1.jpg",
       features: [
-        "Servicio de jardinería profesional",
+        "Servicio de lunes a sabado",
         "Personal capacitado y con experiencia",
         "Guantes y equipo de protección personal (EPP)",
         "Herramientas y equipos especializados"
       ],
+      pricing: {
+        precioBase: "3,450,000.00",
+        aiu: "345,000.00",
+        iva: "65,550.00",
+        valorTotal: "3,860,550.00"
+      },
       color: "bg-emerald-50 border-emerald-200"
     },
     // SECCIÓN DE CÁMARAS DE SEGURIDAD
     {
-      id: 8,
-      title: "Instalación y Monitoreo de Cámaras de Seguridad",
+      id: 7,
+      title: "Servicio de Instalación y Monitoreo de Cámaras de Seguridad",
       description: "Servicio profesional de instalación, configuración y monitoreo de sistemas de videovigilancia para su hogar o negocio.",
       icon: <LucideIcons.Camera className="h-12 w-12 text-gold" />,
       category: "camaras",
-      image: "/portada.jpeg",
+      image: "/cameras.jpg",
       features: [
         "Cámaras de alta definición",
         "Monitoreo 24/7",
         "Almacenamiento en la nube",
         "Acceso remoto desde dispositivos móviles"
       ],
-      pricing: {
-        precioBase: "5,200,000.00",
-        aiu: "98,800.00",
-        iva: "520,000.00",
-        valorTotal: "5,818,800.00"
-      },
+      
       color: "bg-purple-50 border-purple-200"
     }
   ]
@@ -311,10 +298,17 @@ function ServiciosContent() {
                       <span className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
                         service.category === "porteria" ? "bg-blue-100 text-blue-800" :
                         service.category === "aseo" ? "bg-yellow-100 text-yellow-800" :
+                        service.category === "camaras" ? "bg-purple-100 text-purple-800" :
                         "bg-emerald-100 text-emerald-800"
                       }`}>
                         {service.category === "porteria" ? "Portería" :
-                         service.category === "aseo" ? "Aseo" : "Jardinería"}
+                         service.category === "aseo" ? "Aseo" : 
+                         service.category === "camaras" ? "Cámaras" : "Jardinería"}
+                      </span>
+                    </div>
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-gold text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full shadow-md">
+                        Precios Negociables
                       </span>
                     </div>
                   </div>
@@ -348,11 +342,11 @@ function ServiciosContent() {
                             <span className="font-medium text-servileon-black">${service.pricing.precioBase}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-700">AIU:</span>
+                            <span className="text-sm text-gray-700">AIU (10%):</span>
                             <span className="font-medium text-servileon-black">${service.pricing.aiu}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-700">IVA (10%):</span>
+                            <span className="text-sm text-gray-700">IVA (19%):</span>
                             <span className="font-medium text-servileon-black">${service.pricing.iva}</span>
                           </div>
                           <div className="flex justify-between pt-2 border-t border-gray-300">
@@ -366,8 +360,8 @@ function ServiciosContent() {
                     
                     {!service.pricing && (
                       <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-center">
-                        <p className="text-sm font-medium text-servileon-black">Próximamente</p>
-                        <p className="text-xs text-gray-600 mt-1">Estamos trabajando en estos servicios</p>
+                        <p className="text-sm font-medium text-servileon-black">Precios personalizados</p>
+                        <p className="text-xs text-gray-600 mt-1">Precios sujetos a negociaciones y necesidades del cliente</p>
                       </div>
                     )}
                   </div>

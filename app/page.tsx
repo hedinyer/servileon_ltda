@@ -149,22 +149,92 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: "Carlos Rodríguez",
-      position: "Director de Portería, Grupo Empresarial XYZ",
-      image: "/portada.jpeg",
-      content: "Servileon ha transformado nuestra portería y vigilancia corporativa. Su personal es altamente profesional y su tecnología de vanguardia nos brinda tranquilidad total."
+      name: "Edificio Tulipanes",
+      position: "Cl. 43 13-55 Bucaramanga",
+      admin: "FENNY",
+      image: "/mujer1.png",
+      content: "Servileon mejoró nuestra portería significativamente. El personal es atento y profesional. La vigilancia de alta calidad nos proporciona tranquilidad a todos los residentes.",
+      rating: 4.7
     },
     {
-      name: "María González",
-      position: "Gerente General, Hotel Platinum",
-      image: "/portada.jpeg",
-      content: "Desde que contratamos a Servileon, nuestros huéspedes se sienten más seguros y hemos reducido los incidentes de control en un 95%. Servicio excepcional."
+      name: "Conjunto Residencial Camino del Parque",
+      position: "Cra. 6 #1318 Piedecuesta",
+      admin: "ALFONSO PABON",
+      image: "/hombre 1.png",
+      content: "Desde que contratamos a Servileon, la seguridad en nuestra unidad ha mejorado notablemente. Su servicio de aseo y jardinería es impecable, muy recomendados.",
+      rating: 4.85
     },
     {
-      name: "Javier Méndez",
-      position: "CEO, Corporación Industrial del Norte",
-      image: "/portada.jpeg",
-      content: "La capacidad de respuesta y profesionalismo de Servileon es incomparable. Han diseñado un sistema de portería y vigilancia integral que protege perfectamente nuestras instalaciones."
+      name: "Conjunto Residencial Rincón de Girón",
+      position: "Cl. 40 Girón",
+      admin: "CLEMENCIA",
+      image: "/mujer 2.png",
+      content: "El profesionalismo y la dedicación del personal de Servileon son excepcionales. Siempre atentos a nuestras necesidades y proporcionando soluciones efectivas.",
+      rating: 4.6
+    },
+    {
+      name: "Conjunto Residencial Caobos",
+      position: "Cra. 24 #Calle 80 Bucaramanga",
+      admin: "AMANDA DUQUE",
+      image: "/mujer 3.png",
+      content: "Hemos trabajado con Servileon por 3 años y su servicio nunca ha decaído. Su sistema de portería 3x3 es excelente y el personal siempre está bien presentado y capacitado.",
+      rating: 4.9
+    },
+    {
+      name: "Condominio La Campiña",
+      position: "KM 7 VIA SAN GIL CHARALA",
+      admin: "ORLANDO",
+      image: "/hombre 2.png",
+      content: "La calidad del servicio de Servileon ha superado nuestras expectativas. Recomendamos ampliamente sus servicios de portería y vigilancia.",
+      rating: 4.75
+    },
+    {
+      name: "Portal del Café",
+      position: "Calle 14 # 3-02 SAN GIL",
+      admin: "LUISA",
+      image: "/mujer 4.png",
+      content: "El servicio de Servileon es extremadamente profesional. Su equipo siempre está atento a nuestras necesidades y responde rápidamente ante cualquier situación.",
+      rating: 4.8
+    },
+    {
+      name: "Constructora Potencial CIA",
+      position: "TERPEL EDS EL MOLINO",
+      admin: "ING SANTIAGO",
+      image: "/hombre 3.png",
+      content: "Trabajar con Servileon ha sido una excelente decisión. Su equipo es profesional, confiable y siempre mantiene nuestras instalaciones seguras.",
+      rating: 4.65
+    },
+    {
+      name: "Plaza Central de Floridablanca",
+      position: "CRA 8 Parque Principal de Floridablanca",
+      admin: "MARGARITA",
+      image: "/mujer 5.png",
+      content: "La experiencia con Servileon ha sido excelente. El servicio integral que ofrecen cumple con todas nuestras expectativas de seguridad y mantenimiento.",
+      rating: 4.82
+    },
+    {
+      name: "Asvupar 1",
+      position: "CALLE 151 BIS 115",
+      admin: "PABLO MENDEZ",
+      image: "/hombre 4.png",
+      content: "Servileon ofrece un servicio de portería excepcional. Su personal es cortés, profesional y siempre está atento a las necesidades de nuestra comunidad.",
+      rating: 4.55
+    },
+    {
+      name: "Asvepar 3",
+      position: "153 BIS 114",
+      admin: "TEREZA",
+      image: "/mujer 6.png",
+      content: "La calidad del servicio de Servileon es inigualable. Su equipo está bien capacitado y siempre proporciona un servicio excepcional.",
+      rating: 4.7
+    },
+    {
+      name: "Edificio Lesil",
+      position: "Cra 14 #42-38",
+      admin: "LUCINDA SANABRIA",
+      image: "/mujer 7.png",
+      content: "Desde que contratamos a Servileon, la seguridad en nuestro edificio ha mejorado significativamente. El servicio de portería es excelente y confiable.",
+      rating: 4.92
     }
   ]
 
@@ -431,7 +501,7 @@ export default function Home() {
                   <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] p-0">
                     <div className="relative h-full w-full">
                       <Image 
-                        src="/portada.jpeg" 
+                        src="/obras2.jpeg" 
                         alt="Servileon Logo" 
                         width={600}
                         height={400}
@@ -496,7 +566,7 @@ export default function Home() {
                   <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] w-[400px] p-0">
                     <div className="relative h-full w-full">
                       <Image 
-                        src="/portada.jpeg" 
+                        src="/portero2.jpeg" 
                         alt="Portería y Vigilancia Profesional" 
                         width={600}
                         height={400}
@@ -572,14 +642,16 @@ export default function Home() {
                             />
                           </div>
                           <div>
-                            <div className="flex mb-4">
+                            <div className="flex mb-4 items-center">
                               {[...Array(5)].map((_, i) => (
-                                <LucideIcons.Star key={i} className="h-5 w-5 text-gold fill-gold" />
+                                <LucideIcons.Star key={i} className={`h-5 w-5 ${i < Math.floor(testimonial.rating) ? "text-gold fill-gold" : i < testimonial.rating ? "text-gold fill-gold opacity-50" : "text-gray-400"}`} />
                               ))}
+                              <span className="ml-2 text-gold font-semibold">{testimonial.rating.toFixed(1)}</span>
                             </div>
                             <p className="text-white/90 text-lg italic mb-6 text-justify">"{testimonial.content}"</p>
                             <h4 className="text-white font-bold text-xl">{testimonial.name}</h4>
                             <p className="text-white/70">{testimonial.position}</p>
+                            <p className="text-gold/80 mt-1">Administrador: {testimonial.admin}</p>
                           </div>
                         </div>
                       </InteractiveCard>

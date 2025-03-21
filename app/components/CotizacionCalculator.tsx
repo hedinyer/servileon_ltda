@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Calculator, DollarSign, Users, Home, Flower, Shield, Clock, Send, Check } from "lucide-react"
+import { Calculator, DollarSign, Users, Home, Flower, Shield, Clock, Calendar, Send, Check } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 interface CotizacionCalculatorProps {
@@ -11,6 +11,8 @@ interface CotizacionCalculatorProps {
 
 interface QuoteFormData {
   servicio: string;
+  categoria: string;
+  duracion: string;
   nombre: string;
   email: string;
   telefono: string;
@@ -21,62 +23,108 @@ interface QuoteFormData {
     aiu: number;
     iva: number;
     valorTotal: number;
+    duracionMeses: number;
   }
+}
+
+type ServiciosCategorias = "porteria" | "aseo" | "jardineria";
+
+interface Servicio {
+  id: string;
+  nombre: string;
+  precioBase: number;
+  aiu: number;
+  iva: number;
+  color: string;
 }
 
 export default function CotizacionCalculator({ 
   className = "", 
   onRequestQuote 
 }: CotizacionCalculatorProps) {
-  // Precios base y AIU para servicios de portería
-  const SERVICIOS_PORTERIA = [
-    { 
-      id: "24h", 
-      nombre: "Servicio 24 horas", 
-      precioBase: 7800000, 
-      aiu: 151050,
-      color: "bg-blue-50 border-blue-200"
-    },
-    { 
-      id: "24h-premium", 
-      nombre: "Servicio 24 horas Premium", 
-      precioBase: 8500000, 
-      aiu: 161500,
-      color: "bg-indigo-50 border-indigo-200"
-    },
-    { 
-      id: "12h", 
-      nombre: "Servicio 12 horas", 
-      precioBase: 4500000, 
-      aiu: 85500,
-      color: "bg-green-50 border-green-200"
-    },
-    { 
-      id: "8h", 
-      nombre: "Servicio 8 horas", 
-      precioBase: 3350000, 
-      aiu: 63650,
-      color: "bg-orange-50 border-orange-200"
-    },
-    { 
-      id: "2x2x2", 
-      nombre: "Servicio 2x2x2", 
-      precioBase: 9669200, 
-      aiu: 183714,
-      color: "bg-gray-50 border-gray-200"
-    }
+  // Categorías de servicios
+  const CATEGORIAS = [
+    { id: "porteria" as ServiciosCategorias, nombre: "Portería", icon: <Shield className="h-4 w-4" /> },
+    { id: "aseo" as ServiciosCategorias, nombre: "Aseo y Limpieza", icon: <Users className="h-4 w-4" /> },
+    { id: "jardineria" as ServiciosCategorias, nombre: "Jardinería", icon: <Flower className="h-4 w-4" /> }
   ]
   
-  // Porcentaje de IVA (10% sobre el precio base)
-  const IVA_PORCENTAJE = 0.10
+  // Servicios por categoría con precios actualizados
+  const SERVICIOS: Record<ServiciosCategorias, Servicio[]> = {
+    porteria: [
+      { 
+        id: "24h-3x3", 
+        nombre: "Servicio 24 Horas 3x3", 
+        precioBase: 7000000, 
+        aiu: 700000,
+        iva: 133000,
+        color: "bg-blue-50 border-blue-200"
+      },
+      { 
+        id: "24h-2x2x2", 
+        nombre: "Servicio 24 Horas 2x2x2", 
+        precioBase: 8800000, 
+        aiu: 880000,
+        iva: 167200,
+        color: "bg-indigo-50 border-indigo-200"
+      },
+      { 
+        id: "12h", 
+        nombre: "Servicio 12 Horas", 
+        precioBase: 4500000, 
+        aiu: 450000,
+        iva: 85500,
+        color: "bg-green-50 border-green-200"
+      },
+      { 
+        id: "8h", 
+        nombre: "Servicio 8 Horas", 
+        precioBase: 3350000, 
+        aiu: 335000,
+        iva: 63650,
+        color: "bg-orange-50 border-orange-200"
+      }
+    ],
+    aseo: [
+      { 
+        id: "aseo-8h", 
+        nombre: "Servicio 8 Horas", 
+        precioBase: 3350000, 
+        aiu: 335000,
+        iva: 63650,
+        color: "bg-yellow-50 border-yellow-200"
+      }
+    ],
+    jardineria: [
+      { 
+        id: "jardineria-8h", 
+        nombre: "Servicio 8 Horas", 
+        precioBase: 3450000, 
+        aiu: 345000,
+        iva: 65550,
+        color: "bg-emerald-50 border-emerald-200"
+      }
+    ]
+  }
+
+  // Opciones de duración
+  const DURACIONES = [
+    { id: "1mes", nombre: "1 mes", meses: 1 },
+    { id: "3mes", nombre: "3 meses", meses: 3 },
+    { id: "6mes", nombre: "6 meses", meses: 6 },
+    { id: "12mes", nombre: "12 meses", meses: 12 }
+  ]
 
   // Estados
-  const [servicioSeleccionado, setServicioSeleccionado] = useState("24h")
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<ServiciosCategorias>("porteria")
+  const [servicioSeleccionado, setServicioSeleccionado] = useState("24h-3x3")
+  const [duracionSeleccionada, setDuracionSeleccionada] = useState("1mes")
   const [cotizacion, setCotizacion] = useState({
     precioBase: 0,
     aiu: 0,
     iva: 0,
-    valorTotal: 0
+    valorTotal: 0,
+    duracionMeses: 1
   })
   const [isCalculating, setIsCalculating] = useState(false)
   const [formData, setFormData] = useState({
@@ -90,24 +138,37 @@ export default function CotizacionCalculator({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  // Calcular cotización cuando cambia el servicio seleccionado
+  // Cuando cambia la categoría, actualizar el servicio seleccionado al primero de esa categoría
+  useEffect(() => {
+    if (SERVICIOS[categoriaSeleccionada] && SERVICIOS[categoriaSeleccionada].length > 0) {
+      setServicioSeleccionado(SERVICIOS[categoriaSeleccionada][0].id)
+    }
+  }, [categoriaSeleccionada])
+
+  // Calcular cotización cuando cambian los parámetros seleccionados
   useEffect(() => {
     setIsCalculating(true)
     
     // Simulamos un pequeño retraso para mostrar la animación
     const timer = setTimeout(() => {
       // Obtener el servicio seleccionado
-      const servicio = SERVICIOS_PORTERIA.find(s => s.id === servicioSeleccionado)
+      const servicio = SERVICIOS[categoriaSeleccionada]?.find(s => s.id === servicioSeleccionado)
+      const duracion = DURACIONES.find(d => d.id === duracionSeleccionada)
       
-      if (servicio) {
+      if (servicio && duracion) {
         // Precio base
-        const precioBase = servicio.precioBase
+        const precioBaseMensual = servicio.precioBase
         
         // AIU
-        const aiu = servicio.aiu
+        const aiuMensual = servicio.aiu
         
-        // IVA (10% sobre el precio base)
-        const iva = precioBase * IVA_PORCENTAJE
+        // IVA
+        const ivaMensual = servicio.iva
+        
+        // Calcular el valor total por la duración del contrato
+        const precioBase = precioBaseMensual * duracion.meses
+        const aiu = aiuMensual * duracion.meses
+        const iva = ivaMensual * duracion.meses
         
         // Valor total
         const valorTotal = precioBase + aiu + iva
@@ -116,7 +177,8 @@ export default function CotizacionCalculator({
           precioBase,
           aiu,
           iva,
-          valorTotal
+          valorTotal,
+          duracionMeses: duracion.meses
         })
       }
       
@@ -124,7 +186,7 @@ export default function CotizacionCalculator({
     }, 300)
     
     return () => clearTimeout(timer)
-  }, [servicioSeleccionado])
+  }, [categoriaSeleccionada, servicioSeleccionado, duracionSeleccionada])
 
   // Formatear valores monetarios
   const formatCurrency = (value: number) => {
@@ -187,27 +249,28 @@ export default function CotizacionCalculator({
     // Simular envío a servidor
     setTimeout(() => {
       // Obtener el servicio seleccionado
-      const servicio = SERVICIOS_PORTERIA.find(s => s.id === servicioSeleccionado)
+      const servicio = SERVICIOS[categoriaSeleccionada]?.find(s => s.id === servicioSeleccionado)
+      const duracion = DURACIONES.find(d => d.id === duracionSeleccionada)
       
       // Datos completos para enviar
       const quoteData: QuoteFormData = {
         servicio: servicio?.nombre || "",
+        categoria: CATEGORIAS.find(c => c.id === categoriaSeleccionada)?.nombre || "",
+        duracion: duracion?.nombre || "",
         ...formData,
-        cotizacion
+        cotizacion: {
+          precioBase: cotizacion.precioBase,
+          aiu: cotizacion.aiu,
+          iva: cotizacion.iva,
+          valorTotal: cotizacion.valorTotal,
+          duracionMeses: cotizacion.duracionMeses
+        }
       }
       
       // Llamar al callback si existe
       if (onRequestQuote) {
         onRequestQuote(quoteData)
       }
-      
-      // Guardar en localStorage para demo
-      const quotes = JSON.parse(localStorage.getItem('servileon_quotes') || '[]')
-      quotes.push({
-        ...quoteData,
-        fecha: new Date().toISOString()
-      })
-      localStorage.setItem('servileon_quotes', JSON.stringify(quotes))
       
       // Mostrar mensaje de éxito
       setIsSubmitting(false)
@@ -227,9 +290,6 @@ export default function CotizacionCalculator({
     }, 1500)
   }
 
-  // Servicio seleccionado
-  const servicioActual = SERVICIOS_PORTERIA.find(s => s.id === servicioSeleccionado)
-
   return (
     <div className={`bg-white rounded-xl shadow-xl overflow-hidden ${className}`}>
       {/* Cabecera */}
@@ -242,43 +302,92 @@ export default function CotizacionCalculator({
           <DollarSign className="h-6 w-6 text-gold" />
         </div>
         <p className="mt-2 text-gray-300 text-sm">
-          Seleccione un servicio para calcular su cotización aproximada
+          Configure las opciones para obtener una cotización personalizada
         </p>
       </div>
       
       {/* Contenido */}
       <div className="p-6">
+        {/* Selector de categoría */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-servileon-black mb-2">
+            Categoría de servicio
+          </label>
+          <div className="grid grid-cols-3 gap-3">
+            {CATEGORIAS.map((categoria) => (
+              <motion.button
+                key={categoria.id}
+                className={`
+                  p-3 rounded-lg border text-left transition-all flex flex-col items-center justify-center text-center
+                  ${categoriaSeleccionada === categoria.id 
+                    ? 'bg-white border-gold shadow-md' 
+                    : 'bg-white border-gray-200 hover:border-gray-300'}
+                `}
+                onClick={() => setCategoriaSeleccionada(categoria.id)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className={`p-2 rounded-full mb-1 ${
+                  categoriaSeleccionada === categoria.id ? 'bg-gold/10 text-gold' : 'bg-gray-100 text-gray-500'
+                }`}>
+                  {categoria.icon}
+                </div>
+                <div className="font-medium text-servileon-black text-sm">{categoria.nombre}</div>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+        
         {/* Selector de servicios */}
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-servileon-black mb-2">
             Tipo de Servicio
           </label>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {SERVICIOS_PORTERIA.map((servicio) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {SERVICIOS[categoriaSeleccionada]?.map((servicio) => (
               <motion.button
                 key={servicio.id}
                 className={`
                   p-3 rounded-lg border-2 text-left transition-all
                   ${servicioSeleccionado === servicio.id 
-                    ? `${servicio.color} border-gold` 
-                    : 'bg-gray-50 border-gray-200 hover:border-gray-300'}
+                    ? `${servicio.color} border-gold shadow-md` 
+                    : 'bg-white border-gray-200 hover:border-gray-300'}
                 `}
                 onClick={() => setServicioSeleccionado(servicio.id)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <div className="font-medium">{servicio.nombre}</div>
-                <div className="text-sm text-gray-500 mt-1">
-                  Desde {formatCurrency(servicio.precioBase + servicio.aiu + (servicio.precioBase * IVA_PORCENTAJE))}
+                <div className="font-medium text-servileon-black">{servicio.nombre}</div>
+                <div className="text-sm text-gray-700 mt-1">
+                  {formatCurrency(servicio.precioBase + servicio.aiu + servicio.iva)} mensual
                 </div>
               </motion.button>
             ))}
           </div>
         </div>
         
+        {/* Opciones adicionales */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-servileon-black mb-2">
+            <Calendar className="h-4 w-4 inline-block mr-1" /> 
+            Duración del contrato
+          </label>
+          <select
+            value={duracionSeleccionada}
+            onChange={(e) => setDuracionSeleccionada(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white text-servileon-black"
+          >
+            {DURACIONES.map((duracion) => (
+              <option key={duracion.id} value={duracion.id}>
+                {duracion.nombre}
+              </option>
+            ))}
+          </select>
+        </div>
+        
         {/* Resultados de la cotización */}
         <div className="bg-gray-50 rounded-lg p-4 mb-6">
-          <h4 className="font-medium text-gray-800 mb-3">Detalles de la Cotización</h4>
+          <h4 className="font-medium text-servileon-black mb-3">Detalles de la Cotización</h4>
           
           <AnimatePresence mode="wait">
             {isCalculating ? (
@@ -303,21 +412,24 @@ export default function CotizacionCalculator({
                 exit={{ opacity: 0 }}
               >
                 <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div className="text-gray-600">Precio Base:</div>
-                  <div className="text-right font-medium">{formatCurrency(cotizacion.precioBase)}</div>
+                  <div className="text-gray-700">Duración del contrato:</div>
+                  <div className="text-right font-medium text-servileon-black">{cotizacion.duracionMeses} {cotizacion.duracionMeses === 1 ? 'mes' : 'meses'}</div>
                   
-                  <div className="text-gray-600">AIU:</div>
-                  <div className="text-right font-medium">{formatCurrency(cotizacion.aiu)}</div>
+                  <div className="text-gray-700">Precio Base:</div>
+                  <div className="text-right font-medium text-servileon-black">{formatCurrency(cotizacion.precioBase)}</div>
                   
-                  <div className="text-gray-600">IVA (10%):</div>
-                  <div className="text-right font-medium">{formatCurrency(cotizacion.iva)}</div>
+                  <div className="text-gray-700">AIU (10%):</div>
+                  <div className="text-right font-medium text-servileon-black">{formatCurrency(cotizacion.aiu)}</div>
                   
-                  <div className="text-gray-800 font-medium pt-2 border-t">Total Mensual:</div>
+                  <div className="text-gray-700">IVA (19% sobre AIU):</div>
+                  <div className="text-right font-medium text-servileon-black">{formatCurrency(cotizacion.iva)}</div>
+                  
+                  <div className="text-servileon-black font-medium pt-2 border-t">Total Contrato:</div>
                   <div className="text-right text-gold font-bold pt-2 border-t">{formatCurrency(cotizacion.valorTotal)}</div>
                 </div>
                 
-                <div className="mt-3 text-xs text-gray-500">
-                  * Esta cotización es aproximada y puede variar según requerimientos específicos.
+                <div className="mt-3 text-xs text-gray-700">
+                  * Esta cotización es por el valor total del contrato para {cotizacion.duracionMeses} {cotizacion.duracionMeses === 1 ? 'mes' : 'meses'}.
                 </div>
               </motion.div>
             )}
@@ -336,8 +448,8 @@ export default function CotizacionCalculator({
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-100 text-green-500 mb-4">
                 <Check className="h-6 w-6" />
               </div>
-              <h4 className="text-lg font-medium text-green-800 mb-2">¡Solicitud Enviada!</h4>
-              <p className="text-green-600">
+              <h4 className="text-lg font-medium text-servileon-black mb-2">¡Solicitud Enviada!</h4>
+              <p className="text-gray-700">
                 Hemos recibido su solicitud de cotización. Un asesor se pondrá en contacto con usted a la brevedad.
               </p>
             </motion.div>
@@ -347,11 +459,11 @@ export default function CotizacionCalculator({
               exit={{ opacity: 0 }}
               onSubmit={handleSubmit}
             >
-              <h4 className="font-medium text-gray-800 mb-3">Solicitar Cotización Personalizada</h4>
+              <h4 className="font-medium text-servileon-black mb-3">Solicitar Cotización Personalizada</h4>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-servileon-black mb-1">
                     Nombre Completo *
                   </label>
                   <input
@@ -369,7 +481,7 @@ export default function CotizacionCalculator({
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-servileon-black mb-1">
                       Email *
                     </label>
                     <input
@@ -386,7 +498,7 @@ export default function CotizacionCalculator({
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-servileon-black mb-1">
                       Teléfono *
                     </label>
                     <input
@@ -404,7 +516,7 @@ export default function CotizacionCalculator({
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-servileon-black mb-1">
                     Empresa (Opcional)
                   </label>
                   <input
@@ -418,7 +530,7 @@ export default function CotizacionCalculator({
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-servileon-black mb-1">
                     Mensaje (Opcional)
                   </label>
                   <textarea
@@ -454,7 +566,7 @@ export default function CotizacionCalculator({
                   )}
                 </motion.button>
                 
-                <p className="text-xs text-gray-500 text-center">
+                <p className="text-xs text-gray-700 text-center">
                   Al enviar este formulario, acepta nuestra política de privacidad y términos de servicio.
                 </p>
               </div>
