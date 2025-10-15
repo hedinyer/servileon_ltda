@@ -19,6 +19,9 @@ const FloatingParticles = dynamic(() => import('./3d/FloatingParticles'), { ssr:
 // Importar el componente LogoWithText
 import LogoWithText from "./LogoWithText"
 
+// Estado de mantenimiento - cambiar a false cuando se termine el mantenimiento
+const isMaintenanceMode = true
+
 interface MainLayoutProps {
   children: React.ReactNode;
 }
@@ -84,6 +87,17 @@ export default function MainLayout({ children }: MainLayoutProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [isVisible, setIsVisible] = useState(true)
+
+  // Si está en modo mantenimiento, solo mostrar el contenido sin navegación
+  if (isMaintenanceMode) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <main className="flex-grow">
+          {children}
+        </main>
+      </div>
+    )
+  }
   
   // Usar throttle para el evento de scroll
   useEffect(() => {
