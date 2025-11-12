@@ -16,8 +16,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'SERVILEON LTDA - Portería, vigilancia y control de Alta Gama',
-  description: 'Empresa líder en portería, vigilancia y control con 8 años de experiencia. Ofrecemos servicios de vigilancia armada, protección ejecutiva y monitoreo 24/7 con IA.',
+  title: 'SERVILEON LTDA - Recurso Humano, vigilancia y control de Alta Gama',
+  description: 'Empresa líder en recurso humano, vigilancia y control con 8 años de experiencia. Ofrecemos servicios de vigilancia armada, protección ejecutiva y monitoreo 24/7 con IA.',
   generator: 'Next.js',
 }
 

@@ -58,9 +58,11 @@ module.exports = {
       },
       fontFamily: {
         'serif': ['Playfair Display', 'serif'],
-        'sans': ['Poppins', 'sans-serif'],
+        'sans': ['Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
         poppins: ['var(--font-poppins)', 'sans-serif'],
         playfair: ['var(--font-playfair)', 'serif'],
+        'helvetica-light': ['Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        'helvetica-bold': ['Helvetica Neue Bold', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
       },
       screens: {
         'xs': '475px',

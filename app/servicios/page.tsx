@@ -7,7 +7,6 @@ import * as LucideIcons from "lucide-react"
 import MainLayout from "../components/MainLayout"
 import FadeInOnScroll from "../components/FadeInOnScroll"
 import { useSearchParams } from "next/navigation"
-import CotizacionCalculator from "../components/CotizacionCalculator"
 
 // Definir interfaces para los tipos
 interface Pricing {
@@ -50,20 +49,21 @@ function ServiciosContent() {
 
   const categories = [
     { id: "todos", name: "Todos" },
-    { id: "porteria", name: "Portería" },
+    { id: "recurso_humano", name: "Recurso Humano" },
     { id: "aseo", name: "Aseo y Limpieza" },
     { id: "jardineria", name: "Jardinería" },
-    { id: "camaras", name: "Cámaras de Seguridad" }
+    { id: "camaras", name: "Cámaras de Seguridad" },
+    { id: "mantenimiento", name: "Mantenimiento" }
   ]
 
   const services: Service[] = [
-    // SERVICIOS DE PORTERÍA
+    // SERVICIOS DE RECURSO HUMANO
     {
       id: 1,
-      title: "Servicio de Portería 24 Horas 3x3",
-      description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad.",
+      title: "Servicio de Recurso Humano 24 Horas 3x3",
+      description: "Servicio de recurso humano 24 horas con personal capacitado y equipado para garantizar la seguridad.",
       icon: <LucideIcons.Shield className="h-12 w-12 text-gold" />,
-      category: "porteria",
+      category: "recurso_humano",
       image: "/portero6.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
@@ -81,11 +81,11 @@ function ServiciosContent() {
     },
     {
       id: 2,
-      title: "Servicio de Portería 24 Horas 2x2x2",
-      description: "Servicio de portería 24 horas 2x2x2 con personal altamente capacitado y equipamiento avanzado.",
+      title: "Servicio de Recurso Humano 24 Horas 2x2x2",
+      description: "Servicio de recurso humano 24 horas 2x2x2 con personal altamente capacitado y equipamiento avanzado.",
       icon: <LucideIcons.Shield className="h-12 w-12 text-gold" />,
-      category: "porteria",
-      image: "/portero5.jpeg",
+      category: "recurso_humano",
+      image: "/vigilantes.jpg",
       features: [
         "Servicio 24 horas todos los días del mes",
         "Personal con capacitación avanzada",
@@ -102,10 +102,10 @@ function ServiciosContent() {
     },
     {
       id: 3,
-      title: "Servicio de Portería y control 12 Horas",
-      description: "Servicio de portería y control 12 horas con personal capacitado para garantizar la seguridad durante el día.",
+      title: "Servicio de Recurso Humano y control 12 Horas",
+      description: "Servicio de recurso humano y control 12 horas con personal capacitado para garantizar la seguridad durante el día.",
       icon: <LucideIcons.Clock className="h-12 w-12 text-gold" />,
-      category: "porteria",
+      category: "recurso_humano",
       image: "/portero7.jpeg",
       features: [
         "Servicio 12 horas todos los días del mes",
@@ -123,10 +123,10 @@ function ServiciosContent() {
     },
     {
       id: 4,
-      title: "Servicio de Portería 8 Horas",
-      description: "Servicio de portería 8 horas ideal para horarios específicos de mayor afluencia o actividad.",
+      title: "Servicio de Recurso Humano 8 Horas",
+      description: "Servicio de recurso humano 8 horas ideal para horarios específicos de mayor afluencia o actividad.",
       icon: <LucideIcons.Clock className="h-12 w-12 text-gold" />,
-      category: "porteria",
+      category: "recurso_humano",
       image: "/portero8.jpeg",
       features: [
         "Servicio 8 horas todos los días del mes",
@@ -191,7 +191,7 @@ function ServiciosContent() {
     {
       id: 7,
       title: "Servicio de Instalación y Monitoreo de Cámaras de Seguridad",
-      description: "Servicio profesional de instalación, configuración y monitoreo de sistemas de videovigilancia para su hogar o negocio.",
+      description: "Servicio profesional de instalación, configuración y monitoreo de sistemas de monitoreo para su hogar o negocio.",
       icon: <LucideIcons.Camera className="h-12 w-12 text-gold" />,
       category: "camaras",
       image: "/cameras.jpg",
@@ -203,6 +203,22 @@ function ServiciosContent() {
       ],
       
       color: "bg-purple-50 border-purple-200"
+    },
+    // SECCIÓN DE MANTENIMIENTO DE PLANTA FÍSICA
+    {
+      id: 8,
+      title: "Mantenimiento de Planta Física U/o todero",
+      description: "Servicio integral de mantenimiento de planta física con personal especializado y herramientas profesionales para garantizar el óptimo funcionamiento de sus instalaciones.",
+      icon: <LucideIcons.Wrench className="h-12 w-12 text-gold" />,
+      category: "mantenimiento",
+      image: "/todero.jpg",
+      features: [
+        "Mantenimiento preventivo y correctivo",
+        "Personal especializado y certificado",
+        "Herramientas y equipos profesionales",
+        "Atención rápida y eficiente"
+      ],
+      color: "bg-slate-50 border-slate-200"
     }
   ]
 
@@ -228,7 +244,7 @@ function ServiciosContent() {
               Nuestros <span className="text-gold">Servicios</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8 text-justify">
-              Soluciones integrales de portería, aseo, jardinería y sistemas de videovigilancia adaptadas a las necesidades específicas de cada cliente.
+              Soluciones integrales de recurso humano, aseo, jardinería y sistemas de monitoreo adaptadas a las necesidades específicas de cada cliente.
             </p>
           </div>
         </div>
@@ -238,23 +254,24 @@ function ServiciosContent() {
       <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-center font-playfair text-2xl font-bold text-servileon-black mb-6">Nuestras Categorías de Servicios</h2>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-nowrap justify-center gap-3 overflow-x-auto overflow-y-visible pt-2 pb-2 hide-scrollbar">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-8 py-3 rounded-md shadow-sm transition-all duration-300 ${
+                className={`px-6 py-3 rounded-xl transition-all duration-300 border-2 flex items-center justify-center whitespace-nowrap ${
                   activeCategory === category.id
-                    ? 'bg-white text-servileon-black border-b-2 border-gold shadow-md transform -translate-y-1'
-                    : 'bg-white text-gray-700 hover:shadow-md hover:transform hover:-translate-y-1'
-                } flex items-center justify-center min-w-[140px]`}
+                    ? 'bg-gold text-white border-gold transform -translate-y-1 scale-105'
+                    : 'bg-white text-gray-700 border-gray-200 hover:border-gold hover:transform hover:-translate-y-1 hover:bg-gray-50'
+                }`}
               >
-                {category.id === "todos" && <LucideIcons.Eye className="h-4 w-4 mr-2" />}
-                {category.id === "porteria" && <LucideIcons.Shield className="h-4 w-4 mr-2" />}
-                {category.id === "aseo" && <LucideIcons.Users className="h-4 w-4 mr-2" />}
-                {category.id === "jardineria" && <LucideIcons.Flower className="h-4 w-4 mr-2" />}
-                {category.id === "camaras" && <LucideIcons.Camera className="h-4 w-4 mr-2" />}
-                <span className="font-medium">{category.name}</span>
+                {category.id === "todos" && <LucideIcons.Eye className="h-5 w-5 mr-2" />}
+                {category.id === "recurso_humano" && <LucideIcons.Shield className="h-5 w-5 mr-2" />}
+                {category.id === "aseo" && <LucideIcons.Users className="h-5 w-5 mr-2" />}
+                {category.id === "jardineria" && <LucideIcons.Flower className="h-5 w-5 mr-2" />}
+                {category.id === "camaras" && <LucideIcons.Camera className="h-5 w-5 mr-2" />}
+                {category.id === "mantenimiento" && <LucideIcons.Wrench className="h-5 w-5 mr-2" />}
+                <span className="font-semibold text-sm">{category.name}</span>
               </button>
             ))}
           </div>
@@ -266,62 +283,50 @@ function ServiciosContent() {
         <div className="container mx-auto px-4">
           <h2 className="text-center font-playfair text-3xl font-bold text-servileon-black mb-10">
             {activeCategory === "todos" ? "Todos Nuestros Servicios" : 
-             activeCategory === "porteria" ? "Servicios de Portería" :
+             activeCategory === "recurso_humano" ? "Servicios de Recurso Humano" :
              activeCategory === "aseo" ? "Servicios de Aseo y Limpieza" : 
              activeCategory === "jardineria" ? "Servicios de Jardinería" :
-             "Servicios de Cámaras de Seguridad"}
+             activeCategory === "camaras" ? "Servicios de Cámaras de Seguridad" :
+             "Servicios de Mantenimiento"}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredServices.map((service, index) => (
               <FadeInOnScroll key={service.id} delay={index * 0.1}>
-                <div className="bg-white border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg overflow-hidden group h-full transform hover:-translate-y-1">
-                  <div className="relative h-48 w-full overflow-hidden">
+                <div className="bg-white border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg overflow-hidden group h-full flex flex-col transform hover:-translate-y-1">
+                  <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
                     <Image 
                       src={service.image} 
                       alt={service.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      style={{ objectPosition: 'center 20%' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    {service.pricing && (
-                      <div className="absolute bottom-4 left-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                        <Link 
-                          href={`/servicios/${service.id}`}
-                          className="bg-gold hover:bg-gold-dark text-white px-4 py-2 rounded-md text-sm font-medium inline-flex items-center"
-                        >
-                          Ver detalles
-                          <LucideIcons.ChevronRight className="ml-1 h-4 w-4" />
-                        </Link>
-                      </div>
-                    )}
                     <div className="absolute top-4 right-4">
                       <span className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
-                        service.category === "porteria" ? "bg-blue-100 text-blue-800" :
+                        service.category === "recurso_humano" ? "bg-blue-100 text-blue-800" :
                         service.category === "aseo" ? "bg-yellow-100 text-yellow-800" :
                         service.category === "camaras" ? "bg-purple-100 text-purple-800" :
+                        service.category === "mantenimiento" ? "bg-slate-100 text-slate-800" :
                         "bg-emerald-100 text-emerald-800"
                       }`}>
-                        {service.category === "porteria" ? "Portería" :
+                        {service.category === "recurso_humano" ? "Recurso Humano" :
                          service.category === "aseo" ? "Aseo" : 
-                         service.category === "camaras" ? "Cámaras" : "Jardinería"}
-                      </span>
-                    </div>
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-gold text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full shadow-md">
-                        Precios Negociables
+                         service.category === "camaras" ? "Cámaras" :
+                         service.category === "mantenimiento" ? "Mantenimiento" : "Jardinería"}
                       </span>
                     </div>
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center mb-4">
-                      <div className="mr-4 p-2 rounded-full bg-gray-50">
+                      <div className="mr-4 p-2 rounded-full bg-gray-50 flex-shrink-0">
                         {service.icon}
                       </div>
                       <h3 className="font-playfair text-xl font-bold text-servileon-black">
                         {service.title}
                       </h3>
                     </div>
-                    <p className="text-gray-700 mb-4 text-justify">
+                    <p className="text-gray-700 mb-4 text-justify flex-grow">
                       {service.description}
                     </p>
                     <ul className="space-y-2 mb-4">
@@ -333,37 +338,24 @@ function ServiciosContent() {
                       ))}
                     </ul>
                     
-                    {/* Mostrar información de precios si está disponible */}
-                    {service.pricing && (
-                      <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                        <div className="space-y-2">
-                          <div className="flex justify-between">
-                            <span className="text-sm text-gray-700">Precio Base:</span>
-                            <span className="font-medium text-servileon-black">${service.pricing.precioBase}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-sm text-gray-700">AIU (10%):</span>
-                            <span className="font-medium text-servileon-black">${service.pricing.aiu}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-sm text-gray-700">IVA (19%):</span>
-                            <span className="font-medium text-servileon-black">${service.pricing.iva}</span>
-                          </div>
-                          <div className="flex justify-between pt-2 border-t border-gray-300">
-                            <span className="text-sm font-medium text-servileon-black">Total:</span>
-                            <span className="font-bold text-gold">${service.pricing.valorTotal}</span>
-                          </div>
-                        </div>
-                        <p className="text-xs text-gray-500 mt-2 italic">*Precios sujetos a cambios. AIU e IVA aplican según normativa vigente.</p>
-                      </div>
-                    )}
-                    
-                    {!service.pricing && (
-                      <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-center">
-                        <p className="text-sm font-medium text-servileon-black">Precios personalizados</p>
-                        <p className="text-xs text-gray-600 mt-1">Precios sujetos a negociaciones y necesidades del cliente</p>
-                      </div>
-                    )}
+                    {/* Botón de WhatsApp para cotización */}
+                    <div className="mt-auto">
+                      <a
+                        href={`https://wa.me/573113260689?text=Hola,%20me%20interesa%20cotizar%20el%20servicio:%20${encodeURIComponent(service.title)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      >
+                        <Image 
+                          src="/whatsapp.png" 
+                          alt="WhatsApp" 
+                          width={20} 
+                          height={20}
+                          className="w-5 h-5"
+                        />
+                        Cotiza aquí
+                      </a>
+                    </div>
                   </div>
                 </div>
               </FadeInOnScroll>
@@ -372,63 +364,6 @@ function ServiciosContent() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-servileon-black">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center p-3 rounded-full bg-white/10 mb-4">
-                <LucideIcons.Calculator className="h-10 w-10 text-gold" />
-              </div>
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-6">
-                ¿Necesitas algo <span className="text-gold">específico</span>?
-              </h2>
-              <p className="text-gray-300 text-lg mb-8 max-w-3xl mx-auto text-justify">
-                Utiliza nuestra calculadora para obtener una cotización estimada o contáctanos para diseñar una solución de portería personalizada para tu negocio o residencia.
-              </p>
-            </div>
-            
-            <div className="flex flex-col lg:flex-row gap-8">
-              <div className="w-full lg:w-3/4">
-                <CotizacionCalculator 
-                  className="transform transition-all duration-500 hover:shadow-2xl" 
-                  onRequestQuote={() => setShowContactForm(true)}
-                />
-              </div>
-              
-              <div className="w-full lg:w-1/4 bg-white/5 p-6 rounded-lg border border-white/10 backdrop-blur-sm">
-                <h3 className="font-playfair text-2xl font-bold text-white mb-6">
-                  ¿Necesitas ayuda?
-                </h3>
-                <p className="text-gray-300 mb-6">
-                  Nuestro equipo está listo para ayudarte a encontrar la solución perfecta para tus necesidades específicas.
-                </p>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start text-gray-300">
-                    <span className="text-gold mr-2 flex-shrink-0">✓</span>
-                    <span>Asesoría personalizada</span>
-                  </li>
-                  <li className="flex items-start text-gray-300">
-                    <span className="text-gold mr-2 flex-shrink-0">✓</span>
-                    <span>Soluciones a medida</span>
-                  </li>
-                  <li className="flex items-start text-gray-300">
-                    <span className="text-gold mr-2 flex-shrink-0">✓</span>
-                    <span>Presupuestos detallados</span>
-                  </li>
-                </ul>
-                <button 
-                  onClick={() => setShowContactForm(true)}
-                  className="bg-gold hover:bg-gold-dark text-white px-8 py-4 rounded-md font-medium text-lg uppercase tracking-wider transition-all duration-300 inline-flex items-center w-full justify-center shadow-md hover:shadow-lg transform hover:-translate-y-1"
-                >
-                  Solicitar Información
-                  <LucideIcons.MessageSquare className="ml-2 h-5 w-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Contact Form Popup */}
       {showContactForm && (

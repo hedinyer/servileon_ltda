@@ -44,14 +44,14 @@ export default function BlogPage() {
     },
     {
       id: 3,
-      title: "Inteligencia Artificial en Sistemas de Vigilancia",
+      title: "Inteligencia Artificial en Sistemas de Recurso Humano",
       excerpt: "El impacto revolucionario de la IA en los sistemas de monitoreo y cómo está transformando el sector.",
       image: "/portada.jpeg",
       date: "10 de febrero, 2024",
       author: "Javier Torres",
       authorImage: "/portada.jpeg",
       category: "tecnologia",
-      tags: ["IA", "Vigilancia", "Tecnología"]
+      tags: ["IA", "Recurso Humano", "Tecnología"]
     },
     {
       id: 4,

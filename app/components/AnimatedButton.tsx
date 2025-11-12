@@ -144,7 +144,7 @@ export default function AnimatedButton({
   // Estilos comunes
   const commonStyles = `
     relative overflow-hidden
-    font-medium rounded-md transition-all duration-300
+    font-medium rounded-full transition-all duration-300
     ${variantStyles[variant].bg}
     ${variantStyles[variant].text}
     ${variantStyles[variant].border}

@@ -36,7 +36,7 @@ export default function LogoWithText({
           SERVILEON <span className="text-gold">LTDA</span>
         </h3>
         {showTagline && (
-          <p className={`text-xs ${taglineColor} tracking-wider`}>PORTERÍA Y CONTROL</p>
+          <p className={`text-xs ${taglineColor} tracking-wider`}>RECURSOS HUMANOS Y SOLUCIONES</p>
         )}
       </div>
     </motion.div>

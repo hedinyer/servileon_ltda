@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Helvetica Neue Light';
+  src: url('/fonts/HelveticaNeueLight.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue Bold';
+  src: url('/fonts/HelveticaNeueBold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
@@ -25,11 +41,12 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-start-rgb));
-  font-family: var(--font-poppins), sans-serif;
+  font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playfair), serif;
+  font-family: 'Helvetica Neue Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
 }
 
 /* Text Justification */
@@ -78,6 +95,10 @@ p, .text-content {
 }
 
 /* Custom Utility Classes */
+.font-helvetica {
+  font-family: 'Helvetica Neue Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 .text-shadow {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -173,6 +194,35 @@ p, .text-content {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Helvetica Neue Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+  }
+  /* Modales y diálogos */
+  [role="dialog"], [data-radix-dialog-content], [data-radix-alert-dialog-content] {
+    font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  /* Títulos en modales */
+  [role="dialog"] h1, [role="dialog"] h2, [role="dialog"] h3, 
+  [role="dialog"] h4, [role="dialog"] h5, [role="dialog"] h6,
+  [data-radix-dialog-content] h1, [data-radix-dialog-content] h2, 
+  [data-radix-dialog-content] h3, [data-radix-dialog-content] h4,
+  [data-radix-dialog-content] h5, [data-radix-dialog-content] h6,
+  [data-radix-alert-dialog-content] h1, [data-radix-alert-dialog-content] h2,
+  [data-radix-alert-dialog-content] h3, [data-radix-alert-dialog-content] h4,
+  [data-radix-alert-dialog-content] h5, [data-radix-alert-dialog-content] h6 {
+    font-family: 'Helvetica Neue Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+  }
+  /* Clases comunes de títulos - solo para elementos que sean realmente títulos */
+  h1.title, h2.title, h3.title, h4.title, h5.title, h6.title,
+  h1[class*="Title"], h2[class*="Title"], h3[class*="Title"], 
+  h4[class*="Title"], h5[class*="Title"], h6[class*="Title"],
+  .section-title, .page-title, .modal-title, .dialog-title {
+    font-family: 'Helvetica Neue Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
   }
 }
 

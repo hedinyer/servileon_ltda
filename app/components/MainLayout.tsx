@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect, memo } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import dynamic from "next/dynamic"
 // Importar todos los iconos con un solo import
 import * as LucideIcons from "lucide-react"
 // Eliminar importaciones individuales
@@ -14,13 +13,11 @@ import * as LucideIcons from "lucide-react"
 
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
 import { motion, AnimatePresence } from "framer-motion"
-// Cargar FloatingParticles de forma dinámica
-const FloatingParticles = dynamic(() => import('./3d/FloatingParticles'), { ssr: false })
 // Importar el componente LogoWithText
 import LogoWithText from "./LogoWithText"
 
 // Estado de mantenimiento - cambiar a false cuando se termine el mantenimiento
-const isMaintenanceMode = true
+const isMaintenanceMode = false
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -140,14 +137,14 @@ export default function MainLayout({ children }: MainLayoutProps) {
       href: "/servicios",
       dropdown: [
         { name: "Aseo y Limpieza", href: "/servicios?category=aseo" },
-        { name: "Portería 2x2x2", href: "/servicios?category=porteria" },
-        { name: "Portería 3x3", href: "/servicios?category=porteria" },
+        { name: "Recurso Humano 2x2x2", href: "/servicios?category=recurso_humano" },
+        { name: "Recurso Humano 3x3", href: "/servicios?category=recurso_humano" },
         { name: "Jardinería", href: "/servicios?category=jardineria" },
-        { name: "Instalación y Monitoreo de Cámaras", href: "/servicios?category=camaras" }
+        { name: "Instalación y Monitoreo de Cámaras", href: "/servicios?category=camaras" },
+        { name: "Mantenimiento", href: "/servicios?category=mantenimiento" }
       ]
     },
     { name: "Nosotros", href: "/nosotros" },
-    { name: "Blog", href: "/blog" },
     { name: "Contacto", href: "/contacto" },
   ]
   
@@ -242,7 +239,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 >
                   <Link 
                     href="/contacto" 
-                    className="bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-md font-medium transition-all duration-300 flex items-center gap-2 group"
+                    className="bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 group"
                   >
                     Solicitar Consulta
                     <LucideIcons.ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -375,7 +372,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                       >
                         <Link 
                           href="/contacto" 
-                          className="bg-gold hover:bg-gold-dark text-white px-6 py-3 rounded-md font-medium transition-all duration-300 flex items-center justify-center gap-2 w-full"
+                          className="bg-gold hover:bg-gold-dark text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2 w-full"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Solicitar Consulta
@@ -398,11 +395,6 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
         {/* Footer */}
       <footer className="bg-servileon-black text-white relative overflow-hidden">
-        {/* Partículas flotantes en el footer */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <FloatingParticles particleCount={30} color="#D4AF37" />
-        </div>
-        
         <div className="container mx-auto px-4 py-16 relative z-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
               {/* Company Info */}
@@ -417,7 +409,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   />
                 </motion.div>
                 <p className="text-gray-400 mb-6">
-                  Empresa líder en portería, vigilancia y control con más de 8 años de experiencia protegiendo lo que más valora.
+                  Empresa líder en recurso humano y control con más de 8 años de experiencia protegiendo lo que más valora.
                 </p>
                 <div className="flex space-x-4">
                   {[
@@ -463,10 +455,11 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 <ul className="space-y-3 grid grid-cols-1">
                 {[
                   { name: "Aseo y Limpieza", href: "/servicios?category=aseo" },
-                  { name: "Portería 2x2x2", href: "/servicios?category=porteria" },
-                  { name: "Portería 3x3", href: "/servicios?category=porteria" },
+                  { name: "Recurso Humano 2x2x2", href: "/servicios?category=recurso_humano" },
+                  { name: "Recurso Humano 3x3", href: "/servicios?category=recurso_humano" },
                   { name: "Jardinería", href: "/servicios?category=jardineria" },
-                  { name: "Instalación y Monitoreo de Cámaras", href: "/servicios?category=camaras" }
+                  { name: "Instalación y Monitoreo de Cámaras", href: "/servicios?category=camaras" },
+                  { name: "Mantenimiento", href: "/servicios?category=mantenimiento" }
                 ].map((service) => (
                   <motion.li 
                     key={service.name}

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 // Estado de mantenimiento - cambiar a false cuando se termine el mantenimiento
-const isMaintenanceMode = true
+const isMaintenanceMode = false
 
 export function middleware(request) {
   // Si está en modo mantenimiento, redirigir todas las rutas a la página principal

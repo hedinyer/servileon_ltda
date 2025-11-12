@@ -10,8 +10,6 @@ import PageTransition from "../components/PageTransition"
 import MainLayout from "../components/MainLayout"
 import FadeInOnScroll from '../components/FadeInOnScroll'
 import InteractiveCard from '../components/InteractiveCard'
-import AnimatedButton from '../components/AnimatedButton'
-import ParallaxSection from '../components/ParallaxSection'
 
 export default function Nosotros() {
   return (
@@ -81,7 +79,7 @@ export default function Nosotros() {
                 <div>
                   <h2 className="text-4xl font-bold font-playfair mb-6 text-black">Nuestra Historia</h2>
                   <p className="text-gray-600 mb-6 text-justify">
-                    Fundada en 2018, Servileon nació con la visión de transformar el sector de portería, vigilancia y control en Colombia, ofreciendo un servicio de calidad superior con personal altamente capacitado y tecnología de vanguardia.
+                    Fundada en 2018, Servileon nació con la visión de transformar el sector de recurso humano y control en Colombia, ofreciendo un servicio de calidad superior con personal altamente capacitado y tecnología de vanguardia.
                   </p>
                   <p className="text-gray-600 mb-6 text-justify">
                     A lo largo de los años, hemos crecido de manera constante, expandiendo nuestras operaciones a las principales ciudades del país y diversificando nuestros servicios para satisfacer las necesidades cambiantes de nuestros clientes.
@@ -110,7 +108,7 @@ export default function Nosotros() {
                 <InteractiveCard className="p-8 h-full">
                   <h3 className="text-2xl font-bold mb-4 text-black">Nuestra Misión</h3>
                   <p className="text-gray-600 mb-6 text-justify">
-                    Proporcionar tranquilidad a nuestros clientes a través de servicios de portería, vigilancia y control confiables, eficientes y personalizados que se adaptan a sus necesidades específicas, garantizando la seguridad de sus instalaciones y personal.
+                    Proporcionar tranquilidad a nuestros clientes a través de servicios de recurso humano y control confiables, eficientes y personalizados que se adaptan a sus necesidades específicas, garantizando la seguridad de sus instalaciones y personal.
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="bg-gold/20 p-1 rounded-full">
@@ -125,7 +123,7 @@ export default function Nosotros() {
                 <InteractiveCard className="p-8 h-full">
                   <h3 className="text-2xl font-bold mb-4 text-black">Nuestra Visión</h3>
                   <p className="text-gray-600 mb-6 text-justify">
-                    Ser reconocidos como la empresa líder en servicios de portería, vigilancia y control en Colombia, destacándonos por nuestra innovación, calidad y compromiso con la satisfacción del cliente, y expandir nuestras operaciones a nivel internacional.
+                    Ser reconocidos como la empresa líder en servicios de recurso humano y control en Colombia, destacándonos por nuestra innovación, calidad y compromiso con la satisfacción del cliente, y expandir nuestras operaciones a nivel internacional.
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="bg-gold/20 p-1 rounded-full">
@@ -139,28 +137,6 @@ export default function Nosotros() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-gold-gradient bg-gradient-size animate-gradient-slow">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold text-servileon-black mb-6">
-                ¿Listo para trabajar con nosotros?
-              </h2>
-              <p className="text-servileon-black/80 mb-8">
-                Contáctenos hoy para una consulta gratuita y descubra cómo podemos ayudarle con sus necesidades de portería, vigilancia y control.
-              </p>
-              <AnimatedButton 
-                href="/contacto" 
-                variant="outline"
-                size="lg"
-                className="px-10 py-4 text-lg whitespace-nowrap bg-transparent text-servileon-black border-servileon-black"
-                icon={<LucideIcons.ArrowRight className="h-5 w-5" />}
-              >
-                Solicitar Consulta
-              </AnimatedButton>
-            </div>
-          </div>
-        </section>
       </MainLayout>
     </PageTransition>
   )

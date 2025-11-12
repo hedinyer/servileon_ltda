@@ -27,8 +27,8 @@ import PageTransition from "./components/PageTransition"
 import MainLayout from "./components/MainLayout"
 import FadeInOnScroll from './components/FadeInOnScroll'
 // Cargar componentes 3D de forma dinámica
-const SecurityBackground = dynamic(() => import('./components/3d/SecurityBackground'), { ssr: false })
-const FloatingParticles = dynamic(() => import('./components/3d/FloatingParticles'), { ssr: false })
+// const SecurityBackground = dynamic(() => import('./components/3d/SecurityBackground'), { ssr: false })
+// const FloatingParticles = dynamic(() => import('./components/3d/FloatingParticles'), { ssr: false })
 const ServiceCard3D = dynamic(() => import('./components/3d/ServiceCard3D'), { ssr: false })
 const FloatingLogos = dynamic(() => import('./components/3d/FloatingLogos'), { ssr: false })
 // Importar componentes regulares
@@ -103,8 +103,8 @@ export default function Home() {
     {
       id: 2,
       icon: <LucideIcons.Users className="h-12 w-12 text-gold" />,
-      title: "Portería 2x2x2",
-      description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la vigilancia y control.",
+      title: "Recurso Humano 2x2x2",
+      description: "Servicio de recurso humano 24 horas con personal capacitado y equipado para garantizar el recurso humano y control.",
       link: "/servicios/2",
       image: "/portada.jpeg",
       features: ["Cobertura 24/7", "Personal certificado", "Equipamiento completo"]
@@ -112,11 +112,11 @@ export default function Home() {
     {
       id: 3,
       icon: <LucideIcons.Users className="h-12 w-12 text-gold" />,
-      title: "Portería 3x3",
-      description: "Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y control.",
+      title: "Recurso Humano 3x3",
+      description: "Servicio de recurso humano 24 horas con modalidad 3x3 para mayor eficiencia y control.",
       link: "/servicios/3",
       image: "/portada.jpeg",
-      features: ["Rotación optimizada", "Mayor eficiencia", "Vigilancia reforzada"]
+      features: ["Rotación optimizada", "Mayor eficiencia", "Recurso humano reforzado"]
     },
     {
       id: 4,
@@ -131,7 +131,7 @@ export default function Home() {
       id: 5,
       icon: <LucideIcons.Camera className="h-12 w-12 text-gold" />,
       title: "Cámaras de Seguridad",
-      description: "Instalación y monitoreo de sistemas de videovigilancia con tecnología de punta para su hogar o negocio.",
+      description: "Instalación y monitoreo de sistemas de monitoreo con tecnología de punta para su hogar o negocio.",
       link: "/servicios?category=camaras",
       image: "/portada.jpeg",
       features: ["Monitoreo 24/7", "Alta definición", "Acceso remoto"]
@@ -153,7 +153,7 @@ export default function Home() {
       position: "Cl. 43 13-55 Bucaramanga",
       admin: "FENNY",
       image: "/mujer1.png",
-      content: "Servileon mejoró nuestra portería significativamente. El personal es atento y profesional. La vigilancia de alta calidad nos proporciona tranquilidad a todos los residentes.",
+      content: "Servileon mejoró nuestro recurso humano significativamente. El personal es atento y profesional. El recurso humano de alta calidad nos proporciona tranquilidad a todos los residentes.",
       rating: 4.7
     },
     {
@@ -177,7 +177,7 @@ export default function Home() {
       position: "Cra. 24 #Calle 80 Bucaramanga",
       admin: "AMANDA DUQUE",
       image: "/mujer 3.png",
-      content: "Hemos trabajado con Servileon por 3 años y su servicio nunca ha decaído. Su sistema de portería 3x3 es excelente y el personal siempre está bien presentado y capacitado.",
+      content: "Hemos trabajado con Servileon por 3 años y su servicio nunca ha decaído. Su sistema de recurso humano 3x3 es excelente y el personal siempre está bien presentado y capacitado.",
       rating: 4.9
     },
     {
@@ -185,7 +185,7 @@ export default function Home() {
       position: "KM 7 VIA SAN GIL CHARALA",
       admin: "ORLANDO",
       image: "/hombre 2.png",
-      content: "La calidad del servicio de Servileon ha superado nuestras expectativas. Recomendamos ampliamente sus servicios de portería y vigilancia.",
+      content: "La calidad del servicio de Servileon ha superado nuestras expectativas. Recomendamos ampliamente sus servicios de recurso humano.",
       rating: 4.75
     },
     {
@@ -217,7 +217,7 @@ export default function Home() {
       position: "CALLE 151 BIS 115",
       admin: "PABLO MENDEZ",
       image: "/hombre 4.png",
-      content: "Servileon ofrece un servicio de portería excepcional. Su personal es cortés, profesional y siempre está atento a las necesidades de nuestra comunidad.",
+      content: "Servileon ofrece un servicio de recurso humano excepcional. Su personal es cortés, profesional y siempre está atento a las necesidades de nuestra comunidad.",
       rating: 4.55
     },
     {
@@ -233,7 +233,7 @@ export default function Home() {
       position: "Cra 14 #42-38",
       admin: "LUCINDA SANABRIA",
       image: "/mujer 7.png",
-      content: "Desde que contratamos a Servileon, la seguridad en nuestro edificio ha mejorado significativamente. El servicio de portería es excelente y confiable.",
+      content: "Desde que contratamos a Servileon, la seguridad en nuestro edificio ha mejorado significativamente. El servicio de recurso humano es excelente y confiable.",
       rating: 4.92
     }
   ]
@@ -241,17 +241,13 @@ export default function Home() {
   const stats = [
     { value: "8+", label: "Años de experiencia" },
     { value: "50+", label: "Clientes satisfechos" },
-    { value: "100+", label: "Guardias certificados" },
-    { value: "24/7", label: "Monitoreo continuo" }
+    { value: "100+", label: "Colaboradores certificados" },
+    { value: "24/7", label: "Soporte continuo" }
   ]
 
   return (
     <PageTransition>
     <MainLayout>
-        {/* Fondo 3D */}
-        <Suspense fallback={<div className="fixed inset-0 -z-10 bg-black"></div>}>
-          <SecurityBackground className="opacity-30" />
-        </Suspense>
         
         {/* Hero Section */}
         <section className="relative h-screen flex items-center overflow-hidden">
@@ -269,17 +265,16 @@ export default function Home() {
           
           {/* Hero Content */}
           <div className="container mx-auto px-4 relative z-20">
-            <div className="max-w-3xl">
+            <div className="max-w-3xl font-helvetica">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-playfair mb-6">
-                  <span className="block">Portería, vigilancia y servicios integrales de la más</span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-playfair mb-6">
                   <span className="bg-clip-text text-transparent bg-gold-gradient bg-gradient-size animate-gradient-slow">
-                  Alta Calidad
+                  Suministro de recurso humano, mantenimiento y paisajismo profesional
                   </span>
                 </h1>
               </motion.div>
@@ -291,7 +286,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                Salvaguardamos sus activos más preciados mediante soluciones especializadas de portería, vigilancia y control, diseñadas a la medida de sus necesidades. Combinamos tecnología de vanguardia con un equipo altamente capacitado para garantizar la máxima seguridad y tranquilidad.
+                Especializados en mantenimiento de planta física para edificios y conjuntos residenciales. Ofrecemos servicios de paisajismo, limpieza y actividades especializadas con personal capacitado y protocolos rigurosos.
               </motion.p>
               
               <motion.div 
@@ -327,32 +322,24 @@ export default function Home() {
 
         {/* Stats Section */}
         <section id="stats-section" className="py-16 bg-servileon-black relative overflow-hidden">
-          {/* Partículas flotantes */}
-          <div className="absolute inset-0 opacity-30 pointer-events-none">
-            {isStatsVisible && (
-              <Suspense fallback={null}>
-                <FloatingParticles particleCount={50} />
-              </Suspense>
-            )}
-          </div>
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
                 <FadeInOnScroll key={index} delay={index * 0.1}>
-                  <div className="text-center">
+                  <div className="text-center flex flex-col items-center justify-center">
                     {stat.value === "24/7" ? (
-                      <div className="text-4xl md:text-5xl font-bold text-gold mb-2">24/7</div>
+                      <div className="text-4xl md:text-5xl font-bold text-gold mb-2 text-center">24/7</div>
                     ) : (
                       <AnimatedCounter
                         end={parseInt(stat.value.replace(/\D/g, ''))}
                         suffix={stat.value.includes('+') ? '+' : ''}
-                        className="text-4xl md:text-5xl font-bold text-gold mb-2"
+                        className="text-4xl md:text-5xl font-bold text-gold mb-2 text-center"
                         duration={2.5}
                         delay={index * 0.2}
                       />
                     )}
-                    <p className="text-white/70">{stat.label}</p>
+                    <p className="text-white/70 text-center">{stat.label}</p>
                 </div>
               </FadeInOnScroll>
             ))}
@@ -395,29 +382,29 @@ export default function Home() {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold font-playfair mb-4 text-black">Nuestros Servicios</h2>
                 <p className="text-gray-600 max-w-3xl mx-auto text-justify">
-                  Ofrecemos soluciones integrales de porteria, vigilancia, aseo, limpieza y jardinería para empresas, conjuntos residenciales y oficinas.
+                  Soluciones integrales en suministro de recurso humano, mantenimiento de planta física y paisajismo para edificios y conjuntos residenciales.
                 </p>
               </div>
             </FadeInOnScroll>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-              {/* Servicio 1: Portería 2x2x2 */}
+              {/* Servicio 1: Suministro de Recurso Humano 2x2x2 */}
               <FadeInOnScroll delay={0.1}>
                 <ServiceCard3D 
-                  icon={<LucideIcons.Shield className="h-6 w-6 text-gold" />}
-                  title="Portería 2x2x2"
-                  description="Servicio de portería 24 horas con personal capacitado y equipado para garantizar la vigilancia y control de sus instalaciones."
+                  icon={<LucideIcons.Users className="h-6 w-6 text-gold" />}
+                  title="Suministro de Recurso Humano 2x2x2"
+                  description="Suministro de personal capacitado y certificado con modalidad 2x2x2 para garantizar cobertura continua y profesionales altamente calificados."
                   link="/servicios/2"
                   delay={0.1}
                 />
               </FadeInOnScroll>
               
-              {/* Servicio 2: Portería 3x3 */}
+              {/* Servicio 2: Suministro de Recurso Humano 3x3 */}
               <FadeInOnScroll delay={0.2}>
                 <ServiceCard3D 
                   icon={<LucideIcons.Users className="h-6 w-6 text-gold" />}
-                  title="Portería 3x3"
-                  description="Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y control, con personal altamente capacitado."
+                  title="Suministro de Recurso Humano 3x3"
+                  description="Suministro de personal capacitado y certificado con modalidad 3x3 para mayor eficiencia y cobertura, con profesionales altamente calificados."
                   link="/servicios/3"
                   delay={0.2}
                 />
@@ -450,15 +437,26 @@ export default function Home() {
                 <ServiceCard3D 
                   icon={<LucideIcons.Camera className="h-6 w-6 text-gold" />}
                   title="Cámaras de Seguridad"
-                  description="Instalación y monitoreo de sistemas de videovigilancia con tecnología de punta para su hogar o negocio."
+                  description="Instalación y monitoreo de sistemas de monitoreo con tecnología de punta para su hogar o negocio."
                   link="/servicios?category=camaras"
                   delay={0.5}
+                />
+              </FadeInOnScroll>
+              
+              {/* Servicio 6: Mantenimiento de Planta Física */}
+              <FadeInOnScroll delay={0.6}>
+                <ServiceCard3D 
+                  icon={<LucideIcons.Wrench className="h-6 w-6 text-gold" />}
+                  title="Mantenimiento de Planta Física U/o todero"
+                  description="Servicio integral de mantenimiento de planta física con personal especializado y herramientas profesionales para garantizar el óptimo funcionamiento de sus instalaciones."
+                  link="/servicios"
+                  delay={0.6}
                 />
               </FadeInOnScroll>
             </div>
             
             <div className="text-center mt-12">
-              <Link href="/servicios" className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-white font-medium py-3 px-6 rounded-md transition-colors duration-300">
+              <Link href="/servicios" className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-white font-medium py-3 px-6 rounded-full transition-colors duration-300 shadow-lg hover:shadow-xl">
                 Ver todos los servicios
                 <LucideIcons.ArrowRight className="h-4 w-4" />
               </Link>
@@ -517,10 +515,10 @@ export default function Home() {
                 <div>
                   <h2 className="text-4xl font-bold font-playfair mb-6 text-black">Quiénes Somos</h2>
                   <p className="text-gray-600 mb-6 text-justify">
-                    Con más de 8 años de experiencia, Servileon se ha consolidado como una empresa líder en el sector de portería, vigilancia y control, ofreciendo soluciones integrales que combinan personal altamente capacitado, tecnología de vanguardia y protocolos de vigilancia rigurosos.
+                    Con más de 8 años de experiencia, Servileon se ha consolidado como una empresa líder en el sector de recurso humano, suministro de recursos humanos, ofreciendo soluciones integrales que combinan personal altamente capacitado, tecnología de vanguardia y protocolos de recurso humano rigurosos.
                   </p>
                   <p className="text-gray-600 mb-8 text-justify">
-                    Nuestra misión es proporcionar tranquilidad a nuestros clientes a través de nuestro amplio portafolio de servicio de portería, vigilancia, aseo y limpieza, jardinería, instalaciones y monitoreo dén cámaras de seguridad, controles confiables eficientes y personalizados que se adaptan a sus necesidades específicas.
+                    Nuestra misión es proporcionar tranquilidad a nuestros clientes a través de nuestro amplio portafolio de servicio de recurso humano, aseo y limpieza, jardinería, instalaciones y monitoreo de cámaras de seguridad, controles confiables eficientes y personalizados que se adaptan a sus necesidades específicas.
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -555,9 +553,6 @@ export default function Home() {
 
         {/* 3D Shield Section */}
         <section className="py-24 bg-servileon-black relative overflow-hidden">
-          <div className="absolute inset-0 opacity-30 pointer-events-none">
-            <FloatingParticles particleCount={30} color="#FFDF00" />
-          </div>
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -566,8 +561,8 @@ export default function Home() {
                   <InteractiveCard className="relative z-10 rounded-lg overflow-hidden shadow-2xl h-[400px] w-[400px] p-0">
                     <div className="relative h-full w-full">
                       <Image 
-                        src="/portero5.jpeg" 
-                        alt="Portería y Vigilancia Profesional" 
+                        src="/vigilantes.jpg" 
+                        alt="Recurso Humano Profesional" 
                         width={600}
                         height={400}
                         priority
@@ -580,9 +575,9 @@ export default function Home() {
               
               <FadeInOnScroll delay={0.2}>
                 <div>
-                  <h2 className="text-4xl font-bold font-playfair text-white mb-6">protección y servicios integrales de la más alta calidad</h2>
+                  <h2 className="text-4xl font-bold font-playfair text-white mb-6">servicios integrales de la más alta calidad</h2>
                   <p className="text-white/70 mb-6 text-justify">
-                    En Servileon, entendemos que la portería y vigilancia no es solo un servicio, es una promesa. Nuestro compromiso es proteger lo que más valora con soluciones especializadas en portería, vigilancia y control de vanguardia.
+                    En Servileon, entendemos que el recurso humano no es solo un servicio, es una promesa. Nuestro compromiso es proteger lo que más valora con soluciones especializadas en recurso humano y control de vanguardia.
                   </p>
                   <p className="text-white/70 mb-8 text-justify">
                     Combinamos tecnología avanzada, personal altamente calificado y protocolos rigurosos para ofrecer un escudo de protección impenetrable para su hogar, negocio o evento.
@@ -590,7 +585,7 @@ export default function Home() {
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                     {[
-                      { icon: <LucideIcons.Lock className="h-6 w-6 text-gold" />, text: "Vigilancia 24/7" },
+                      { icon: <LucideIcons.Lock className="h-6 w-6 text-gold" />, text: "Recurso Humano 24/7" },
                       { icon: <LucideIcons.Eye className="h-6 w-6 text-gold" />, text: "Monitoreo avanzado" },
                       { icon: <LucideIcons.Bell className="h-6 w-6 text-gold" />, text: "Respuesta inmediata" },
                       { icon: <LucideIcons.Cpu className="h-6 w-6 text-gold" />, text: "Tecnología de punta" }
@@ -671,62 +666,6 @@ export default function Home() {
                     aria-label={`Ver testimonio ${index + 1}`}
                   />
                 ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-24 bg-gold-gradient bg-gradient-size animate-gradient-slow relative overflow-hidden">
-          <ParallaxSection speed={0.2} direction="up" className="absolute inset-0 pointer-events-none">
-            <div className="absolute inset-0 opacity-10">
-              <FloatingParticles particleCount={20} color="#FFFFFF" />
-            </div>
-          </ParallaxSection>
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl font-bold font-playfair text-servileon-black mb-6">
-                Servicios profesionales de calidad
-              </h2>
-              <p className="text-servileon-black/80 text-xl mb-8">
-                Contáctenos hoy para una consulta gratuita y descubra cómo podemos ayudarle con sus necesidades.
-              </p>
-              <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 max-w-xl mx-auto">
-                <AnimatedButton 
-                  href="/contacto" 
-                  variant="secondary"
-                  size="lg"
-                  icon={<LucideIcons.ArrowRight className="h-5 w-5" />}
-                  fullWidth={true}
-                  className="w-full sm:w-auto"
-                >
-                  Solicitar Consulta
-                </AnimatedButton>
-                
-                <AnimatedButton 
-                  href="/servicios" 
-                  variant="ghost"
-                  size="lg"
-                  icon={<LucideIcons.ArrowRight className="h-5 w-5" />}
-                  glowColor="rgba(0, 0, 0, 0.2)"
-                  fullWidth={true}
-                  className="w-full sm:w-auto"
-                >
-                  Ver Servicios
-                </AnimatedButton>
-                
-                <AnimatedButton 
-                  href="tel:+573113260689" 
-                  variant="ghost"
-                  size="lg"
-                  icon={<LucideIcons.Phone className="h-5 w-5" />}
-                  glowColor="rgba(0, 0, 0, 0.2)"
-                  fullWidth={true}
-                  className="w-full sm:w-auto"
-                >
-                  Llamar Ahora
-                </AnimatedButton>
               </div>
             </div>
           </div>
