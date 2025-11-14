@@ -364,7 +364,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
               <p className="text-gray-300 text-sm">
                 Bucaramanga: Carrera 2 #20-50<br />
                 Paseo del puente 2- Piedecuesta, Santander<br />
-                Bogotá: Calle 151 bis #115-81
+                Bogotá: KR 98 #68 - 51
               </p>
             </div>
           </motion.div>

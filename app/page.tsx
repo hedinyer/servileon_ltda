@@ -214,7 +214,7 @@ export default function Home() {
     },
     {
       name: "Asvupar 1",
-      position: "CALLE 151 BIS 115",
+      position: "KR 98 #68 - 51",
       admin: "PABLO MENDEZ",
       image: "/hombre 4.png",
       content: "Servileon ofrece un servicio de recurso humano excepcional. Su personal es cortés, profesional y siempre está atento a las necesidades de nuestra comunidad.",

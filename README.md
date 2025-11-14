@@ -69,7 +69,7 @@ Para más información sobre este proyecto, contactar a:
 - **Teléfono**: +57 311 326 0689
 - **Direcciones**: 
   - Bucaramanga: Carrera 2 #20-50, Paseo del puente 2- Piedecuesta, Santander
-  - Bogotá: Calle 151 bis #115-81
+  - Bogotá: KR 98 #68 - 51
 
 ---
 

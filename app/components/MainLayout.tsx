@@ -486,7 +486,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   <span className="text-gray-400">
                     Bucaramanga: Carrera 2 #20-50<br />
                     Paseo del puente 2- Piedecuesta, Santander<br />
-                    Bogotá: Calle 151 bis #115-81
+                    Bogotá: KR 98 #68 - 51
                   </span>
                 </motion.li>
                 <motion.li 

@@ -61,9 +61,9 @@ export default function ContactoPage() {
         },
         {
           city: "Bogotá",
-          address: "Calle 151 bis #115-81",
+          address: "KR 98 #68 - 51",
           fullAddress: "",
-          link: "https://maps.google.com/?q=Calle+151+bis+%23115-81+Bogotá"
+          link: "https://maps.google.com/?q=KR+98+%2368+-+51+Bogotá"
         }
       ],
       type: "address"
@@ -132,7 +132,7 @@ export default function ContactoPage() {
     },
     {
       city: "Bogotá",
-      address: "Calle 151 bis #115-81",
+      address: "KR 98 #68 - 51",
       phone: "+57 311 326 0689",
       lat: 4.7110,
       lon: -74.0721,
@@ -243,12 +243,16 @@ export default function ContactoPage() {
                           <p className="text-gray-500 text-sm font-medium">
                             Línea de atención
                           </p>
-                          <a 
-                            href={info.details[0].link}
-                            className="text-2xl font-bold text-servileon-black hover:text-gold transition-colors duration-300 inline-block"
-                          >
-                            {info.details[0].label}
-                          </a>
+                          {typeof info.details[0] === 'object' && 'link' in info.details[0] && 'label' in info.details[0] && (
+                            <>
+                              <a 
+                                href={typeof info.details[0].link === 'string' ? info.details[0].link : '#'}
+                                className="text-2xl font-bold text-servileon-black hover:text-gold transition-colors duration-300 inline-block"
+                              >
+                                {info.details[0].label}
+                              </a>
+                            </>
+                          )}
                           <p className="text-gray-400 text-xs mt-2">
                             Disponible 24/7 para emergencias
                           </p>
@@ -276,24 +280,30 @@ export default function ContactoPage() {
                           <p className="text-gray-500 text-sm font-medium">
                             Escríbenos a
                           </p>
-                          <a 
-                            href={info.details[0].link}
-                            className="text-gray-800 hover:text-gold transition-colors duration-300 break-all text-base font-semibold inline-block"
-                          >
-                            {info.details[0].label}
-                          </a>
+                          {typeof info.details[0] === 'object' && 'link' in info.details[0] && 'label' in info.details[0] && (
+                            <>
+                              <a 
+                                href={typeof info.details[0].link === 'string' ? info.details[0].link : '#'}
+                                className="text-gray-800 hover:text-gold transition-colors duration-300 break-all text-base font-semibold inline-block"
+                              >
+                                {info.details[0].label}
+                              </a>
+                            </>
+                          )}
                           <p className="text-gray-400 text-xs mt-2">
                             Respondemos en menos de 24 horas
                           </p>
                         </div>
                         <div className="space-y-2 pt-2">
-                          <a 
-                            href={info.details[0].link}
-                            className="inline-flex items-center justify-center w-full bg-servileon-black hover:bg-gray-800 text-white px-4 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
-                          >
-                            <Mail className="h-4 w-4 mr-2" />
-                            Enviar mensaje
-                          </a>
+                          {typeof info.details[0] === 'object' && 'link' in info.details[0] && (
+                            <a 
+                              href={typeof info.details[0].link === 'string' ? info.details[0].link : '#'}
+                              className="inline-flex items-center justify-center w-full bg-servileon-black hover:bg-gray-800 text-white px-4 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                            >
+                              <Mail className="h-4 w-4 mr-2" />
+                              Enviar mensaje
+                            </a>
+                          )}
                           <p className="text-gray-400 text-xs">
                             Abre tu cliente de correo
                           </p>
