@@ -16,13 +16,35 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.servileon.com'),
   title: 'SERVILEON LTDA - Suministro de Recurso Humano, Mantenimiento y Paisajismo Profesional',
   description: 'Empresa líder en suministro de recurso humano, mantenimiento de planta física y paisajismo profesional. Especializados en servicios de mantenimiento para edificios y conjuntos residenciales, paisajismo, limpieza y actividades especializadas con personal capacitado y protocolos rigurosos.',
   keywords: 'recurso humano, suministro de personal, mantenimiento de planta física, paisajismo profesional, limpieza profesional, servicios de mantenimiento, gestión de personal, Colombia',
+  authors: [{ name: 'SERVILEON LTDA' }],
+  creator: 'SERVILEON LTDA',
+  publisher: 'SERVILEON LTDA',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   generator: 'Next.js',
   openGraph: {
     title: 'SERVILEON LTDA - Suministro de Recurso Humano, Mantenimiento y Paisajismo',
     description: 'Empresa líder en suministro de recurso humano, mantenimiento de planta física y paisajismo profesional. Especializados en servicios de mantenimiento para edificios y conjuntos residenciales.',
+    url: 'https://www.servileon.com',
+    siteName: 'SERVILEON LTDA',
     type: 'website',
     locale: 'es_CO',
   },
@@ -30,6 +52,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'SERVILEON LTDA - Suministro de Recurso Humano, Mantenimiento y Paisajismo',
     description: 'Empresa líder en suministro de recurso humano, mantenimiento de planta física y paisajismo profesional.',
+  },
+  alternates: {
+    canonical: 'https://www.servileon.com',
   },
 }
 
