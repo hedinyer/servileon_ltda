@@ -27,7 +27,7 @@ interface QuoteFormData {
   }
 }
 
-type ServiciosCategorias = "porteria" | "aseo" | "jardineria";
+type ServiciosCategorias = "recurso_humano" | "aseo" | "jardineria";
 
 interface Servicio {
   id: string;
@@ -44,14 +44,14 @@ export default function CotizacionCalculator({
 }: CotizacionCalculatorProps) {
   // Categorías de servicios
   const CATEGORIAS = [
-    { id: "porteria" as ServiciosCategorias, nombre: "Portería", icon: <Shield className="h-4 w-4" /> },
+    { id: "recurso_humano" as ServiciosCategorias, nombre: "Recurso Humano", icon: <Shield className="h-4 w-4" /> },
     { id: "aseo" as ServiciosCategorias, nombre: "Aseo y Limpieza", icon: <Users className="h-4 w-4" /> },
     { id: "jardineria" as ServiciosCategorias, nombre: "Jardinería", icon: <Flower className="h-4 w-4" /> }
   ]
   
   // Servicios por categoría con precios actualizados
   const SERVICIOS: Record<ServiciosCategorias, Servicio[]> = {
-    porteria: [
+    recurso_humano: [
       { 
         id: "24h-3x3", 
         nombre: "Servicio 24 Horas 3x3", 
@@ -116,7 +116,7 @@ export default function CotizacionCalculator({
   ]
 
   // Estados
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<ServiciosCategorias>("porteria")
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<ServiciosCategorias>("recurso_humano")
   const [servicioSeleccionado, setServicioSeleccionado] = useState("24h-3x3")
   const [duracionSeleccionada, setDuracionSeleccionada] = useState("1mes")
   const [cotizacion, setCotizacion] = useState({

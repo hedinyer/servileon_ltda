@@ -42,7 +42,7 @@ export default function ServiceCard({
   const { showNotification } = useNotification();
   const { trackEvent } = useAnalytics();
   
-  const categoryName = category === "aseo" ? "Aseo y Limpieza" : "Portería";
+  const categoryName = category === "aseo" ? "Aseo y Limpieza" : category === "recurso_humano" ? "Recurso Humano" : "Recurso Humano";
 
   // Handle favorite toggle
   const handleFavoriteToggle = (e: React.MouseEvent) => {

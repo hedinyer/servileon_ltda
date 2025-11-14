@@ -16,9 +16,21 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'SERVILEON LTDA - Recurso Humano, vigilancia y control de Alta Gama',
-  description: 'Empresa líder en recurso humano, vigilancia y control con 8 años de experiencia. Ofrecemos servicios de vigilancia armada, protección ejecutiva y monitoreo 24/7 con IA.',
+  title: 'SERVILEON LTDA - Suministro de Recurso Humano, Mantenimiento y Paisajismo Profesional',
+  description: 'Empresa líder en suministro de recurso humano, mantenimiento de planta física y paisajismo profesional. Especializados en servicios de mantenimiento para edificios y conjuntos residenciales, paisajismo, limpieza y actividades especializadas con personal capacitado y protocolos rigurosos.',
+  keywords: 'recurso humano, suministro de personal, mantenimiento de planta física, paisajismo profesional, limpieza profesional, servicios de mantenimiento, gestión de personal, Colombia',
   generator: 'Next.js',
+  openGraph: {
+    title: 'SERVILEON LTDA - Suministro de Recurso Humano, Mantenimiento y Paisajismo',
+    description: 'Empresa líder en suministro de recurso humano, mantenimiento de planta física y paisajismo profesional. Especializados en servicios de mantenimiento para edificios y conjuntos residenciales.',
+    type: 'website',
+    locale: 'es_CO',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SERVILEON LTDA - Suministro de Recurso Humano, Mantenimiento y Paisajismo',
+    description: 'Empresa líder en suministro de recurso humano, mantenimiento de planta física y paisajismo profesional.',
+  },
 }
 
 export default function RootLayout({

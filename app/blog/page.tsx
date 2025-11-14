@@ -23,7 +23,7 @@ export default function BlogPage() {
     {
       id: 1,
       title: "5 Tendencias de Seguridad en Colombia 2024",
-      excerpt: "Descubre las principales innovaciones y cambios en el sector de portería, seguridad y control para este año.",
+      excerpt: "Descubre las principales innovaciones y cambios en el sector de recurso humano, seguridad y control para este año.",
       image: "/portada.jpeg",
       date: "15 de marzo, 2024",
       author: "Alejandro León",
@@ -122,7 +122,7 @@ export default function BlogPage() {
               Blog de <span className="text-gold">Seguridad</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8">
-              Artículos, consejos y tendencias sobre portería, seguridad y control y protección.
+              Artículos, consejos y tendencias sobre recurso humano, seguridad y control y protección.
             </p>
           </div>
         </div>

@@ -63,11 +63,11 @@ function ServiceDetailContent() {
     },
     {
       id: 2,
-      title: "Portería Modalidad 2x2x2",
-      description: "Servicio de portería 24 horas con personal capacitado y equipado para garantizar la seguridad.",
-      longDescription: "Nuestro servicio de portería en modalidad 2x2x2 ofrece cobertura las 24 horas del día, todos los días del mes. El personal está altamente capacitado y equipado con todos los elementos necesarios para garantizar la seguridad de sus instalaciones. Mantenemos comunicación constante con nuestra central para responder rápidamente ante cualquier eventualidad.",
+      title: "Recurso Humano Modalidad 2x2x2",
+      description: "Servicio de recurso humano 24 horas con personal capacitado y equipado para garantizar la seguridad.",
+      longDescription: "Nuestro servicio de recurso humano en modalidad 2x2x2 ofrece cobertura las 24 horas del día, todos los días del mes. El personal está altamente capacitado y equipado con todos los elementos necesarios para garantizar la seguridad de sus instalaciones. Mantenemos comunicación constante con nuestra central para responder rápidamente ante cualquier eventualidad.",
       icon: <Users className="h-12 w-12 text-gold" />,
-      category: "porteria",
+      category: "recurso_humano",
       image: "/portada.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
@@ -87,11 +87,11 @@ function ServiceDetailContent() {
     },
     {
       id: 3,
-      title: "Portería Modalidad 3x3",
-      description: "Servicio de portería 24 horas con modalidad 3x3 para mayor eficiencia y seguridad.",
-      longDescription: "El servicio de portería en modalidad 3x3 proporciona cobertura las 24 horas del día con un esquema de rotación optimizado que mejora la eficiencia y reduce la fatiga del personal. Esto se traduce en un servicio más alerta y efectivo. Nuestro personal está equipado con todos los elementos necesarios y mantiene comunicación constante con la central para garantizar una respuesta rápida ante cualquier situación.",
+      title: "Recurso Humano Modalidad 3x3",
+      description: "Servicio de recurso humano 24 horas con modalidad 3x3 para mayor eficiencia y seguridad.",
+      longDescription: "El servicio de recurso humano en modalidad 3x3 proporciona cobertura las 24 horas del día con un esquema de rotación optimizado que mejora la eficiencia y reduce la fatiga del personal. Esto se traduce en un servicio más alerta y efectivo. Nuestro personal está equipado con todos los elementos necesarios y mantiene comunicación constante con la central para garantizar una respuesta rápida ante cualquier situación.",
       icon: <Users className="h-12 w-12 text-gold" />,
-      category: "porteria",
+      category: "recurso_humano",
       image: "/portada.jpeg",
       features: [
         "Servicio 24 horas todos los días del mes",
@@ -181,7 +181,7 @@ function ServiceDetailContent() {
                 {service.icon}
               </div>
               <span className="text-gold font-medium">
-                {service.category === "aseo" ? "Aseo y Limpieza" : "Portería"}
+                {service.category === "aseo" ? "Aseo y Limpieza" : "Recurso Humano"}
               </span>
             </div>
             <p className="text-gray-300 text-lg">
