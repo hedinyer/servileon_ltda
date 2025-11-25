@@ -299,7 +299,7 @@ function ServiciosContent() {
                       alt={service.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      style={{ objectPosition: 'center 20%' }}
+                      style={{ objectPosition: 'center 50%' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute top-4 right-4">
