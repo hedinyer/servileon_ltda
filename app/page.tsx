@@ -30,7 +30,7 @@ import FadeInOnScroll from './components/FadeInOnScroll'
 // const SecurityBackground = dynamic(() => import('./components/3d/SecurityBackground'), { ssr: false })
 // const FloatingParticles = dynamic(() => import('./components/3d/FloatingParticles'), { ssr: false })
 const ServiceCard3D = dynamic(() => import('./components/3d/ServiceCard3D'), { ssr: false })
-const FloatingLogos = dynamic(() => import('./components/3d/FloatingLogos'), { ssr: false })
+const FloatingLogos = dynamic(() => import('./components/3d/FloatingLogosDisabled'), { ssr: false })
 // Importar componentes regulares
 import InteractiveScroll from './components/InteractiveScroll'
 import InteractiveCard from './components/InteractiveCard'

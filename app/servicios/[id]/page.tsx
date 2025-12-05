@@ -278,54 +278,6 @@ function ServiceDetailContent() {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               <FadeInOnScroll delay={0.3}>
-                {/* Pricing Card */}
-                {service.pricing && (
-                  <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-8 sticky top-24">
-                    <div className="bg-gold text-white p-6">
-                      <h3 className="text-xl font-bold mb-1">Precio del Servicio</h3>
-                      <p className="text-white/80">Inversión mensual para su tranquilidad</p>
-                    </div>
-                    <div className="p-6">
-                      <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-100">
-                        <p className="text-gray-600">Valor sin IVA:</p>
-                        <p className="text-gray-800 font-medium">${service.pricing.valorSinIva}</p>
-                      </div>
-                      <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-100">
-                        <p className="text-gray-600">IVA (19%):</p>
-                        <p className="text-gray-800 font-medium">${service.pricing.iva}</p>
-                      </div>
-                      <div className="flex justify-between items-center mb-6">
-                        <p className="text-xl font-bold text-gray-800">Total Mensual:</p>
-                        <p className="text-2xl font-bold text-gold">${service.pricing.valorTotal}</p>
-                      </div>
-                      
-                      <button 
-                        onClick={() => setShowContactForm(true)}
-                        className="w-full bg-gold hover:bg-gold-dark text-white py-3 rounded-md font-medium transition-colors duration-300 mb-4"
-                      >
-                        Solicitar Cotización
-                      </button>
-                      
-                      <Link 
-                        href="/servicios"
-                        className="w-full block text-center border-2 border-gold text-gold hover:bg-gold/5 py-2.5 rounded-md font-medium transition-colors duration-300"
-                      >
-                        Ver otros servicios
-                      </Link>
-                      
-                      <div className="mt-6 text-center">
-                        <p className="text-sm text-gray-500">¿Necesitas un servicio personalizado?</p>
-                        <Link 
-                          href="/contacto"
-                          className="text-gold hover:underline text-sm font-medium"
-                        >
-                          Contáctanos para una cotización a medida
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                
                 {/* Contact Info */}
                 <div className="bg-gray-50 rounded-lg p-6 border border-gray-100">
                   <h3 className="text-lg font-bold mb-4">¿Tienes preguntas?</h3>
@@ -337,7 +289,7 @@ function ServiceDetailContent() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Llámanos</p>
-                      <p className="font-medium">+57 311 326 0689</p>
+                      <p className="font-medium text-black">+57 311 326 0689</p>
                     </div>
                   </div>
                   
@@ -347,7 +299,7 @@ function ServiceDetailContent() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Escríbenos</p>
-                      <p className="font-medium">neider.leon@servileon.com</p>
+                      <p className="font-medium text-black">neider.leon@servileon.com</p>
                     </div>
                   </div>
                 </div>

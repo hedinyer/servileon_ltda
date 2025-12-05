@@ -233,27 +233,6 @@ export default function ServiceCard({
           </ul>
         </div>
         
-        {/* Pricing */}
-        {pricing && (
-          <motion.div 
-            className="mt-auto mb-5 p-4 bg-gold/5 rounded-lg border border-gold/20"
-            whileHover={{ backgroundColor: "rgba(212, 175, 55, 0.1)" }}
-          >
-            <div className="flex justify-between items-center mb-2">
-              <p className="text-sm font-medium text-gray-600">Valor sin IVA:</p>
-              <p className="text-sm text-gray-800">${pricing.valorSinIva}</p>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-              <p className="text-sm font-medium text-gray-600">IVA:</p>
-              <p className="text-sm text-gray-800">${pricing.iva}</p>
-            </div>
-            <div className="flex justify-between items-center pt-2 border-t border-gold/20">
-              <p className="text-base font-bold text-gray-800">Total:</p>
-              <p className="text-lg font-bold text-gold">${pricing.valorTotal}</p>
-            </div>
-          </motion.div>
-        )}
-        
         {/* Action Buttons */}
         <div className="flex flex-col space-y-3">
           <Link 

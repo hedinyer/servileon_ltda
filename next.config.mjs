@@ -7,9 +7,6 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -33,11 +30,8 @@ const nextConfig = {
         fonts: false,
       },
     },
-    scrollRestoration: true,
   },
-  swcMinify: true,
   compress: true,
-  optimizeFonts: true,
   onDemandEntries: {
     maxInactiveAge: 60 * 60 * 1000,
     pagesBufferLength: 5,
